@@ -1,18 +1,23 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div>
+    <nav-bar></nav-bar>
+    <div id="app">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import NavBar from "@/components/NavBar.vue";
 export default {
+  components: { NavBar },
   setup() {
     return {};
   },
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 *,
 *::before,
 *::after {
