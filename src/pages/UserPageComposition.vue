@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1>Управление пользователями</h1>
-    <ps-button @click="showAddUserDialog">Добавить пользователя</ps-button>
-    <ps-dialog v-model:show="dialogVisible"
+    <!-- <ps-button @click="showAddUserDialog">Добавить пользователя</ps-button> -->
+    <!-- <ps-dialog v-model:show="dialogVisible"
       ><new-user-form @create="addUser"
-    /></ps-dialog>
+    /></ps-dialog> -->
 
     <user-list :users="users" @removeUser="removeUser" />
   </div>
@@ -16,7 +16,8 @@ import NewUserForm from "@/components/NewUserForm.vue";
 import PsButton from "@/components/UI/PsButton.vue";
 import axios from "axios";
 import PsDialog from "@/components/UI/PsDialog.vue";
-import { mapActions, mapMutations, mapState, mapGetters } from "vuex";
+import useUser from "@/hooks/useUser";
+
 export default {
   components: {
     UserList,
@@ -25,18 +26,18 @@ export default {
     PsDialog,
     UserList,
   },
+  setup(props) {
+    const { users } = useUser("test");
+    return { users };
+  },
   data() {
     return {
+      // users: [],
       dialogVisible: false,
     };
   },
 
   methods: {
-    ...mapMutations({}),
-    ...mapActions({
-      fetchUsers: "user/fetchUsers",
-    }),
-
     async addUser(user) {
       //   this.users.push(user);
 
@@ -50,7 +51,6 @@ export default {
       console.log(response);
       this.dialogVisible = false;
     },
-
     async removeUser(id) {
       const response = await axios.post("http://localhost:7000/users/delete", {
         userId: Number(id),
@@ -62,25 +62,6 @@ export default {
     showAddUserDialog() {
       this.dialogVisible = true;
     },
-    // async fetchUsers() {
-    //   try {
-    //     const response = await axios.get("http://localhost:7000/users");
-    //     this.users = response.data;
-    //     console.log(response);
-    //   } catch (error) {
-    //     alert("Ошибка");
-    //   }
-    // },
-  },
-
-  mounted() {
-    this.fetchUsers();
-  },
-  computed: {
-    ...mapState({
-      users: (state) => state.user.users,
-    }),
-    ...mapGetters({}),
   },
 };
 </script>

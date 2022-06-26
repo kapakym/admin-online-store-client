@@ -33,7 +33,7 @@
     "src/**/*.vue",
     "tests/**/*.ts",
     "tests/**/*.tsx"
-, "src/components/UI/index.ts"  ],
+, "src/components/UI/index.ts", "src/mixins/toggleMixin.js", "src/hooks/useUser.ts"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,9 +1,14 @@
 <template>
   <div class="navbar">
-    <div>Травокософф</div>
+    <div @click="$router.push('/')" style="color: white">
+      <h3>Травокософф</h3>
+    </div>
     <div class="navbar_button">
-      <ps-nav-bar-button @click="$router.push('/products')">
+      <!-- <ps-nav-bar-button @click="$router.push('/products')">
         Каталог товаров</ps-nav-bar-button
+      > -->
+      <ps-nav-bar-button @click="$router.push('/category')">
+        Категории товаров</ps-nav-bar-button
       >
       <ps-nav-bar-button @click="$router.push('/user')"
         >Пользователи</ps-nav-bar-button

@@ -5,9 +5,6 @@
 <script>
 export default {
   name: "ps-nav-bar-button",
-  setup() {
-    return {};
-  },
 };
 </script>
 

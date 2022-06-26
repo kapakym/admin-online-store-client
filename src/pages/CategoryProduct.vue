@@ -1,0 +1,100 @@
+<template>
+  <div class="category">
+    <ps-dialog v-model:show="dialogVisible"
+      ><new-category-form @create="addCategory" :parent="parentCategory"
+    /></ps-dialog>
+    <h1>Категории товаров</h1>
+    <div v-if="!isCategoryLoading" style="width: 100%">
+      <div class="viewtree">
+        <ps-tree-view
+          class="tree"
+          :name="catproducts.name"
+          :childrens="catproducts.childrens"
+          :picture="catproducts.picture"
+          :id="catproducts.id"
+          :key="catproducts.id"
+          :parentId="0"
+          @show-dialog="showDialog"
+          @info-category="infoCategory"
+        ></ps-tree-view>
+        <div class="treeinfo">
+          <info-category />
+        </div>
+      </div>
+    </div>
+    <div v-else>Идет загрузка</div>
+  </div>
+</template>
+
+<script>
+import useCategory from "@/hooks/useCategory";
+import PsTreeView from "../components/UI/PsTreeView.vue";
+import NewCategoryForm from "../components/NewCategoryForm.vue";
+import PsButton from "../components/UI/PsButton.vue";
+import PsInput from "../components/UI/PsInput.vue";
+import InfoCategory from "../components/InfoCategory.vue";
+export default {
+  components: { PsTreeView, NewCategoryForm, PsButton, PsInput, InfoCategory },
+  setup(props) {
+    const { catproducts, catresponse, isCategoryLoading } = useCategory();
+    return { catproducts, catresponse, isCategoryLoading };
+  },
+  data() {
+    return {
+      dialogVisible: false,
+      parentCategory: {},
+      category_name: "",
+      category_id: 0,
+      category_picture: "",
+      select_category: 0,
+    };
+  },
+  methods: {
+    addCategory(category) {
+      this.dialogVisible = false;
+    },
+    showDialog(parentCategory) {
+      console.log(parentCategory);
+      this.parentCategory = parentCategory;
+      this.dialogVisible = true;
+    },
+    infoCategory(info_cat) {
+      console.log("sss", info_cat);
+      this.select_category = info_cat.parentId;
+      this.category_name = info_cat.name;
+    },
+  },
+};
+</script>
+
+<style lang="css" scoped>
+.category {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid green;
+  width: 100%;
+  height: 90vh;
+  border: 3px solid red;
+}
+.viewtree {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border: 3px solid black;
+}
+
+.tree {
+  width: 40%;
+  height: 100%;
+  overflow: auto;
+  text-align: left;
+  flex-grow: 1;
+}
+.treeinfo {
+  width: 60%;
+  border: 1px solid black;
+}
+</style>

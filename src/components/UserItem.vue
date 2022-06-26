@@ -1,10 +1,8 @@
 <template>
   <div>
-    <div><strong>id </strong>{{ user.id }}</div>
     <div><strong>email </strong>{{ user.email }}</div>
-    <div><strong>password </strong>{{ user.password }}</div>
-    <div><strong>banned </strong>{{ user.statusBan }}</div>
-    <div><strong>ban Reason </strong>{{ user.banReason }}</div>
+    <div><strong>Заблокирован</strong>{{ user.statusBan }}</div>
+    <div><strong>Причина блокировки</strong>{{ user.banReason }}</div>
     <div>
       <strong>Roles </strong>
       <div v-for="role in user.roles" :key="role">{{ role.value }}</div>
@@ -34,6 +32,9 @@ export default defineComponent({
   },
   setup() {
     return {};
+  },
+  mounted() {
+    // console.log(this.user);
   },
 });
 </script>

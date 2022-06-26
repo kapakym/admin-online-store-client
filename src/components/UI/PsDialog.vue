@@ -6,22 +6,10 @@
   </div>
 </template>
 <script>
+import toggleMixin from "@/mixins/toggleMixin";
 export default {
   name: "ps-dialog",
-  props: {
-    show: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  methods: {
-    hideDialog() {
-      this.$emit("update:show", false);
-    },
-  },
-  setup() {
-    return {};
-  },
+  mixins: [toggleMixin],
 };
 </script>
 
@@ -44,5 +32,6 @@ export default {
   min-width: 300px;
   padding: 20px;
   border: 1px solid black;
+  box-shadow: 4px 4px 4px black;
 }
 </style>
