@@ -4,26 +4,14 @@
     <div class="contentInfo">
       <ps-label-input
         placeholder="Введите название"
-        :model="select.name"
+        :model="select_category.name"
         type="text"
         >Название категории</ps-label-input
       >
-      <label for="nameCat">Название категории</label>
-      <div>
-        <ps-input
-          v-model="category_name"
-          type="text"
-          id="nameCat"
-          placeholder="Название категории"
-        />
-        <label for="parentCat">Родитель</label>
-      </div>
 
-      <select v-model="select_category">
-        <option v-for="item in catresponse" :key="item.id" :value="item.id">
-          {{ item.name }}
-        </option>
-      </select>
+      <ps-label-select :model="response" :select="select_category"
+        >Родитель</ps-label-select
+      >
       <img
         src="https://htstatic.imgsmail.ru/pic_image/54b7a9fe9fc7976b27b831e2de33bed9/450/450/1670177/"
       />
@@ -36,10 +24,13 @@
 </template>
 
 <script>
+import PsLabelSelect from "./UI/PsLabelSelect.vue";
 // import psLabelInput from "./UI/psLabelInput.vue";
 export default {
+  components: { PsLabelSelect },
   props: {
-    select: {},
+    select_category: {},
+    response: {},
   },
   data() {
     return {
@@ -49,6 +40,7 @@ export default {
   setup() {
     return {};
   },
+  mounted() {},
 };
 </script>
 

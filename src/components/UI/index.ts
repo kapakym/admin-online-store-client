@@ -4,7 +4,7 @@ import PsDialog from "@/components/UI/PsDialog.vue";
 import PsNavBarButton from "@/components/UI/PsNavBarButton.vue";
 import PsTreeView from "@/components/UI/PsTreeView.vue";
 import PsLabelInput from "@/components/UI/PsLabelInput.vue";
-import PsLabelSelect from "@/components/UI/PsLabelInput.vue";
+import PsLabelSelect from "@/components/UI/PsLabelSelect.vue";
 
 export default [
   PsButton,
@@ -13,4 +13,5 @@ export default [
   PsNavBarButton,
   PsTreeView,
   PsLabelInput,
+  PsLabelSelect,
 ];

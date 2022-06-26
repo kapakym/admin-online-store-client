@@ -3,8 +3,12 @@
     <div class="pslabel">
       <label><slot></slot></label>
     </div>
-    <div class="psinput">
-      <ps-input v-model="model" :type="type" :placeholder="placeholder" />
+    <div class="psselect">
+      <select v-model="select.parentId" @click="onclick" class="psselectstyle">
+        <option v-for="item in model" :key="item.id" :value="item.id">
+          {{ item.name }}
+        </option>
+      </select>
     </div>
   </div>
 </template>
@@ -13,13 +17,13 @@
 export default {
   name: "ps-label-select",
   props: {
-    model: [String, Number],
-    type: String,
-    placeholder: String,
+    model: {},
+    select: {},
   },
   setup() {
     return {};
   },
+  mounted() {},
 };
 </script>
 
@@ -38,9 +42,19 @@ export default {
   margin-right: 10px;
 }
 
-.psinput {
+.psselect {
   display: flex;
   align-items: center;
   width: 60%;
+}
+
+.psselectstyle {
+  width: 100%;
+  align-self: auto;
+  padding: 10px;
+  background: none;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 </style>
