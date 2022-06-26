@@ -1,15 +1,18 @@
 <template>
   <div>
-    Сведения о категории
-    <div>
+    <h2>Сведения о категории</h2>
+    <div class="contentInfo">
       <label for="nameCat">Название категории</label>
-      <ps-input
-        v-model="category_name"
-        type="text"
-        id="nameCat"
-        placeholder="Название категории"
-      />
-      <label for="parentCat">Родитель</label>
+      <div>
+        <ps-input
+          v-model="category_name"
+          type="text"
+          id="nameCat"
+          placeholder="Название категории"
+        />
+        <label for="parentCat">Родитель</label>
+      </div>
+
       <select v-model="select_category">
         <option v-for="item in catresponse" :key="item.id" :value="item.id">
           {{ item.name }}
@@ -36,4 +39,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.contentInfo {
+  display: flex;
+  flex-direction: column;
+}
 </style>
