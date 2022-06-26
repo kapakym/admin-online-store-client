@@ -4,7 +4,7 @@
     <div class="contentInfo">
       <ps-label-input
         placeholder="Введите название"
-        :model="name_info"
+        :model="select.name"
         type="text"
         >Название категории</ps-label-input
       >
@@ -38,7 +38,9 @@
 <script>
 // import psLabelInput from "./UI/psLabelInput.vue";
 export default {
-  props: {},
+  props: {
+    select: {},
+  },
   data() {
     return {
       name_info: "",

@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "ps-label-input",
+  name: "ps-label-select",
   props: {
     model: [String, Number],
     type: String,

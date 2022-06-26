@@ -18,7 +18,7 @@
           @info-category="infoCategory"
         ></ps-tree-view>
         <div class="treeinfo">
-          <info-category />
+          <info-category :select="select_category" />
         </div>
       </div>
     </div>
