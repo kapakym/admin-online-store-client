@@ -2,6 +2,12 @@
   <div>
     <h2>Сведения о категории</h2>
     <div class="contentInfo">
+      <ps-label-input
+        placeholder="Введите название"
+        :model="name_info"
+        type="text"
+        >Название категории</ps-label-input
+      >
       <label for="nameCat">Название категории</label>
       <div>
         <ps-input
@@ -30,8 +36,14 @@
 </template>
 
 <script>
+// import psLabelInput from "./UI/psLabelInput.vue";
 export default {
   props: {},
+  data() {
+    return {
+      name_info: "",
+    };
+  },
   setup() {
     return {};
   },

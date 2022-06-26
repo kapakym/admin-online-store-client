@@ -43,10 +43,7 @@ export default {
     return {
       dialogVisible: false,
       parentCategory: {},
-      category_name: "",
-      category_id: 0,
-      category_picture: "",
-      select_category: 0,
+      select_category: {},
     };
   },
   methods: {
@@ -60,8 +57,9 @@ export default {
     },
     infoCategory(info_cat) {
       console.log("sss", info_cat);
-      this.select_category = info_cat.parentId;
-      this.category_name = info_cat.name;
+      this.select_category.parentId = info_cat.parentId;
+      this.select_category.name = info_cat.name;
+      this.select_category.picture = info_cat.picture;
     },
   },
 };

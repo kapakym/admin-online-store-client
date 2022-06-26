@@ -1,5 +1,10 @@
 <template>
-  <input class="psinput" :value="modelValue" @input="updateInput" />
+  <input
+    class="psinput"
+    :value="modelValue"
+    @input="updateInput"
+    style="width: 100%"
+  />
 </template>
 
 <script>
@@ -21,7 +26,7 @@ export default {
 
 <style lang="css" scoped>
 .psinput {
-  margin-top: 15px;
+  /* margin-top: 15px; */
   align-self: auto;
   padding: 10px;
   background: none;
