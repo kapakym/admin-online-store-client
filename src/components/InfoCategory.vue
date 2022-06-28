@@ -9,13 +9,20 @@
         >Название категории</ps-label-input
       >
 
-      <ps-label-select :model="response" :select="select_category"
+      <ps-label-select
+        style="margin-top: 15px"
+        :model="response"
+        :select="select_category"
         >Родитель</ps-label-select
       >
-      <img :src="'http://localhost:7000/' + select_category.picture" />
+      <img
+        class="picture-category"
+        :src="'http://localhost:7000/' + select_category.picture"
+      />
       <div>
-        <ps-button>Удалить</ps-button>
-        <ps-button>Сохранить</ps-button>
+        <ps-button>Добавить</ps-button>
+        <ps-button style="margin-left: 10px">Удалить</ps-button>
+        <ps-button style="margin-left: 10px">Сохранить</ps-button>
       </div>
     </div>
   </div>
@@ -46,5 +53,13 @@ export default {
 .contentInfo {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture-category {
+  margin-top: 15px;
+  border: 1px solid black;
+  width: 200px;
 }
 </style>
