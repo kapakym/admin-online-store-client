@@ -1,11 +1,17 @@
 <template>
   <div>
-    <ps-tree-item
-      :name="name"
-      :isFolder="isFolder"
-      :isOpen="isOpen"
-      @click="toggle"
-    />
+    <div class="item">
+      <ps-tree-item
+        :name="name"
+        :isFolder="isFolder"
+        :isOpen="isOpen"
+        @click="toggle"
+        @dblclick="$emit('show-dialog', { id, name })"
+      />
+      <!-- <div class="add">
+        <div class="addBtn" @click="$emit('show-dialog', { id, name })">+</div>
+      </div> -->
+    </div>
 
     <div v-if="isOpen">
       <ps-tree-view
@@ -20,11 +26,6 @@
         @show-dialog="showDialog"
         @info-category="infoCategory"
       ></ps-tree-view>
-      <div class="add">
-        <div class="addBtn" @click="$emit('show-dialog', { id, name })">
-          Добавить
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -85,25 +86,29 @@ export default {
 }
 .add {
   padding-left: 1em;
-  line-height: 1.5em;
-  list-style-type: dot;
+  /* line-height: 1.5em; */
+  /* list-style-type: dot; */
 }
 .add {
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   display: inline-block;
   text-align: center;
 }
 
 .addBtn {
   border: 1px solid black;
-  margin-bottom: 5px;
-  display: inline-block;
+  padding-left: 5px;
+  padding-right: 5px;
+  /* display: inline-block; */
   text-align: center;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 
 .addBtn:hover {
   background: lightgray;
   cursor: pointer;
+}
+.item {
+  display: flex;
 }
 </style>

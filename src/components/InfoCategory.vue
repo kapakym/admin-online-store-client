@@ -12,9 +12,7 @@
       <ps-label-select :model="response" :select="select_category"
         >Родитель</ps-label-select
       >
-      <img
-        src="https://htstatic.imgsmail.ru/pic_image/54b7a9fe9fc7976b27b831e2de33bed9/450/450/1670177/"
-      />
+      <img :src="'http://localhost:7000/' + select_category.picture" />
       <div>
         <ps-button>Удалить</ps-button>
         <ps-button>Сохранить</ps-button>

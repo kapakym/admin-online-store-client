@@ -1,7 +1,7 @@
 <template>
   <div class="category">
     <ps-dialog v-model:show="dialogVisible"
-      ><new-category-form @create="addCategory" :parent="parentCategory"
+      ><new-category-form @create="closeDialog" :parent="parentCategory"
     /></ps-dialog>
     <h1>Категории товаров</h1>
     <div v-if="!isCategoryLoading" style="width: 100%">
@@ -50,7 +50,7 @@ export default {
     };
   },
   methods: {
-    addCategory(category) {
+    closeDialog() {
       this.dialogVisible = false;
     },
     showDialog(parentCategory) {
