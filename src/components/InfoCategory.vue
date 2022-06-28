@@ -17,7 +17,10 @@
       >
       <img
         class="picture-category"
-        :src="'http://localhost:7000/' + select_category.picture"
+        :src="
+          'http://localhost:7000/' +
+          (select_category.picture ? select_category.picture : 'notpicture.png')
+        "
       />
       <div>
         <ps-button>Добавить</ps-button>

@@ -8,9 +8,6 @@
         @click="toggle"
         @dblclick="$emit('show-dialog', { id, name })"
       />
-      <!-- <div class="add">
-        <div class="addBtn" @click="$emit('show-dialog', { id, name })">+</div>
-      </div> -->
     </div>
 
     <div v-if="isOpen">
@@ -54,11 +51,12 @@ export default {
       if (this.isFolder) {
         this.isOpen = !this.isOpen;
       }
-      console.log("toggle");
+      console.log(this.picture);
+      // if (!this.picture) this.picture = "notpicture.png";
       this.$emit("info-category", {
         id: this.id,
         name: this.name,
-        picture: this.picture,
+        picture: !this.picture ? "notpicture.png" : this.picture,
         parentId: this.parentId,
       });
     },
@@ -83,25 +81,6 @@ export default {
   padding-left: 1em;
   line-height: 1.5em;
   list-style-type: dot;
-}
-.add {
-  padding-left: 1em;
-  /* line-height: 1.5em; */
-  /* list-style-type: dot; */
-}
-.add {
-  /* margin-bottom: 5px; */
-  display: inline-block;
-  text-align: center;
-}
-
-.addBtn {
-  border: 1px solid black;
-  padding-left: 5px;
-  padding-right: 5px;
-  /* display: inline-block; */
-  text-align: center;
-  border-radius: 20px;
 }
 
 .addBtn:hover {

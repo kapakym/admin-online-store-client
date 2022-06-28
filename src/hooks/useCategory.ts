@@ -18,7 +18,7 @@ export default function useCategory() {
       catproducts.value = {
         id: 0,
         name: "Каталог товаров",
-        picture: "/node",
+        picture: "notpicture.png",
         childrens: treeProduct,
       };
       catresponse.value = response.data;
