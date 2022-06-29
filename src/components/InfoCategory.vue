@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 100%">
     <h2>Сведения о категории</h2>
     <div class="contentInfo">
       <ps-label-input
@@ -15,6 +15,7 @@
         :select="select_category"
         >Родитель</ps-label-select
       >
+
       <img
         class="picture-category"
         :src="
@@ -23,7 +24,16 @@
         "
       />
       <div>
-        <ps-button>Добавить</ps-button>
+        <ps-button
+          @click="
+            $emit('show-dialog', {
+              id: select_category.id,
+              name: select_category.name,
+              childrens: select_category.childrens,
+            })
+          "
+          >Добавить</ps-button
+        >
         <ps-button style="margin-left: 10px">Удалить</ps-button>
         <ps-button style="margin-left: 10px">Сохранить</ps-button>
       </div>
@@ -56,8 +66,10 @@ export default {
 .contentInfo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .picture-category {

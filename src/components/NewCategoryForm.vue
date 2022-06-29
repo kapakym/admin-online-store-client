@@ -19,6 +19,7 @@
 
 <script>
 import axios from "axios";
+import apiAddCategory from "@/api/apiAddCategory";
 export default {
   props: {
     parent: {},
@@ -32,23 +33,14 @@ export default {
     };
   },
   methods: {
-    addCategory() {
+    async addCategory() {
       console.log(this.parent);
-      const formData = new FormData();
-      formData.append("name", this.category.name);
-      formData.append("parentId", this.parent.id);
-      formData.append("picture", this.$refs.fileUpload.files[0]);
-      console.log(formData);
-      try {
-        axios.post("http://127.0.0.1:7000/product-type", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-      } catch (error) {
-        console.log(error);
-      }
-
+      const result = await apiAddCategory({
+        name: this.category.name,
+        parentId: this.parent.id,
+        file: this.$refs.fileUpload.files[0],
+      });
+      this.parent.childrens.push(result.value.data);
       this.$emit("create");
       this.category = {};
     },

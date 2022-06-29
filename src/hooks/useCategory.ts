@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ref, onMounted } from "vue";
+import { ref, onMounted, onUnmounted, onUpdated, computed } from "vue";
 
 export default function useCategory() {
   const catproducts = ref({});
@@ -44,8 +44,17 @@ export default function useCategory() {
     return parent;
   }
 
+  function catProducts(catproducts: any) {
+    console.log(catproducts);
+    // fetchCategory();
+    return catproducts;
+  }
+
   onMounted(fetchCategory);
-  console.log("aaaaa", catresponse);
+  computed(catProducts);
+  // onUpdated(fetchCategory);
+
+  // o(fetchCategory);
   return {
     catproducts,
     catresponse,

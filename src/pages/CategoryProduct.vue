@@ -4,7 +4,7 @@
       ><new-category-form @create="closeDialog" :parent="parentCategory"
     /></ps-dialog>
     <h1>Категории товаров</h1>
-    <div v-if="!isCategoryLoading" style="width: 100%">
+    <div v-if="!isCategoryLoading" style="width: 100%; height: 100%">
       <div class="viewtree">
         <ps-tree-view
           class="tree"
@@ -19,6 +19,7 @@
         ></ps-tree-view>
         <div class="treeinfo">
           <info-category
+            @show-dialog="showDialog"
             :select_category="select_category"
             :response="catresponse"
           />
@@ -52,6 +53,7 @@ export default {
   methods: {
     closeDialog() {
       this.dialogVisible = false;
+      this.catproducts.value = [];
     },
     showDialog(parentCategory) {
       console.log(parentCategory);
@@ -59,10 +61,11 @@ export default {
       this.dialogVisible = true;
     },
     infoCategory(info_cat) {
-      console.log("sss", info_cat);
+      this.select_category.id = info_cat.id;
       this.select_category.parentId = info_cat.parentId;
       this.select_category.name = info_cat.name;
       this.select_category.picture = info_cat.picture;
+      this.select_category.childrens = info_cat.childrens;
     },
   },
 };
@@ -76,7 +79,6 @@ export default {
   border: 1px solid green;
   width: 100%;
   height: 90vh;
-  border: 3px solid red;
 }
 .viewtree {
   display: flex;
@@ -84,7 +86,6 @@ export default {
   text-align: center;
   width: 100%;
   height: 100%;
-  border: 3px solid black;
 }
 
 .tree {
@@ -92,10 +93,11 @@ export default {
   height: 100%;
   overflow: auto;
   text-align: left;
-  flex-grow: 1;
+  border: 1px solid black;
 }
 .treeinfo {
   width: 60%;
   border: 1px solid black;
+  height: 100%;
 }
 </style>

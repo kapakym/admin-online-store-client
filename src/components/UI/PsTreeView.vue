@@ -6,7 +6,7 @@
         :isFolder="isFolder"
         :isOpen="isOpen"
         @click="toggle"
-        @dblclick="$emit('show-dialog', { id, name })"
+        @dblclick="$emit('show-dialog', { id, name, childrens })"
       />
     </div>
 
@@ -53,11 +53,13 @@ export default {
       }
       console.log(this.picture);
       // if (!this.picture) this.picture = "notpicture.png";
+      console.log("ssss", this.childrens);
       this.$emit("info-category", {
         id: this.id,
         name: this.name,
         picture: !this.picture ? "notpicture.png" : this.picture,
         parentId: this.parentId,
+        childrens: this.childrens,
       });
     },
     showDialog(params) {

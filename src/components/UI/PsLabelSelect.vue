@@ -31,6 +31,7 @@ export default {
 .labelInput {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .pslabel {
@@ -46,6 +47,7 @@ export default {
   display: flex;
   align-items: center;
   width: 60%;
+  margin-right: 18px;
 }
 
 .psselectstyle {
