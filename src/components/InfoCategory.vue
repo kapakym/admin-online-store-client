@@ -34,7 +34,9 @@
           "
           >Добавить</ps-button
         >
-        <ps-button style="margin-left: 10px">Удалить</ps-button>
+        <ps-button @click="deleteCategory" style="margin-left: 10px"
+          >Удалить</ps-button
+        >
         <ps-button style="margin-left: 10px">Сохранить</ps-button>
       </div>
     </div>
@@ -44,11 +46,22 @@
 <script>
 import PsLabelSelect from "./UI/PsLabelSelect.vue";
 // import psLabelInput from "./UI/psLabelInput.vue";
+import axios from "axios";
 export default {
   components: { PsLabelSelect },
   props: {
     select_category: {},
     response: {},
+  },
+  methods: {
+    async deleteCategory() {
+      const response = await axios.post(
+        "http://localhost:7000/product-type/delete",
+        {
+          id: Number(this.select_category.id),
+        }
+      );
+    },
   },
   data() {
     return {
