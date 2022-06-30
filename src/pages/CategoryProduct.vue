@@ -23,6 +23,7 @@
             :select_category="select_category"
             :response="catresponse"
             :treeStructure="catproducts"
+            @delete-category="deleteCategory"
           />
         </div>
       </div>
@@ -33,6 +34,8 @@
 
 <script>
 import useCategory from "@/hooks/useCategory";
+import apiDeleteCategory from "@/api/apiDeleteCategory";
+import apiGetCategory from "@/api/apiGetCategory";
 import PsTreeView from "../components/UI/PsTreeView.vue";
 import NewCategoryForm from "../components/NewCategoryForm.vue";
 import PsButton from "../components/UI/PsButton.vue";
@@ -51,7 +54,15 @@ export default {
       select_category: {},
     };
   },
+
   methods: {
+    async deleteCategory(id) {
+      await apiDeleteCategory(id);
+      const result = await apiGetCategory();
+      this.catproducts = result.catproducts.value;
+      this.catresponse = result.catresponse.value;
+      this.isCategoryLoading = result.isCategoryLoading.value;
+    },
     closeDialog() {
       this.dialogVisible = false;
       this.catproducts.value = [];

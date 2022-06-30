@@ -34,7 +34,9 @@
           "
           >Добавить</ps-button
         >
-        <ps-button @click="deleteCategory" style="margin-left: 10px"
+        <ps-button
+          @click="$emit('delete-category', select_category.id)"
+          style="margin-left: 10px"
           >Удалить</ps-button
         >
         <ps-button style="margin-left: 10px">Сохранить</ps-button>
@@ -53,13 +55,7 @@ export default {
     response: {},
     treeStructure: [],
   },
-  methods: {
-    async deleteCategory() {
-    
-
-      this.select_category.childrens = [];
-    },
-  },
+  methods: {},
   data() {
     return {
       name_info: "",
