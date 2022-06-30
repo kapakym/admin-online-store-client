@@ -6,7 +6,6 @@
         :isFolder="isFolder"
         :isOpen="isOpen"
         @click="toggle"
-        @dblclick="$emit('show-dialog', { id, name, childrens })"
       />
     </div>
 
