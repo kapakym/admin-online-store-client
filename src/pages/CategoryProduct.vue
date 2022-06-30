@@ -22,6 +22,7 @@
             @show-dialog="showDialog"
             :select_category="select_category"
             :response="catresponse"
+            :treeStructure="catproducts"
           />
         </div>
       </div>

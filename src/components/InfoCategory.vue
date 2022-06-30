@@ -45,13 +45,13 @@
 
 <script>
 import PsLabelSelect from "./UI/PsLabelSelect.vue";
-// import psLabelInput from "./UI/psLabelInput.vue";
 import axios from "axios";
 export default {
   components: { PsLabelSelect },
   props: {
     select_category: {},
     response: {},
+    treeStructure: [],
   },
   methods: {
     async deleteCategory() {
@@ -61,6 +61,8 @@ export default {
           id: Number(this.select_category.id),
         }
       );
+
+      this.select_category.childrens = [];
     },
   },
   data() {
