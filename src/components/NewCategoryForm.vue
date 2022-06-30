@@ -40,8 +40,9 @@ export default {
         parentId: this.parent.id,
         file: this.$refs.fileUpload.files[0],
       });
-      // if (!this.parent?.childrens) this.parent.childrens = [];
+      result.value.data.childrens = [];
       this.parent.childrens.push(result.value.data);
+      console.log(this.parent.childrens);
       this.$emit("create");
       this.category = {};
     },
