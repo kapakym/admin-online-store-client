@@ -9,7 +9,6 @@ export default function useCategory() {
 
   onMounted(async () => {
     const result: any = await apiGetCategory();
-    console.log(result);
     catproducts.value = result.catproducts.value;
     catresponse.value = result.catresponse.value;
     isCategoryLoading.value = result.isCategoryLoading.value;

@@ -55,12 +55,7 @@ export default {
   },
   methods: {
     async deleteCategory() {
-      const response = await axios.post(
-        "http://localhost:7000/product-type/delete",
-        {
-          id: Number(this.select_category.id),
-        }
-      );
+    
 
       this.select_category.childrens = [];
     },
