@@ -4,7 +4,7 @@
       <label><slot></slot></label>
     </div>
     <div class="psselect">
-      <select v-model="select.parentId" @click="onclick" class="psselectstyle">
+      <select v-model="parentId" @click="onclick" class="psselectstyle">
         <option v-for="item in model" :key="item.id" :value="item.id">
           {{ item.name }}
         </option>
@@ -18,7 +18,7 @@ export default {
   name: "ps-label-select",
   props: {
     model: {},
-    select: {},
+    parentId: Number,
   },
   setup() {
     return {};

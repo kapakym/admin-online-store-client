@@ -29,6 +29,7 @@ export default {
 .tree_items:hover {
   background: lightgray;
   cursor: pointer;
+  border-radius: 4px;
 }
 
 .bold {

@@ -2,7 +2,7 @@
   <div>
     <div class="item">
       <ps-tree-item
-        :name="name"
+        :name="items.name"
         :isFolder="isFolder"
         :isOpen="isOpen"
         :isActive="isActive"
@@ -14,13 +14,10 @@
     <div v-if="isOpen">
       <ps-tree-view
         class="pstreenode"
-        v-for="item in childrens"
+        v-for="item in items.childrens"
+        :items="item"
         :key="item.id"
-        :name="item.name"
-        :childrens="item.childrens"
-        :picture="item.picture"
-        :id="item.id"
-        :parentId="id"
+        :parentId="items.id"
         @show-dialog="showDialog"
         @info-category="infoCategory"
       ></ps-tree-view>
@@ -36,10 +33,11 @@ export default {
   components: { PsTreeItem, PsButton },
   name: "ps-tree-view",
   props: {
-    id: Number,
-    name: String,
-    childrens: Array,
-    picture: String,
+    items: {},
+    // id: Number,
+    // name: String,
+    // childrens: Array,
+    // picture: String,
     parentId: Number,
   },
   data() {
@@ -51,6 +49,7 @@ export default {
   methods: {
     showInfoCategory() {
       this.isActive = true;
+      console.log(this);
       this.$emit("info-category", this);
     },
     toggle() {
@@ -67,7 +66,8 @@ export default {
   },
   computed: {
     isFolder() {
-      if (this?.childrens?.length) return true;
+      console.log(this.items);
+      if (this.items?.childrens.length) return true;
       else false;
     },
   },

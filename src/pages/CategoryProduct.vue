@@ -8,10 +8,7 @@
       <div class="viewtree">
         <ps-tree-view
           class="tree"
-          :name="catproducts.name"
-          :childrens="catproducts.childrens"
-          :picture="catproducts.picture"
-          :id="catproducts.id"
+          :items="catproducts"
           :key="catproducts.id"
           :parentId="0"
           @show-dialog="showDialog"
@@ -22,7 +19,6 @@
             @show-dialog="showDialog"
             :select_category="active"
             :response="catresponse"
-            :treeStructure="catproducts"
             @delete-category="deleteCategory"
           />
         </div>
@@ -58,8 +54,10 @@ export default {
 
   methods: {
     async deleteCategory(id) {
+      // console.log(id);
       await apiDeleteCategory(id);
       const result = await apiGetCategory();
+      console.log(result);
       this.catproducts = result.catproducts.value;
       this.catresponse = result.catresponse.value;
       this.isCategoryLoading = result.isCategoryLoading.value;

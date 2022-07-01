@@ -4,7 +4,7 @@
     <div class="contentInfo">
       <ps-label-input
         placeholder="Введите название"
-        :model="select_category.name"
+        :model="select_category.items?.name"
         type="text"
         >Название категории</ps-label-input
       >
@@ -12,7 +12,7 @@
       <ps-label-select
         style="margin-top: 15px"
         :model="response"
-        :select="select_category"
+        :parentId="select_category.parentId"
         >Родитель</ps-label-select
       >
 
@@ -20,22 +20,24 @@
         class="picture-category"
         :src="
           'http://localhost:7000/' +
-          (select_category.picture ? select_category.picture : 'notpicture.png')
+          (select_category.items?.picture
+            ? select_category.items?.picture
+            : 'notpicture.png')
         "
       />
       <div>
         <ps-button
           @click="
             $emit('show-dialog', {
-              id: select_category.id,
-              name: select_category.name,
-              childrens: select_category.childrens,
+              id: select_category.items?.id,
+              name: select_category.items?.name,
+              childrens: select_category.items?.childrens,
             })
           "
           >Добавить</ps-button
         >
         <ps-button
-          @click="$emit('delete-category', select_category.id)"
+          @click="$emit('delete-category', select_category.items?.id)"
           style="margin-left: 10px"
           >Удалить</ps-button
         >
@@ -53,7 +55,6 @@ export default {
   props: {
     select_category: {},
     response: {},
-    treeStructure: [],
   },
   methods: {},
   data() {
