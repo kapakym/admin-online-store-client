@@ -26,14 +26,7 @@
         "
       />
       <div>
-        <ps-button
-          @click="
-            $emit('show-dialog', {
-              id: select_category.items?.id,
-              name: select_category.items?.name,
-              childrens: select_category.items?.childrens,
-            })
-          "
+        <ps-button @click="$emit('show-dialog', select_category.items)"
           >Добавить</ps-button
         >
         <ps-button
