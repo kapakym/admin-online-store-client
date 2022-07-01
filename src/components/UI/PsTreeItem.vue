@@ -1,6 +1,9 @@
 <template>
-  <div class="tree_items" :class="{ bold: isFolder }">
-    <span v-if="isFolder">[{{ isOpen ? "-" : "+" }}]</span> {{ name }}
+  <div class="tree_items" :class="{ bold: isFolder, active: isActive }">
+    <span v-if="isFolder" @click="$emit('click-open')"
+      >[{{ isOpen ? "-" : "+" }}]</span
+    >
+    {{ name }}
   </div>
 </template>
 
@@ -10,7 +13,9 @@ export default {
     name: String,
     isOpen: Boolean,
     isFolder: Boolean,
+    isActive: Boolean,
   },
+
   setup() {
     return {};
   },
@@ -28,5 +33,9 @@ export default {
 
 .bold {
   font-weight: bold;
+}
+
+.active {
+  border: 1px dotted gray;
 }
 </style>

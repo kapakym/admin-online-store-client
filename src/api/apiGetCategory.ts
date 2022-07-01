@@ -20,6 +20,7 @@ export default async function apiGetCategory(): Promise<{}> {
       name: "Каталог товаров",
       picture: "notpicture.png",
       childrens: treeProduct,
+      isActive: false,
     };
     catresponse.value = response.data;
     catresponse.value = [{ id: 0, name: "Корень" }, ...catresponse.value];
@@ -43,6 +44,7 @@ function addNode(parent: any, data: any) {
   if (!parent) return;
   const result = data.filter((element: any) => element.parentId == parent.id);
   parent.childrens = result;
+  parent.isActive = false;
   parent.childrens.forEach((element: any) => {
     element.childrens = [];
     element.childrens.push(addNode(element, data));

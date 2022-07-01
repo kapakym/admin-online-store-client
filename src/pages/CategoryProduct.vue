@@ -52,6 +52,7 @@ export default {
       dialogVisible: false,
       parentCategory: {},
       select_category: {},
+      active: {},
     };
   },
 
@@ -73,6 +74,8 @@ export default {
       this.dialogVisible = true;
     },
     infoCategory(info_cat) {
+      this.active.isActive = false;
+      this.active = info_cat.active;
       this.select_category.id = info_cat.id;
       this.select_category.parentId = info_cat.parentId;
       this.select_category.name = info_cat.name;

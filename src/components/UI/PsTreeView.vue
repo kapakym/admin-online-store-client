@@ -5,7 +5,9 @@
         :name="name"
         :isFolder="isFolder"
         :isOpen="isOpen"
-        @click="toggle"
+        :isActive="isActive"
+        @click-open="toggle"
+        @click="showInfoCategory"
       />
     </div>
 
@@ -43,23 +45,28 @@ export default {
   data() {
     return {
       isOpen: false,
+      isActive: false,
     };
   },
   methods: {
-    toggle() {
-      if (this.isFolder) {
-        this.isOpen = !this.isOpen;
-      }
+    showInfoCategory() {
       console.log(this.picture);
       // if (!this.picture) this.picture = "notpicture.png";
       console.log("ssss", this.childrens);
+      this.isActive = true;
       this.$emit("info-category", {
         id: this.id,
         name: this.name,
         picture: !this.picture ? "notpicture.png" : this.picture,
         parentId: this.parentId,
         childrens: this.childrens,
+        active: this,
       });
+    },
+    toggle() {
+      if (this.isFolder) {
+        this.isOpen = !this.isOpen;
+      }
     },
     showDialog(params) {
       this.$emit("show-dialog", params);
