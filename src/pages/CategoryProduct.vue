@@ -20,7 +20,7 @@
         <div class="treeinfo">
           <info-category
             @show-dialog="showDialog"
-            :select_category="select_category"
+            :select_category="active"
             :response="catresponse"
             :treeStructure="catproducts"
             @delete-category="deleteCategory"
@@ -75,13 +75,7 @@ export default {
     },
     infoCategory(info_cat) {
       if (info_cat != this.active) this.active.isActive = false;
-
       this.active = info_cat;
-      this.select_category.id = info_cat.id;
-      this.select_category.parentId = info_cat.parentId;
-      this.select_category.name = info_cat.name;
-      this.select_category.picture = info_cat.picture;
-      this.select_category.childrens = info_cat.childrens;
     },
   },
 };

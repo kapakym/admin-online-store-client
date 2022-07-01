@@ -50,9 +50,6 @@ export default {
   },
   methods: {
     showInfoCategory() {
-      console.log(this.picture);
-      // if (!this.picture) this.picture = "notpicture.png";
-      console.log("ssss", this.childrens);
       this.isActive = true;
       this.$emit("info-category", this);
     },
