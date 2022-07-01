@@ -37,5 +37,6 @@ export default {
 
 .active {
   border: 1px dotted gray;
+  border-radius: 4px;
 }
 </style>

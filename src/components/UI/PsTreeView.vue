@@ -54,14 +54,7 @@ export default {
       // if (!this.picture) this.picture = "notpicture.png";
       console.log("ssss", this.childrens);
       this.isActive = true;
-      this.$emit("info-category", {
-        id: this.id,
-        name: this.name,
-        picture: !this.picture ? "notpicture.png" : this.picture,
-        parentId: this.parentId,
-        childrens: this.childrens,
-        active: this,
-      });
+      this.$emit("info-category", this);
     },
     toggle() {
       if (this.isFolder) {
