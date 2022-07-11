@@ -35,12 +35,13 @@ export default {
   },
   methods: {
     async changePicture() {
-      console.log(this.params);
-      const result = await apiChangePictureCategory(
-        this.params.id,
-        this.$refs.fileUpload.files[0]
-      );
-      console.log(result);
+      console.log("params", this.params);
+      const result = await apiChangePictureCategory({
+        id: this.params.id,
+        file: this.$refs.fileUpload.files[0],
+      });
+      console.log(result.value);
+      this.params.picture = result.value.data.picture;
       // console.log(this.parent);
       // const result = await apiAddCategory({
       //   name: this.category.name,

@@ -3,6 +3,7 @@ import { ref } from "vue";
 
 export default async function apiChangePictureCategory(params: any) {
   const result = ref({});
+  console.log(params);
   const formData = new FormData();
   formData.append("id", params.id);
   formData.append("picture", params.file);
