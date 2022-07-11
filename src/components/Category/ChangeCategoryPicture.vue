@@ -1,6 +1,6 @@
 <template>
   <div class="newuserform">
-    <h4>Изменение картитнки в категории {{ parent.name }}</h4>
+    <h4>Изменение картитнки в категории {{ params?.name }}</h4>
     <input
       class="fileUpload"
       type="file"
@@ -36,10 +36,11 @@ export default {
   methods: {
     async changePicture() {
       console.log(this.params);
-      const reslut = apiChangePictureCategory(
-        params.id,
+      const result = await apiChangePictureCategory(
+        this.params.id,
         this.$refs.fileUpload.files[0]
       );
+      console.log(result);
       // console.log(this.parent);
       // const result = await apiAddCategory({
       //   name: this.category.name,

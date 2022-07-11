@@ -2,7 +2,7 @@
   <div style="height: 100%">
     <ps-dialog v-model:show="changePictureDialogVisible">
       <change-category-picture
-        :parent="select_category.items"
+        :params="select_category.items"
         @close="changePictureDialogVisible = false"
       />
     </ps-dialog>
