@@ -49,7 +49,6 @@ export default {
   methods: {
     showInfoCategory() {
       this.isActive = true;
-      console.log(this);
       this.$emit("info-category", this);
     },
     toggle() {
@@ -66,7 +65,6 @@ export default {
   },
   computed: {
     isFolder() {
-      console.log(this.items);
       if (this.items?.childrens.length) return true;
       else false;
     },

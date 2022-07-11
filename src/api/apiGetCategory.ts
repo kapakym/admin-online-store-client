@@ -24,8 +24,6 @@ export default async function apiGetCategory(): Promise<{}> {
     };
     catresponse.value = response.data;
     catresponse.value = [{ id: 0, name: "Корень" }, ...catresponse.value];
-    console.log(catresponse.value);
-    // console.log("aaaaa", treeProduct, catresponse);
   } catch (error) {
     alert("Ошибка");
     console.log(error);

@@ -1,5 +1,8 @@
 <template>
   <div style="height: 100%">
+    <ps-dialog v-model:show="changePictureDialogVisible">
+      <change-category-picture :parent="select_category.items" />
+    </ps-dialog>
     <h2>Сведения о категории</h2>
     <div class="contentInfo">
       <ps-label-input
@@ -25,6 +28,9 @@
             : 'notpicture.png')
         "
       />
+      <ps-button @click="changePictureDialogVisible = true"
+        >Изменить картинку</ps-button
+      >
       <div>
         <ps-button @click="$emit('show-dialog', select_category.items)"
           >Добавить</ps-button
@@ -41,10 +47,11 @@
 </template>
 
 <script>
-import PsLabelSelect from "./UI/PsLabelSelect.vue";
+import PsLabelSelect from "../UI/PsLabelSelect.vue";
 import axios from "axios";
+import ChangeCategoryPicture from "./ChangeCategoryPicture.vue";
 export default {
-  components: { PsLabelSelect },
+  components: { PsLabelSelect, ChangeCategoryPicture },
   props: {
     select_category: {},
     response: {},
@@ -53,6 +60,7 @@ export default {
   data() {
     return {
       name_info: "",
+      changePictureDialogVisible: false,
     };
   },
   setup() {

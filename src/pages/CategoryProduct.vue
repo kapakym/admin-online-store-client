@@ -33,10 +33,10 @@ import useCategory from "@/hooks/useCategory";
 import apiDeleteCategory from "@/api/apiDeleteCategory";
 import apiGetCategory from "@/api/apiGetCategory";
 import PsTreeView from "../components/UI/PsTreeView.vue";
-import NewCategoryForm from "../components/NewCategoryForm.vue";
+import NewCategoryForm from "../components/Category/NewCategoryForm.vue";
 import PsButton from "../components/UI/PsButton.vue";
 import PsInput from "../components/UI/PsInput.vue";
-import InfoCategory from "../components/InfoCategory.vue";
+import InfoCategory from "../components/Category/InfoCategory.vue";
 export default {
   components: { PsTreeView, NewCategoryForm, PsButton, PsInput, InfoCategory },
   setup(props) {

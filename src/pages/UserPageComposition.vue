@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import UserList from "@/components/UserList.vue";
-import NewUserForm from "@/components/NewUserForm.vue";
+import UserList from "@/components/User/UserList.vue";
+import NewUserForm from "@/components/User/NewUserForm.vue";
 import PsButton from "@/components/UI/PsButton.vue";
 import axios from "axios";
 import PsDialog from "@/components/UI/PsDialog.vue";
