@@ -7,16 +7,23 @@
       placeholder="Новая картинка для категории"
       ref="fileUpload"
     />
-    <ps-button class="btn" @click="addCategory">Изменить</ps-button>
+    <div style="display: flex">
+      <ps-button class="btn" @click="changePicture" style="width: 100%"
+        >Изменить картинку</ps-button
+      >
+      <ps-button class="btn" @click="$emit('close')" style="width: 100%"
+        >Отмена</ps-button
+      >
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import apiAddCategory from "@/api/apiAddCategory";
+import apiChangePictureCategory from "@/api/apiChangePictureCategory";
 export default {
   props: {
-    parent: {},
+    params: {},
   },
   data() {
     return {
@@ -27,7 +34,12 @@ export default {
     };
   },
   methods: {
-    async addCategory() {
+    async changePicture() {
+      console.log(this.params);
+      const reslut = apiChangePictureCategory(
+        params.id,
+        this.$refs.fileUpload.files[0]
+      );
       // console.log(this.parent);
       // const result = await apiAddCategory({
       //   name: this.category.name,

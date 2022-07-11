@@ -1,7 +1,10 @@
 <template>
   <div style="height: 100%">
     <ps-dialog v-model:show="changePictureDialogVisible">
-      <change-category-picture :parent="select_category.items" />
+      <change-category-picture
+        :parent="select_category.items"
+        @close="changePictureDialogVisible = false"
+      />
     </ps-dialog>
     <h2>Сведения о категории</h2>
     <div class="contentInfo">
