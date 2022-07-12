@@ -4,7 +4,12 @@
       <label><slot></slot></label>
     </div>
     <div class="psinput">
-      <ps-input v-model="model" :type="type" :placeholder="placeholder" />
+      <ps-input
+        :value="modelValue"
+        :type="type"
+        :placeholder="placeholder"
+        @input="updateInput"
+      />
     </div>
   </div>
 </template>
@@ -12,10 +17,16 @@
 <script>
 export default {
   name: "ps-label-input",
+
   props: {
-    model: [String, Number],
+    modelValue: [String, Number],
     type: String,
     placeholder: String,
+  },
+  methods: {
+    updateInput(event) {
+      this.$emit("update:modelValue", event.target.value);
+    },
   },
   setup() {
     return {};

@@ -4,7 +4,7 @@
       <label><slot></slot></label>
     </div>
     <div class="psselect">
-      <select v-model="parentId" @click="onclick" class="psselectstyle">
+      <select :value="modelValue" @change="updateSelect" class="psselectstyle">
         <option v-for="item in model" :key="item.id" :value="item.id">
           {{ item.name }}
         </option>
@@ -18,10 +18,17 @@ export default {
   name: "ps-label-select",
   props: {
     model: {},
-    parentId: Number,
+    // parentId: Number,
+    modelValue: Number,
   },
   setup() {
     return {};
+  },
+  methods: {
+    updateSelect(event) {
+      console.log(event.target.value);
+      this.$emit("update:modelValue", Number(event.target.value));
+    },
   },
   mounted() {},
 };

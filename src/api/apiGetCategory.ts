@@ -12,6 +12,7 @@ export default async function apiGetCategory(): Promise<{}> {
     const treeProduct: any = [];
     response.data.forEach((element: any) => {
       if (!element.parentId) {
+        element.parentId = 0;
         treeProduct.push(addNode(element, response.data));
       }
     });

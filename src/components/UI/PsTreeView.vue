@@ -17,7 +17,6 @@
         v-for="item in items.childrens"
         :items="item"
         :key="item.id"
-        :parentId="items.id"
         @show-dialog="showDialog"
         @info-category="infoCategory"
       ></ps-tree-view>
@@ -34,11 +33,6 @@ export default {
   name: "ps-tree-view",
   props: {
     items: {},
-    // id: Number,
-    // name: String,
-    // childrens: Array,
-    // picture: String,
-    parentId: Number,
   },
   data() {
     return {

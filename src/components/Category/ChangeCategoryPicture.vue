@@ -42,17 +42,8 @@ export default {
       });
       console.log(result.value);
       this.params.picture = result.value.data.picture;
-      // console.log(this.parent);
-      // const result = await apiAddCategory({
-      //   name: this.category.name,
-      //   parentId: this.parent.id,
-      //   file: this.$refs.fileUpload.files[0],
-      // });
-      // result.value.data.childrens = [];
-      // this.parent.childrens.push(result.value.data);
-      // console.log(this.parent.childrens);
-      // this.$emit("create");
-      // this.category = {};
+
+      this.$emit("close");
     },
   },
   setup() {
