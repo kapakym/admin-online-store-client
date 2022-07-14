@@ -16,6 +16,7 @@ export default async function apiUpdateCategory(params: paramsType) {
         name: params.name,
       }
     );
+    console.log(response)
   } catch (error) {
     console.log(error);
   }

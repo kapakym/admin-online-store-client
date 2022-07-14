@@ -7,7 +7,7 @@
       />
     </ps-dialog>
     <h2>Сведения о категории</h2>
-    <div v-if="select_category?.items">
+    <div v-if="select_category?.items && select_category.items.id!=0">
       <div class="contentInfo">
         <ps-label-input
           placeholder="Введите название"
