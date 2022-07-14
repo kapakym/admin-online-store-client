@@ -1,7 +1,10 @@
 <template>
   <div class="category">
     <ps-dialog v-model:show="dialogVisible"
-      ><new-category-form @create="closeDialog" :parent="parentCategory"
+      ><new-category-form
+        @create="closeDialog"
+        :parent="parentCategory"
+        @refresh="refresh"
     /></ps-dialog>
     <h1>Категории товаров</h1>
     <div v-if="!isCategoryLoading" style="width: 100%; height: 100%">
@@ -16,10 +19,10 @@
         ></ps-tree-view>
         <div class="treeinfo">
           <info-category
+            @refresh="refresh"
             @show-dialog="showDialog"
             :select_category="active"
             :response="catresponse"
-            @delete-category="deleteCategory"
           />
         </div>
       </div>
@@ -30,7 +33,7 @@
 
 <script>
 import useCategory from "@/hooks/useCategory";
-import apiDeleteCategory from "@/api/apiDeleteCategory";
+
 import apiGetCategory from "@/api/apiGetCategory";
 import PsTreeView from "../components/UI/PsTreeView.vue";
 import NewCategoryForm from "../components/Category/NewCategoryForm.vue";
@@ -53,11 +56,9 @@ export default {
   },
 
   methods: {
-    async deleteCategory(id) {
-      // console.log(id);
-      await apiDeleteCategory(id);
+    async refresh() {
       const result = await apiGetCategory();
-      console.log(result);
+      console.log("refresh");
       this.catproducts = result.catproducts.value;
       this.catresponse = result.catresponse.value;
       this.isCategoryLoading = result.isCategoryLoading.value;

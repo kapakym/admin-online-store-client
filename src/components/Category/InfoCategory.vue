@@ -30,7 +30,7 @@
           >
           <ps-button
             v-if="select_category.items.id != 0"
-            @click="$emit('delete-category', select_category.items?.id)"
+            @click="deleteCategory"
             style="margin-left: 10px"
             >Удалить</ps-button
           >
@@ -67,6 +67,7 @@ import PsLabelSelect from "../UI/PsLabelSelect.vue";
 import axios from "axios";
 import ChangeCategoryPicture from "./ChangeCategoryPicture.vue";
 import apiUpdateCategory from "@/api/apiUpdateCategory.ts";
+import apiDeleteCategory from "@/api/apiDeleteCategory";
 export default {
   components: { PsLabelSelect, ChangeCategoryPicture },
   props: {
@@ -74,16 +75,21 @@ export default {
     response: {},
   },
   methods: {
-    updateCategory() {
+    async deleteCategory() {
+      await apiDeleteCategory(this.select_category.items?.id);
+      this.$emit("refresh");
+    },
+    async updateCategory() {
       console.log(
         this.select_category.items.name,
         this.select_category.items.parentId
       );
-      const result = apiUpdateCategory({
+      const result = await apiUpdateCategory({
         id: this.select_category.items.id,
         parentId: this.select_category.items.parentId,
         name: this.select_category.items.name,
       });
+      this.$emit("refresh");
     },
     labelChange(event) {
       console.log(event);
