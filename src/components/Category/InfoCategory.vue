@@ -7,7 +7,7 @@
       />
     </ps-dialog>
     <h2>Сведения о категории</h2>
-    <div v-if="select_category?.items && select_category.items.id!=0">
+    <div v-if="select_category?.items">
       <div class="contentInfo">
         <ps-label-input
           placeholder="Введите название"
@@ -15,28 +15,34 @@
           type="text"
           >Название категории</ps-label-input
         >
-
         <ps-label-select
+          v-if="select_category.items.id != 0"
           style="margin-top: 15px"
           :model="response"
           v-model="select_category.items.parentId"
           @change="labelChange"
           >Родитель</ps-label-select
         >
+
         <div>
           <ps-button @click="$emit('show-dialog', select_category.items)"
             >Добавить</ps-button
           >
           <ps-button
+            v-if="select_category.items.id != 0"
             @click="$emit('delete-category', select_category.items?.id)"
             style="margin-left: 10px"
             >Удалить</ps-button
           >
-          <ps-button style="margin-left: 10px" @click="updateCategory"
+          <ps-button
+            style="margin-left: 10px"
+            @click="updateCategory"
+            v-if="select_category.items.id != 0"
             >Сохранить</ps-button
           >
         </div>
         <img
+          v-if="select_category.items.id != 0"
           class="picture-category"
           :src="
             'http://localhost:7000/' +
@@ -45,7 +51,9 @@
               : 'notpicture.png')
           "
         />
-        <ps-button @click="changePictureDialogVisible = true"
+        <ps-button
+          @click="changePictureDialogVisible = true"
+          v-if="select_category.items.id != 0"
           >Изменить картинку</ps-button
         >
       </div>
