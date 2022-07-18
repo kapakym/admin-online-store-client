@@ -2,24 +2,24 @@
   <div class="newuserform">
     <h4>Добавление категории товара в {{ parent.name }}</h4>
     <ps-input
-      v-model="category.name"
-      type="text"
-      placeholder="Название категории"
+        v-model="category.name"
+        type="text"
+        placeholder="Название категории"
     />
 
     <input
-      class="fileUpload"
-      type="file"
-      placeholder="Картинка для категории"
-      ref="fileUpload"
+        class="fileUpload"
+        type="file"
+        placeholder="Картинка для категории"
+        ref="fileUpload"
     />
     <ps-button class="btn" @click="addCategory">Добавить</ps-button>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import apiAddCategory from "@/api/apiAddCategory";
+
 export default {
   props: {
     parent: {},
@@ -35,6 +35,7 @@ export default {
   methods: {
     async addCategory() {
       console.log(this.parent);
+      console.log(typeof this.$refs.fileUpload.files[0])
       const result = await apiAddCategory({
         name: this.category.name,
         parentId: this.parent.id,

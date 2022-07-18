@@ -7,6 +7,7 @@
 </template>
 <script>
 import toggleMixin from "@/mixins/toggleMixin";
+
 export default {
   name: "ps-dialog",
   mixins: [toggleMixin],
@@ -33,5 +34,6 @@ export default {
   padding: 20px;
   border: 1px solid black;
   box-shadow: 4px 4px 4px black;
+  align-content: space-between;
 }
 </style>

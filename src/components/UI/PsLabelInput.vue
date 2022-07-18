@@ -1,7 +1,7 @@
 <template>
   <div class="labelInput">
     <div class="pslabel">
-      <label>
+      <label style="margin: 5px">
         <slot></slot>
       </label>
     </div>
@@ -19,6 +19,7 @@
 <script>
 export default {
   name: "ps-label-input",
+
   props: {
     modelValue: [String, Number],
     type: String,
@@ -28,7 +29,10 @@ export default {
     updateInput(event) {
       this.$emit("update:modelValue", event.target.value);
     },
-  }
+  },
+  setup() {
+    return {};
+  },
 };
 </script>
 
@@ -46,6 +50,7 @@ export default {
   text-align: right;
   justify-content: right;
   margin-right: 10px;
+  margin: 5px;
 }
 
 .psinput {

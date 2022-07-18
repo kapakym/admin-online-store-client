@@ -15,12 +15,13 @@ export default {
 
 <style lang="css" scoped>
 .mybutton {
-  margin: 5px;
+  /* align-self: flex-end; */
   padding: 10px;
   background: none;
   color: black;
   border: 1px solid black;
   border-radius: 5px;
+  margin: 5px
 }
 
 .mybutton:hover {

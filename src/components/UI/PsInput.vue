@@ -16,6 +16,7 @@ export default {
   methods: {
     updateInput(event) {
       this.$emit("update:modelValue", event.target.value);
+
     },
   },
   setup() {
@@ -26,13 +27,14 @@ export default {
 
 <style lang="css" scoped>
 .psinput {
-  margin: 5px;
+  /* margin-top: 15px; */
   align-self: auto;
   padding: 10px;
   background: none;
   color: black;
   border: 1px solid black;
   border-radius: 5px;
-
+  /* width: 100%; */
+  margin: 5px;
 }
 </style>
