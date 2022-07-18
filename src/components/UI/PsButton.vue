@@ -15,9 +15,8 @@ export default {
 
 <style lang="css" scoped>
 .mybutton {
-  margin-top: 15px;
-  /* align-self: flex-end; */
-  padding: 10px 15px;
+  margin: 5px;
+  padding: 10px;
   background: none;
   color: black;
   border: 1px solid black;
