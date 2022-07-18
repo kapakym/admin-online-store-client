@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     isFolder() {
-      if (this.items?.childrens.length) return true;
+      if (this.items?.childrens?.length) return true;
       else false;
     },
   },
