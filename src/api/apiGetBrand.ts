@@ -4,9 +4,10 @@ import { ref } from "vue";
 export default async function apiGetBrand() {
   const responseBrand: any = ref([]);
   try {
-    responseBrand.value = axios.get("http://localhost:7000/product-type");
-    console.log(responseBrand.value);
-    return {};
+    const response = await axios.get("http://localhost:7000/product-type");
+    console.log(response.data);
+    responseBrand.value = response.data;
+    return responseBrand;
   } catch (error) {
     console.log(error);
   }
