@@ -3,6 +3,7 @@ import UserPage from "@/pages/UserPage.vue";
 import UserPageComp from "@/pages/UserPageComposition.vue";
 import Contacts from "@/pages/Contacts.vue";
 import CategoryProducts from "@/pages/CategoryProduct.vue";
+import BrandProduct from "@/pages/BrandProduct.vue";
 
 import { createRouter, createWebHistory } from "vue-router";
 
@@ -12,6 +13,7 @@ const routes = [
   { path: "/userComp", component: UserPageComp },
   { path: "/contacts", component: Contacts },
   { path: "/category", component: CategoryProducts },
+  { path: "/brand", component: BrandProduct },
 ];
 
 const router = createRouter({

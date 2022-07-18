@@ -10,6 +10,9 @@
       <ps-nav-bar-button @click="$router.push('/category')">
         Категории товаров</ps-nav-bar-button
       >
+      <ps-nav-bar-button @click="$router.push('/brand')">
+        Производители товаров</ps-nav-bar-button
+      >
       <ps-nav-bar-button @click="$router.push('/user')"
         >Пользователи</ps-nav-bar-button
       >
