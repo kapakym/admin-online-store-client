@@ -1,14 +1,15 @@
-import apiGetCategory from "@/api/apiGetCategory";
 import {onMounted, ref} from "vue";
+import apiGetBrand from "@/api/apiGetBrand";
 
 export default function useCategory() {
     const allBrands = ref([]);
     const isBrandLoading = ref(true);
 
     onMounted(async () => {
-        const result: any = await apiGetCategory();
-        allBrands.value = result.catproducts.value;
-        isBrandLoading.value = result.isCategoryLoading.value;
+        const result: any = await apiGetBrand();
+        console.log(result.value);
+        allBrands.value = result.value;
+        isBrandLoading.value = false;
     });
 
     return {

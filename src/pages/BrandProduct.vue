@@ -7,22 +7,22 @@
   <div>
     <ps-button @click="dlgNewBrandVisible = true">Добавить</ps-button>
   </div>
-  Производитель
-  <div v-for="item in responseBrand.value">
-    Производитель
+  <div v-for="item in allBrands">
     Название: {{ item.name }}
+    <img src="process.env.VUE_APP_SERVER_URL+item.picture">
   </div>
 </template>
 <script lang="ts">
-import apiGetBrand from "@/api/apiGetBrand";
 import NewBrand from "@/components/Brand/NewBrand.vue";
+import useBrands from "@/hooks/useBrands";
+// import * as process from "process";
 
 export default {
   components: {NewBrand},
   setup(props: any) {
-    const {responseBrand, getAllBrands} = apiGetBrand();
-    console.log(responseBrand)
-    return {responseBrand, getAllBrands};
+    const {allBrands, isBrandLoading} = useBrands();
+    console.log(process.env.VUE_APP_SERVER_URL)
+    return {allBrands, isBrandLoading};
   },
   data() {
     return {
@@ -30,5 +30,7 @@ export default {
     };
   },
 };
+
+
 </script>
 <style></style>
