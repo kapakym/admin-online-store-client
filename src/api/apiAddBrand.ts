@@ -26,5 +26,6 @@ export default async function apiAddBrand(params: BrandParams) {
         console.log(error);
     }
 
+
     return result;
 }
