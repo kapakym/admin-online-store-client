@@ -7,21 +7,23 @@
   <div>
     <ps-button @click="dlgNewBrandVisible = true">Добавить</ps-button>
   </div>
-  <div v-for="item in allBrands">
+  <div v-for="item in allBrands" v-if="isBrandLoading">
     Название: {{ item.name }}
-    <img src="process.env.VUE_APP_SERVER_URL+item.picture">
+    <img :src="server_url+item.picture">
   </div>
+  <div v-else>Загрузка данных</div>
 </template>
 <script lang="ts">
+import serverMixin from "@/mixins/serverMixin"
 import NewBrand from "@/components/Brand/NewBrand.vue";
 import useBrands from "@/hooks/useBrands";
-// import * as process from "process";
 
 export default {
   components: {NewBrand},
+  mixins: [serverMixin],
   setup(props: any) {
     const {allBrands, isBrandLoading} = useBrands();
-    console.log(process.env.VUE_APP_SERVER_URL)
+
     return {allBrands, isBrandLoading};
   },
   data() {
@@ -29,6 +31,7 @@ export default {
       dlgNewBrandVisible: false,
     };
   },
+
 };
 
 

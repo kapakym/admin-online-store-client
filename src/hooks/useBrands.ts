@@ -9,7 +9,7 @@ export default function useCategory() {
         const result: any = await apiGetBrand();
         console.log(result.value);
         allBrands.value = result.value;
-        isBrandLoading.value = false;
+        isBrandLoading.value = true;
     });
 
     return {
