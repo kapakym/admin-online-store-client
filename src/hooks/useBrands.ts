@@ -6,9 +6,9 @@ export default function useCategory() {
     const isBrandLoading = ref(true);
 
     onMounted(async () => {
-        const result: any = await apiGetBrand();
-        console.log(result.value);
-        allBrands.value = result.value;
+        const {responseBrand}: any = await apiGetBrand();
+        console.log(responseBrand.value);
+        allBrands.value = responseBrand.value;
         isBrandLoading.value = true;
     });
 

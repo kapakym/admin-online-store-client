@@ -20,8 +20,9 @@ import apiAddBrand from "@/api/apiAddBrand";
 export default {
   components: {PsInputFileUpload, PsGroupButtons, PsButton},
   methods: {
-    createBrand() {
-      apiAddBrand({name: this.nameBrand, file: this.fileUpload});
+    async createBrand() {
+      await apiAddBrand({name: this.nameBrand, file: this.fileUpload});
+      this.$emit("refresh");
     }
   },
   data() {
