@@ -4,7 +4,7 @@
     <ps-input v-model="nameBrand" placeholder="Название производителя"/>
     <ps-input-file-upload v-model="fileUpload"/>
     <ps-group-buttons>
-      <ps-button>Добавить</ps-button>
+      <ps-button @click="createBrand">Добавить</ps-button>
       <ps-button @click="$emit('hide')">Закрыть</ps-button>
     </ps-group-buttons>
 
@@ -15,13 +15,19 @@
 import PsButton from "@/components/UI/PsButton";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsInputFileUpload from "@/components/UI/PsInputFileUpload";
+import apiAddBrand from "@/api/apiAddBrand";
 
 export default {
   components: {PsInputFileUpload, PsGroupButtons, PsButton},
+  methods: {
+    createBrand() {
+      apiAddBrand({name: this.nameBrand, file: this.fileUpload});
+    }
+  },
   data() {
     return {
       nameBrand: "",
-      fileUpload: {}
+      fileUpload: Blob
     }
   }
 };
