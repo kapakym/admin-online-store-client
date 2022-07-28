@@ -8,7 +8,7 @@
     </div>
     <div>
       <ps-button @click="deleteItem">Удалить</ps-button>
-      <ps-button>Изменить логотип</ps-button>
+      <ps-button @click="changeLogo">Изменить логотип</ps-button>
       <ps-button>Сохранить</ps-button>
     </div>
   </div>
@@ -33,6 +33,9 @@ export default {
       const result = await apiDeleteBrand(this.brand.id);
       this.$emit("refresh");
       console.log(result)
+    },
+    changeLogo() {
+      this.$emit("changeLogo", this.brand);
     }
   }
 }

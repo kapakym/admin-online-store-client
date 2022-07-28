@@ -5,10 +5,15 @@
     </ps-dialog>
   </div>
   <div>
+    <ps-dialog v-model:show="dlgChangeLogoVisible">
+      <change-brand-picture :params="selectedBrand" @hide="dlgChangeLogoVisible=false"/>
+    </ps-dialog>
+  </div>
+  <div>
     <ps-button @click="dlgNewBrandVisible = true">Добавить</ps-button>
   </div>
   <div v-for="item in allBrands" v-if="isBrandLoading">
-    <item-brand :brand="item" @refresh="refresh"/>
+    <item-brand :brand="item" @refresh="refresh" @changeLogo="chageLogo"/>
   </div>
   <div v-else>Загрузка данных</div>
 </template>
@@ -19,9 +24,11 @@ import NewBrand from "@/components/Brand/NewBrand.vue";
 import useBrands from "@/hooks/useBrands";
 import apiGetBrand from "@/api/apiGetBrand";
 import ItemBrand from "@/components/Brand/ItemBrand";
+import ChangeBrandPicture from "@/components/Brand/ChangeBrandPicture";
+import PsDialog from "@/components/UI/PsDialog";
 
 export default {
-  components: {ItemBrand, NewBrand},
+  components: {PsDialog, ChangeBrandPicture, ItemBrand, NewBrand},
   mixins: [serverMixin],
   setup(props) {
     const {allBrands, isBrandLoading} = useBrands();
@@ -31,6 +38,8 @@ export default {
   data() {
     return {
       dlgNewBrandVisible: false,
+      dlgChangeLogoVisible: false,
+      selectedBrand: {}
     };
   },
   methods: {
@@ -39,6 +48,11 @@ export default {
       const {responseBrand} = await apiGetBrand();
       this.allBrands = responseBrand.value;
     },
+    chageLogo(params) {
+      console.log(params)
+      this.selectedBrand = params;
+      this.dlgChangeLogoVisible = true;
+    }
   }
 
 };
