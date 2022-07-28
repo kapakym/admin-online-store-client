@@ -46,6 +46,7 @@ export default {
       });
       console.log(result.value);
       // this.params.picture = result.value.data.picture;
+      this.$emit("refresh");
       this.$emit("hide");
     },
   },

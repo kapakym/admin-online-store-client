@@ -6,7 +6,7 @@
   </div>
   <div>
     <ps-dialog v-model:show="dlgChangeLogoVisible">
-      <change-brand-picture :params="selectedBrand" @hide="dlgChangeLogoVisible=false"/>
+      <change-brand-picture :params="selectedBrand" @hide="dlgChangeLogoVisible=false" @refresh="refresh"/>
     </ps-dialog>
   </div>
   <div>
