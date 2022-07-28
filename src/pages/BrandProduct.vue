@@ -8,7 +8,7 @@
     <ps-button @click="dlgNewBrandVisible = true">Добавить</ps-button>
   </div>
   <div v-for="item in allBrands" v-if="isBrandLoading">
-    <item-brand :brand="item"/>
+    <item-brand :brand="item" @refresh="refresh"/>
   </div>
   <div v-else>Загрузка данных</div>
 </template>

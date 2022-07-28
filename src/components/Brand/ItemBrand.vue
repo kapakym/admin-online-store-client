@@ -29,7 +29,9 @@ export default {
   },
   methods: {
     async deleteItem() {
-      const result = await apiDeleteBrand({id: this.brand.id})
+      console.log(this.brand.id)
+      const result = await apiDeleteBrand(this.brand.id);
+      this.$emit("refresh");
       console.log(result)
     }
   }
