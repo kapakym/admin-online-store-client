@@ -1,15 +1,14 @@
 <template lang="html">
   <div>
     <ps-dialog v-model:show="dlgNewBrandVisible">
-      <new-brand @refresh="refresh"/>
+      <new-brand @refresh="refresh" @hide="dlgNewBrandVisible=false"/>
     </ps-dialog>
   </div>
   <div>
     <ps-button @click="dlgNewBrandVisible = true">Добавить</ps-button>
   </div>
   <div v-for="item in allBrands" v-if="isBrandLoading">
-    Название: {{ item.name }}
-    <img :src="server_url+item.picture" style="width: 100px; height: 100px">
+    <item-brand :brand="item"/>
   </div>
   <div v-else>Загрузка данных</div>
 </template>
@@ -19,9 +18,10 @@ import serverMixin from "@/mixins/serverMixin"
 import NewBrand from "@/components/Brand/NewBrand.vue";
 import useBrands from "@/hooks/useBrands";
 import apiGetBrand from "@/api/apiGetBrand";
+import ItemBrand from "@/components/Brand/ItemBrand";
 
 export default {
-  components: {NewBrand},
+  components: {ItemBrand, NewBrand},
   mixins: [serverMixin],
   setup(props) {
     const {allBrands, isBrandLoading} = useBrands();

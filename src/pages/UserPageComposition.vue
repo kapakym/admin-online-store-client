@@ -6,7 +6,7 @@
       ><new-user-form @create="addUser"
     /></ps-dialog> -->
 
-    <user-list :users="users" @removeUser="removeUser" />
+    <user-list :users="users" @removeUser="removeUser"/>
   </div>
 </template>
 
@@ -20,15 +20,14 @@ import useUser from "@/hooks/useUser";
 
 export default {
   components: {
-    UserList,
     NewUserForm,
     PsButton,
     PsDialog,
     UserList,
   },
   setup(props) {
-    const { users } = useUser("test");
-    return { users };
+    const {users} = useUser("test");
+    return {users};
   },
   data() {
     return {
@@ -42,11 +41,11 @@ export default {
       //   this.users.push(user);
 
       const response = await axios.post(
-        "http://localhost:7000/auth/registration",
-        {
-          email: user.email,
-          password: user.password,
-        }
+          "http://localhost:7000/auth/registration",
+          {
+            email: user.email,
+            password: user.password,
+          }
       );
       console.log(response);
       this.dialogVisible = false;
