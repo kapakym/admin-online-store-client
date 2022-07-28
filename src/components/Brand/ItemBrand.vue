@@ -7,7 +7,7 @@
       <ps-input v-model="brand.name" class="width: 100%"/>
     </div>
     <div>
-      <ps-button>Удалить</ps-button>
+      <ps-button @click="deleteItem">Удалить</ps-button>
       <ps-button>Изменить логотип</ps-button>
       <ps-button>Сохранить</ps-button>
     </div>
@@ -18,6 +18,7 @@
 import serverMixin from "@/mixins/serverMixin";
 import PsButton from "@/components/UI/PsButton";
 import PsInput from "@/components/UI/PsInput";
+import apiDeleteBrand from "@/api/apiDeleteBrand";
 
 export default {
   name: "ItemBrand",
@@ -25,6 +26,12 @@ export default {
   mixins: [serverMixin],
   props: {
     brand: {}
+  },
+  methods: {
+    async deleteItem() {
+      const result = await apiDeleteBrand({id: this.brand.id})
+      console.log(result)
+    }
   }
 }
 </script>
