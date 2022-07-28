@@ -23,6 +23,8 @@
 
 <script>
 
+import apiChangePictureBrand from "@/api/apiChangePictureBrand";
+
 export default {
   props: {
     params: {},
@@ -38,14 +40,13 @@ export default {
   methods: {
     async changePicture() {
       console.log("params", this.params);
-      // const result = await apiChangePictureCategory({
-      //   id: this.params.id,
-      //   file: this.$refs.fileUpload.files[0],
-      // });
-      // console.log(result.value);
+      const result = await apiChangePictureBrand({
+        id: this.params.id,
+        file: this.$refs.fileUpload.files[0],
+      });
+      console.log(result.value);
       // this.params.picture = result.value.data.picture;
-
-      this.$emit("close");
+      this.$emit("hide");
     },
   },
   setup() {
