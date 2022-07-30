@@ -2,7 +2,6 @@ import axios from "axios";
 
 interface paramsType {
     id: number;
-    parentId: number;
     name: string;
 }
 
@@ -13,7 +12,6 @@ export default async function apiUpdateBrand(params: paramsType) {
             "http://localhost:7000/product-brand/update",
             {
                 id: Number(params.id),
-                parentId: Number(params.parentId),
                 name: params.name,
             }
         );
