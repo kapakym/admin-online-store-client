@@ -9,7 +9,7 @@
     <div>
       <ps-button @click="deleteItem">Удалить</ps-button>
       <ps-button @click="changeLogo">Изменить логотип</ps-button>
-      <ps-button>Сохранить</ps-button>
+      <ps-button @click="updateBrand">Сохранить</ps-button>
     </div>
   </div>
 </template>
@@ -19,6 +19,7 @@ import serverMixin from "@/mixins/serverMixin";
 import PsButton from "@/components/UI/PsButton";
 import PsInput from "@/components/UI/PsInput";
 import apiDeleteBrand from "@/api/apiDeleteBrand";
+import apiUpdateBrand from "@/api/apiUpdateBrand";
 
 export default {
   name: "ItemBrand",
@@ -36,6 +37,10 @@ export default {
     },
     changeLogo() {
       this.$emit("changeLogo", this.brand);
+    },
+    async updateBrand() {
+      const result = await apiUpdateBrand({id: this.brand.id, name: this.brand.name})
+      
     }
   }
 }
