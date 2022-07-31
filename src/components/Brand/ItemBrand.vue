@@ -39,8 +39,9 @@ export default {
       this.$emit("changeLogo", this.brand);
     },
     async updateBrand() {
+      this.$toast("Hello");
       const result = await apiUpdateBrand({id: this.brand.id, name: this.brand.name})
-      
+
     }
   }
 }
