@@ -30,17 +30,21 @@ export default {
   },
   methods: {
     async deleteItem() {
-      console.log(this.brand.id)
-      const result = await apiDeleteBrand(this.brand.id);
-      this.$emit("refresh");
-      console.log(result)
+      this.$popup("Вы действиетльно хотите удалить " + this.brand.name + " ?", async () => {
+        const result = await apiDeleteBrand(this.brand.id);
+        this.$emit("refresh");
+      })
     },
     changeLogo() {
       this.$emit("changeLogo", this.brand);
     },
     async updateBrand() {
-      this.$toast("Hello");
-      const result = await apiUpdateBrand({id: this.brand.id, name: this.brand.name})
+      // console.log(this.$toast("Hello"))
+      console.log("start")
+      this.$popup("Вы действиетльно хотите изменить " + this.brand.name + " ?", async () => {
+        const result = await apiUpdateBrand({id: this.brand.id, name: this.brand.name})
+      }, () => {
+      })
 
     }
   }
