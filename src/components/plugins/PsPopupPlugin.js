@@ -1,32 +1,40 @@
-import Toast from "./PsPopup.vue";
+import PsPopup from "./PsPopup.vue";
 import {createApp} from 'vue'
 
-const install = (app) => {
+const install = async (app) => {
     // dom container for mount the Toast.vue
     let container;
     // like 'app' just for Toast.vue
-    let toastApp;
+    let popupApp;
     // 'props' that Toast.vue required.
+
     const baseProps = {
         // define a function to close(unmount) the toast used for 
         // case 1: in Toast.vue "click toast appeared and close it"
         // case 2: call 'this.$closeToast()' to close the toast in anywhere outside Toast.vue
-        close: () => {
-            if (toastApp)
-                toastApp.unmount(container);
+        close: (params) => {
+            if (popupApp)
+                popupApp.unmount(container);
 
             container = document.querySelector('#ToastPlug');
             if (container)
                 document.body.removeChild(container);
-        }
+        },
+
     };
 
+
     // show Toast
-    const toast = (msg) => {
+    const popup = async (msg, btnOk, btnCancel) => {
         if (typeof msg === 'string')
             msg = {msg};
+        if (btnOk === undefined) btnOk = () => {
+        };
 
-        const props = {...baseProps, ...msg}
+        if (btnCancel === undefined) btnCancel = () => {
+        };
+
+        const props = {...baseProps, ...msg, btnOk, btnCancel}
         console.log('props:', JSON.stringify(props));
 
         // assume the toast(previous) was not closed, and try to close it.
@@ -36,13 +44,14 @@ const install = (app) => {
         container = document.createElement('div');
         container.setAttribute('id', 'ToastPlug');
         document.body.appendChild(container);
-        toastApp = createApp(Toast, props);
-        toastApp.mount(container);
+        popupApp = createApp(PsPopup, props);
+        popupApp.mount(container)
+
     }
 
     // set 'toast()' and 'close()' globally
-    app.config.globalProperties.$toast = toast;
-    app.config.globalProperties.$closeToast = baseProps.close;
+    app.config.globalProperties.$popup = popup;
+    app.config.globalProperties.$closePopup = baseProps.close;
 }
 
 export default install;
