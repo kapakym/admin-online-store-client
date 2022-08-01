@@ -13,13 +13,13 @@ export default {
 <style scoped>
 .groupbuttons {
   display: flex;
+  flex-direction: row;
   width: 100%;
   /*border: 1px solid black;*/
   align-content: center;
   justify-items: center;
   justify-content: right;
   margin: 5px;
-
 }
 </style>
 
