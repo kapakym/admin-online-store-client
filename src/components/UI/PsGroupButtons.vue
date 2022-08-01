@@ -17,7 +17,7 @@ export default {
   /*border: 1px solid black;*/
   align-content: center;
   justify-items: center;
-  justify-content: space-evenly;
+  justify-content: right;
   margin: 5px;
 
 }
