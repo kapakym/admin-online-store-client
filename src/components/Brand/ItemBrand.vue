@@ -7,9 +7,15 @@
       <ps-input v-model="brand.name" class="width: 100%"/>
     </div>
     <div>
-      <ps-button @click="deleteItem">Удалить</ps-button>
-      <ps-button @click="changeLogo">Изменить логотип</ps-button>
-      <ps-button @click="updateBrand">Сохранить</ps-button>
+      <ps-group-buttons>
+        <ps-button @click="deleteItem"><i class="material-icons">delete</i> Удалить</ps-button>
+        <ps-button @click="changeLogo"><i class="material-icons">
+          add_photo_alternate
+        </i> Изменить логотип
+        </ps-button>
+        <ps-button @click="updateBrand"><i class="material-icons">delete</i> Сохранить</ps-button>
+      </ps-group-buttons>
+
     </div>
   </div>
 </template>
@@ -20,10 +26,11 @@ import PsButton from "@/components/UI/PsButton";
 import PsInput from "@/components/UI/PsInput";
 import apiDeleteBrand from "@/api/apiDeleteBrand";
 import apiUpdateBrand from "@/api/apiUpdateBrand";
+import PsGroupButtons from "@/components/UI/PsGroupButtons";
 
 export default {
   name: "ItemBrand",
-  components: {PsInput, PsButton},
+  components: {PsGroupButtons, PsInput, PsButton},
   mixins: [serverMixin],
   props: {
     brand: {}
@@ -43,7 +50,6 @@ export default {
       console.log("start")
       this.$popup("Вы действиетльно хотите изменить " + this.brand.name + " ?", async () => {
         const result = await apiUpdateBrand({id: this.brand.id, name: this.brand.name})
-      }, () => {
       })
 
     }
