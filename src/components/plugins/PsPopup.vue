@@ -6,8 +6,9 @@
         <div>
           ИНФОРМАЦИЯ
         </div>
+
         <div class="iconpopup">
-          <i class="material-icons " @click="closeHandle(false)">close</i>
+          <ps-icon :name="'close'" @click="closeHandle(false)"/>
         </div>
 
       </div>
@@ -30,10 +31,11 @@ import {onMounted, onUnmounted} from 'vue'
 import PsDialog from "@/components/UI/PsDialog";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsButton from "@/components/UI/PsButton";
+import PsIcon from "@/components/UI/PsIcon";
 
 export default {
   name: "Toast",
-  components: {PsButton, PsGroupButtons, PsDialog},
+  components: {PsIcon, PsButton, PsGroupButtons, PsDialog},
   props: {
     msg: {type: String, required: true},
 
@@ -131,10 +133,12 @@ export default {
 }
 
 .iconpopup {
+  display: flex;
   cursor: pointer;
+  border: 1px solid red;
   border-radius: 4px;
   align-items: center;
-  align-content: center;
+  justify-items: center;
 }
 
 .iconpopup:hover {
