@@ -13,14 +13,27 @@
         placeholder="Картинка для категории"
         ref="fileUpload"
     />
-    <ps-button class="btn" @click="addCategory">Добавить</ps-button>
+    <ps-group-buttons>
+      <ps-button class="btn" @click="addCategory">
+        <ps-icon :name="'done'" style="color:green"/>
+        Добавить
+      </ps-button>
+      <ps-button class="btn" @click="$emit('close')">
+        <ps-icon :name="'cancel'" style="color:red"/>
+        Отмена
+      </ps-button>
+    </ps-group-buttons>
+
   </div>
 </template>
 
 <script>
 import apiAddCategory from "@/api/apiAddCategory";
+import PsGroupButtons from "@/components/UI/PsGroupButtons";
+import PsIcon from "@/components/UI/PsIcon";
 
 export default {
+  components: {PsIcon, PsGroupButtons},
   props: {
     parent: {},
   },

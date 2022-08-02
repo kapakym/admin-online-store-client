@@ -2,26 +2,36 @@
   <div class="newuserform">
     <h4>Изменение картитнки в категории {{ params?.name }}</h4>
     <input
-      class="fileUpload"
-      type="file"
-      placeholder="Новая картинка для категории"
-      ref="fileUpload"
+        class="fileUpload"
+        type="file"
+        placeholder="Новая картинка для категории"
+        ref="fileUpload"
     />
-    <div style="display: flex">
-      <ps-button class="btn" @click="changePicture" style="width: 100%"
-        >Изменить картинку</ps-button
+    <ps-group-buttons>
+      <ps-button class="btn" @click="changePicture"
       >
-      <ps-button class="btn" @click="$emit('close')" style="width: 100%"
-        >Отмена</ps-button
+        <ps-icon :name="'done'" style="color: green"/>
+        Изменить картинку
+      </ps-button
       >
-    </div>
+      <ps-button class="btn" @click="$emit('close')"
+      >
+        <ps-icon :name="'cancel'" style="color: red"/>
+        Отмена
+      </ps-button
+      >
+    </ps-group-buttons>
+
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import apiChangePictureCategory from "@/api/apiChangePictureCategory";
+import PsIcon from "@/components/UI/PsIcon";
+
 export default {
+  components: {PsIcon},
+
   props: {
     params: {},
   },

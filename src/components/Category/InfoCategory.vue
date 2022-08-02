@@ -2,49 +2,63 @@
   <div style="height: 100%">
     <ps-dialog v-model:show="changePictureDialogVisible">
       <change-category-picture
-        :params="select_category.items"
-        @close="changePictureDialogVisible = false"
+          :params="select_category.items"
+          @close="changePictureDialogVisible = false"
       />
     </ps-dialog>
     <h2>Сведения о категории</h2>
     <div v-if="select_category?.items">
       <div class="contentInfo">
         <ps-label-input
-          placeholder="Введите название"
-          v-model="select_category.items.name"
-          type="text"
-          >Название категории</ps-label-input
+            placeholder="Введите название"
+            v-model="select_category.items.name"
+            type="text"
+        >Название категории
+        </ps-label-input
         >
         <ps-label-select
-          v-if="select_category.items.id != 0"
-          style="margin-top: 15px"
-          :model="response"
-          v-model="select_category.items.parentId"
-          @change="labelChange"
-          >Родитель</ps-label-select
+            v-if="select_category.items.id != 0"
+            style="margin-top: 15px"
+            :model="response"
+            v-model="select_category.items.parentId"
+            @change="labelChange"
+        >Родитель
+        </ps-label-select
         >
 
         <div>
-          <ps-button @click="$emit('show-dialog', select_category.items)"
-            >Добавить</ps-button
-          >
-          <ps-button
-            v-if="select_category.items.id != 0"
-            @click="deleteCategory"
-            style="margin-left: 10px"
-            >Удалить</ps-button
-          >
-          <ps-button
-            style="margin-left: 10px"
-            @click="updateCategory"
-            v-if="select_category.items.id != 0"
-            >Сохранить</ps-button
-          >
+          <ps-group-buttons>
+            <ps-button @click="$emit('show-dialog', select_category.items)"
+            >
+              <ps-icon :name="'add'"/>
+              Добавить
+            </ps-button
+            >
+            <ps-button
+                v-if="select_category.items.id != 0"
+                @click="deleteCategory"
+                style="margin-left: 10px"
+            >
+              <ps-icon :name="'delete'"/>
+              Удалить
+            </ps-button
+            >
+            <ps-button
+                style="margin-left: 10px"
+                @click="updateCategory"
+                v-if="select_category.items.id != 0"
+            >
+              <ps-icon :name="'save'"/>
+              Сохранить
+            </ps-button
+            >
+          </ps-group-buttons>
+
         </div>
         <img
-          v-if="select_category.items.id != 0"
-          class="picture-category"
-          :src="
+            v-if="select_category.items.id != 0"
+            class="picture-category"
+            :src="
             'http://localhost:7000/' +
             (select_category.items?.picture
               ? select_category.items?.picture
@@ -52,9 +66,12 @@
           "
         />
         <ps-button
-          @click="changePictureDialogVisible = true"
-          v-if="select_category.items.id != 0"
-          >Изменить картинку</ps-button
+            @click="changePictureDialogVisible = true"
+            v-if="select_category.items.id != 0"
+        >
+          <ps-icon :name="'add_photo_alternate'"/>
+          Изменить картинку
+        </ps-button
         >
       </div>
     </div>
@@ -64,12 +81,14 @@
 
 <script>
 import PsLabelSelect from "../UI/PsLabelSelect.vue";
-import axios from "axios";
 import ChangeCategoryPicture from "./ChangeCategoryPicture.vue";
 import apiUpdateCategory from "@/api/apiUpdateCategory.ts";
 import apiDeleteCategory from "@/api/apiDeleteCategory";
+import PsIcon from "@/components/UI/PsIcon";
+import PsGroupButtons from "@/components/UI/PsGroupButtons";
+
 export default {
-  components: { PsLabelSelect, ChangeCategoryPicture },
+  components: {PsGroupButtons, PsIcon, PsLabelSelect, ChangeCategoryPicture},
   props: {
     select_category: {},
     response: {},
@@ -81,8 +100,8 @@ export default {
     },
     async updateCategory() {
       console.log(
-        this.select_category.items.name,
-        this.select_category.items.parentId
+          this.select_category.items.name,
+          this.select_category.items.parentId
       );
       const result = await apiUpdateCategory({
         id: this.select_category.items.id,
@@ -104,7 +123,8 @@ export default {
   setup() {
     return {};
   },
-  mounted() {},
+  mounted() {
+  },
 };
 </script>
 
