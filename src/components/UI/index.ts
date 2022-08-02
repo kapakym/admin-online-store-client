@@ -7,6 +7,7 @@ import PsLabelInput from "@/components/UI/PsLabelInput.vue";
 import PsLabelSelect from "@/components/UI/PsLabelSelect.vue";
 import PsGroupButtons from "@/components/UI/PsGroupButtons.vue";
 import PsInputFileUpload from "@/components/UI/PsInputFileUpload.vue";
+import PsIcon from "@/components/UI/PsIcon.vue";
 
 export default [
     PsButton,
@@ -17,5 +18,6 @@ export default [
     PsLabelInput,
     PsLabelSelect,
     PsGroupButtons,
-    PsInputFileUpload
+    PsInputFileUpload,
+    PsIcon
 ];
