@@ -95,20 +95,24 @@ export default {
   },
   methods: {
     async deleteCategory() {
-      await apiDeleteCategory(this.select_category.items?.id);
-      this.$emit("refresh");
+      this.$popup("Вы действительно хотите удалить категорию (" + this.select_category.items.name + ")?"
+          , async () => {
+            await apiDeleteCategory(this.select_category.items?.id);
+            this.$emit("refresh");
+          });
     },
+
     async updateCategory() {
-      console.log(
-          this.select_category.items.name,
-          this.select_category.items.parentId
-      );
-      const result = await apiUpdateCategory({
-        id: this.select_category.items.id,
-        parentId: this.select_category.items.parentId,
-        name: this.select_category.items.name,
-      });
-      this.$emit("refresh");
+      this.$popup("Вы действительно хотите сохранить изменения в категории (" + this.select_category.items.name + ")?"
+          , async () => {
+            const result = await apiUpdateCategory({
+              id: this.select_category.items.id,
+              parentId: this.select_category.items.parentId,
+              name: this.select_category.items.name,
+            });
+            this.$emit("refresh");
+          });
+
     },
     labelChange(event) {
       console.log(event);
