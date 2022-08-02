@@ -4,8 +4,14 @@
     <ps-input v-model="nameBrand" placeholder="Название производителя"/>
     <ps-input-file-upload v-model="fileUpload"/>
     <ps-group-buttons>
-      <ps-button @click="createBrand">Добавить</ps-button>
-      <ps-button @click="$emit('hide')">Закрыть</ps-button>
+      <ps-button @click="createBrand">
+        <ps-icon :name="'done'" style="color: green"/>
+        Добавить
+      </ps-button>
+      <ps-button @click="$emit('hide')">
+        <ps-icon :name="'cancel'" style="color: red"/>
+        Закрыть
+      </ps-button>
     </ps-group-buttons>
 
 

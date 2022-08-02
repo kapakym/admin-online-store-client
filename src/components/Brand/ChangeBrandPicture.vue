@@ -8,12 +8,16 @@
         ref="fileUpload"
     />
     <ps-group-buttons>
-      <ps-button class="btn" @click="changePicture" style="width: 100%"
-      >Изменить картинку
+      <ps-button class="btn" @click="changePicture"
+      >
+        <ps-icon :name="'done'" style="color: green"/>
+        Изменить картинку
       </ps-button
       >
-      <ps-button class="btn" @click="$emit('hide')" style="width: 100%"
-      >Отмена
+      <ps-button class="btn" @click="$emit('hide')"
+      >
+        <ps-icon :name="'cancel'" style="color: red"/>
+        Отмена
       </ps-button
       >
     </ps-group-buttons>
@@ -24,8 +28,10 @@
 <script>
 
 import apiChangePictureBrand from "@/api/apiChangePictureBrand";
+import PsIcon from "@/components/UI/PsIcon";
 
 export default {
+  components: {PsIcon},
   props: {
     params: {},
   },
