@@ -23,8 +23,8 @@ export default {
   border: 1px solid black;
   border-radius: 5px;
   margin: 5px;
-  align-content: center;
-  justify-content: center;
+  justify-items: center;
+  align-items: center;
   width: fit-content;
 
 }
