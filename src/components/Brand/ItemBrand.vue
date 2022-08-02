@@ -8,12 +8,18 @@
     </div>
     <div>
       <ps-group-buttons>
-        <ps-button @click="deleteItem"><i class="material-icons">delete</i> Удалить</ps-button>
-        <ps-button @click="changeLogo"><i class="material-icons">
-          add_photo_alternate
-        </i> Изменить логотип
+        <ps-button @click="deleteItem">
+          <ps-icon :name="'delete'"/>
+          Удалить
         </ps-button>
-        <ps-button @click="updateBrand"><i class="material-icons">delete</i> Сохранить</ps-button>
+        <ps-button @click="changeLogo">
+          <ps-icon :name="'add_photo_alternate'"/>
+          Изменить логотип
+        </ps-button>
+        <ps-button @click="updateBrand">
+          <ps-icon :name="'save'"/>
+          Сохранить
+        </ps-button>
       </ps-group-buttons>
 
     </div>
@@ -22,7 +28,7 @@
 
 <script>
 import serverMixin from "@/mixins/serverMixin";
-import PsButton from "@/components/UI/PsButton";
+// import PsButton from "@/components/UI/PsButton";
 import PsInput from "@/components/UI/PsInput";
 import apiDeleteBrand from "@/api/apiDeleteBrand";
 import apiUpdateBrand from "@/api/apiUpdateBrand";
@@ -30,7 +36,7 @@ import PsGroupButtons from "@/components/UI/PsGroupButtons";
 
 export default {
   name: "ItemBrand",
-  components: {PsGroupButtons, PsInput, PsButton},
+  components: {PsGroupButtons, PsInput},
   mixins: [serverMixin],
   props: {
     brand: {}
