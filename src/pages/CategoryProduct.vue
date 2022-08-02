@@ -6,6 +6,7 @@
           @create="closeDialog"
           :parent="parentCategory"
           @refresh="refresh"
+          @close="dialogVisible=false"
       />
     </ps-dialog>
     <h1>Категории товаров</h1>
