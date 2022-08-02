@@ -98,7 +98,7 @@ export default {
       this.$popup("Вы действительно хотите удалить категорию (" + this.select_category.items.name + ")?"
           , async () => {
             await apiDeleteCategory(this.select_category.items?.id);
-            this.$emit("refresh");
+            await this.$emit("refresh");
           });
     },
 
@@ -110,7 +110,7 @@ export default {
               parentId: this.select_category.items.parentId,
               name: this.select_category.items.name,
             });
-            this.$emit("refresh");
+            await this.$emit("refresh");
           });
 
     },
