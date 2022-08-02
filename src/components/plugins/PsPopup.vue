@@ -3,7 +3,9 @@
     <!--    <div class="toast" v-html="msg" :style="style" @click="closeHandle"></div>-->
     <ps-dialog v-model:show="visible" @click="closeHandle(false)">
       <div class="headpopup">
-        <div>
+
+        <div class="titlepopup">
+          <ps-icon :name="'info'" style="color: red"/>
           ИНФОРМАЦИЯ
         </div>
 
@@ -17,8 +19,14 @@
       </div>
       <div class="footerpopup">
         <ps-group-buttons>
-          <ps-button @click="popupOk">Ok</ps-button>
-          <ps-button @click="closePopup">Отмена</ps-button>
+          <ps-button @click="popupOk">
+            <ps-icon :name="'done'" style="color:green;"/>
+            Ok
+          </ps-button>
+          <ps-button @click="closePopup">
+            <ps-icon :name="'cancel'" style="color:red;"/>
+            Отмена
+          </ps-button>
         </ps-group-buttons>
       </div>
 
@@ -122,6 +130,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /*justify-items: center;*/
   margin-bottom: 15px;
   padding-bottom: 5px;
 }
@@ -135,7 +144,7 @@ export default {
 .iconpopup {
   display: flex;
   cursor: pointer;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   border-radius: 4px;
   align-items: center;
   justify-items: center;
@@ -143,6 +152,11 @@ export default {
 
 .iconpopup:hover {
   background: lightgray;
+}
+
+.titlepopup {
+  display: flex;
+  align-items: center;
 }
 
 </style>
