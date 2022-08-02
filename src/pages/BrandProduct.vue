@@ -10,7 +10,10 @@
     </ps-dialog>
   </div>
   <div>
-    <ps-button @click="dlgNewBrandVisible = true">Добавить</ps-button>
+    <ps-button @click="dlgNewBrandVisible = true">
+      <ps-icon :name="'add'"/>
+      Добавить
+    </ps-button>
   </div>
   <div v-for="item in allBrands" v-if="isBrandLoading">
     <item-brand :brand="item" @refresh="refresh" @changeLogo="chageLogo"/>
@@ -26,9 +29,10 @@ import apiGetBrand from "@/api/apiGetBrand";
 import ItemBrand from "@/components/Brand/ItemBrand";
 import ChangeBrandPicture from "@/components/Brand/ChangeBrandPicture";
 import PsDialog from "@/components/UI/PsDialog";
+import PsIcon from "@/components/UI/PsIcon";
 
 export default {
-  components: {PsDialog, ChangeBrandPicture, ItemBrand, NewBrand},
+  components: {PsIcon, PsDialog, ChangeBrandPicture, ItemBrand, NewBrand},
   mixins: [serverMixin],
   setup(props) {
     const {allBrands, isBrandLoading} = useBrands();
