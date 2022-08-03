@@ -1,23 +1,26 @@
-import axios from "axios";
-import { ref, onMounted } from "vue";
+import {onMounted, ref} from "vue";
+import apiGetUsersByPage from "@/api/User/apiGetUsersByPage";
 
-export default function useUser(aaa: any) {
-  const users = ref([]);
-  console.log(users, aaa);
-  // Получение всего списка пользователей с сервера
-  const fetching = async () => {
-    try {
-      const response = await axios.get("http://localhost:7000/users");
-      users.value = response.data;
-      // console.log(response.data);
-    } catch (error) {
-      alert("Ошибка");
-    }
-  };
+export default function useUser(page: number, limit: number) {
+    const users = ref([]);
+    const count = ref(Number)
+    // Получение всего списка пользователей с сервера
 
-  onMounted(fetching);
+    const fetching = async () => {
+        try {
+            const response: any = await apiGetUsersByPage(limit, page);
+            console.log(response.value)
+            users.value = response.value.data.users;
+            count.value = response.value.data.count;
 
-  return {
-    users,
-  };
+        } catch (error) {
+            alert("Ошибка");
+        }
+    };
+
+    onMounted(fetching);
+
+    return {
+        users, count
+    };
 }
