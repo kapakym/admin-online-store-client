@@ -7,18 +7,31 @@
       <strong>Roles </strong>
       <div v-for="role in user.roles" :key="role">{{ role.value }}</div>
     </div>
-    <div>
-      <ps-button @click="$emit('removeUser', user.id)">Удалить</ps-button>
-      <ps-button>Отправить сообщение</ps-button>
-      <ps-button>Заблокировать</ps-button>
-    </div>
+    <ps-group-buttons>
+      <ps-button @click="$emit('removeUser', user.id)">
+        <ps-icon :name="'delete'" style="color: red"/>
+        Удалить
+      </ps-button>
+      <ps-button>
+        <ps-icon :name="'message'"/>
+        Отправить сообщение
+      </ps-button>
+      <ps-button>
+        <ps-icon :name="'block'" style="color: red"/>
+        Заблокировать
+      </ps-button>
+    </ps-group-buttons>
+
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import {defineComponent} from "vue";
+import PsGroupButtons from "@/components/UI/PsGroupButtons.vue";
+import PsIcon from "@/components/UI/PsIcon.vue";
 
 export default defineComponent({
+  components: {PsIcon, PsGroupButtons},
   props: {
     user: {
       type: Object,
