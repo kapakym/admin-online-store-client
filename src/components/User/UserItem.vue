@@ -16,7 +16,7 @@
         <ps-icon :name="'message'"/>
         Отправить сообщение
       </ps-button>
-      <ps-button>
+      <ps-button @click="getPage">
         <ps-icon :name="'block'" style="color: red"/>
         Заблокировать
       </ps-button>
@@ -29,6 +29,7 @@
 import {defineComponent} from "vue";
 import PsGroupButtons from "@/components/UI/PsGroupButtons.vue";
 import PsIcon from "@/components/UI/PsIcon.vue";
+import apiGetUsersByPage from "@/api/User/apiGetUsersByPage";
 
 export default defineComponent({
   components: {PsIcon, PsGroupButtons},
@@ -42,6 +43,10 @@ export default defineComponent({
     removeUser() {
       this.$emit("removeUser", this.user.id);
     },
+    async getPage() {
+      const result = await apiGetUsersByPage(1, 10);
+      console.log(result.value)
+    }
   },
   setup() {
     return {};
