@@ -3,10 +3,12 @@
     <h1>Управление пользователями</h1>
     <ps-button @click="showAddUserDialog">Добавить пользователя</ps-button>
     <ps-dialog v-model:show="dialogVisible"
-      ><new-user-form @create="addUser"
-    /></ps-dialog>
+    >
+      <new-user-form @create="addUser" @close="dialogVisible=false"
+      />
+    </ps-dialog>
 
-    <user-list :users="users" @removeUser="removeUser" />
+    <user-list :users="users" @removeUser="removeUser"/>
   </div>
 </template>
 
@@ -16,7 +18,8 @@ import NewUserForm from "@/components/User/NewUserForm.vue";
 import PsButton from "@/components/UI/PsButton.vue";
 import axios from "axios";
 import PsDialog from "@/components/UI/PsDialog.vue";
-import { mapActions, mapMutations, mapState, mapGetters } from "vuex";
+import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
+
 export default {
   components: {
     UserList,
@@ -40,13 +43,7 @@ export default {
     async addUser(user) {
       //   this.users.push(user);
 
-      const response = await axios.post(
-        "http://localhost:7000/auth/registration",
-        {
-          email: user.email,
-          password: user.password,
-        }
-      );
+
       console.log(response);
       this.dialogVisible = false;
     },
