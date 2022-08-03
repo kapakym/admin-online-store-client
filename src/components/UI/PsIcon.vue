@@ -15,7 +15,7 @@ export default {
 <style scoped>
 
 .psicon {
-  color: #555;
+  color: teal;
   /*border: 1px solid red*/
 }
 
