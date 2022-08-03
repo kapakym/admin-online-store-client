@@ -38,18 +38,18 @@ export default {
     };
   },
   methods: {
-    addUser() {
+    async addUser() {
 
       this.user.id = Date.now();
       this.user.roles = ["USER"];
-      this.$emit("create", this.user);
-      const result = apiUserRegistration(this.user)
+      const result = await apiUserRegistration(this.user)
       this.user = {
         email: "",
         password: "",
         statusBan: false,
         banReason: "",
       };
+      this.$emit("close");
     },
   },
   setup() {
