@@ -1,10 +1,15 @@
 <template>
   <div>
     <h1>Управление пользователями</h1>
-    <!-- <ps-button @click="showAddUserDialog">Добавить пользователя</ps-button> -->
-    <!-- <ps-dialog v-model:show="dialogVisible"
-      ><new-user-form @create="addUser"
-    /></ps-dialog> -->
+    <ps-button @click="showAddUserDialog">
+      <ps-icon :name="add_user" style="color: green"/>
+      Добавить пользователя
+    </ps-button>
+    <ps-dialog v-model:show="dialogVisible"
+    >
+      <new-user-form @create="addUser" @close="dialogVisible=false"
+      />
+    </ps-dialog>
 
     <user-list :users="users" @removeUser="removeUser"/>
   </div>
@@ -26,8 +31,8 @@ export default {
     UserList,
   },
   setup(props) {
-    const {users} = useUser("test");
-    return {users};
+    const {users, count} = useUser(10, 1);
+    return {users, count};
   },
   data() {
     return {

@@ -2,7 +2,7 @@
   <div>
     <h1>Управление пользователями</h1>
     <ps-button @click="showAddUserDialog">
-      <ps-icon :name="'add'" style="color: green"/>
+      <ps-icon :name="add_user" style="color: green"/>
       Добавить пользователя
     </ps-button>
     <ps-dialog v-model:show="dialogVisible"
@@ -27,6 +27,7 @@ import PsIcon from "@/components/UI/PsIcon";
 export default {
   components: {
     PsIcon,
+    UserList,
     NewUserForm,
     PsButton,
     PsDialog,
