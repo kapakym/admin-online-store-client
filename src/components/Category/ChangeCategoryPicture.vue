@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import apiChangePictureCategory from "@/api/apiChangePictureCategory";
+import apiChangePictureCategory from "@/api/Category/apiChangePictureCategory";
 import PsIcon from "@/components/UI/PsIcon";
 
 export default {

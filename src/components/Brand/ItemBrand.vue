@@ -30,8 +30,8 @@
 import serverMixin from "@/mixins/serverMixin";
 // import PsButton from "@/components/UI/PsButton";
 import PsInput from "@/components/UI/PsInput";
-import apiDeleteBrand from "@/api/apiDeleteBrand";
-import apiUpdateBrand from "@/api/apiUpdateBrand";
+import apiDeleteBrand from "@/api/Brand/apiDeleteBrand";
+import apiUpdateBrand from "@/api/Brand/apiUpdateBrand";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 
 export default {

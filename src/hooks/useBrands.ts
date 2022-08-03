@@ -1,5 +1,5 @@
 import {onMounted, ref} from "vue";
-import apiGetBrand from "@/api/apiGetBrand";
+import apiGetBrand from "@/api/Brand/apiGetBrand";
 
 export default function useCategory() {
     const allBrands = ref([]);

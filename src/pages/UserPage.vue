@@ -1,7 +1,10 @@
 <template>
   <div>
     <h1>Управление пользователями</h1>
-    <ps-button @click="showAddUserDialog">Добавить пользователя</ps-button>
+    <ps-button @click="showAddUserDialog">
+      <ps-icon :name="'add'" style="color: green"/>
+      Добавить пользователя
+    </ps-button>
     <ps-dialog v-model:show="dialogVisible"
     >
       <new-user-form @create="addUser" @close="dialogVisible=false"
@@ -19,10 +22,11 @@ import PsButton from "@/components/UI/PsButton.vue";
 import axios from "axios";
 import PsDialog from "@/components/UI/PsDialog.vue";
 import {mapActions, mapGetters, mapMutations, mapState} from "vuex";
+import PsIcon from "@/components/UI/PsIcon";
 
 export default {
   components: {
-    UserList,
+    PsIcon,
     NewUserForm,
     PsButton,
     PsDialog,

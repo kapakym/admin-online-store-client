@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import apiAddCategory from "@/api/apiAddCategory";
+import apiAddCategory from "@/api/Category/apiAddCategory";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsIcon from "@/components/UI/PsIcon";
 

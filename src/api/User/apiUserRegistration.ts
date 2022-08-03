@@ -4,7 +4,9 @@ import {ref} from "vue";
 interface UserParams {
     email: string;
     password: string;
-    role: string;
+    roles: [];
+    statusBan: boolean,
+    banReason: string,
 }
 
 export default async function apiUserRegistration(params: UserParams) {
@@ -15,7 +17,9 @@ export default async function apiUserRegistration(params: UserParams) {
             {
                 email: params.email,
                 password: params.password,
-                role: params.role
+                roles: params.roles,
+                statusBan: params.statusBan,
+                banReason: params.banReason,
             }
         );
     } catch (error) {

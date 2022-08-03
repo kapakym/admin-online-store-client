@@ -82,8 +82,8 @@
 <script>
 import PsLabelSelect from "../UI/PsLabelSelect.vue";
 import ChangeCategoryPicture from "./ChangeCategoryPicture.vue";
-import apiUpdateCategory from "@/api/apiUpdateCategory.ts";
-import apiDeleteCategory from "@/api/apiDeleteCategory";
+import apiUpdateCategory from "@/api/Category/apiUpdateCategory.ts";
+import apiDeleteCategory from "@/api/Category/apiDeleteCategory";
 import PsIcon from "@/components/UI/PsIcon";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 

@@ -21,7 +21,7 @@
 import PsButton from "@/components/UI/PsButton";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsInputFileUpload from "@/components/UI/PsInputFileUpload";
-import apiAddBrand from "@/api/apiAddBrand";
+import apiAddBrand from "@/api/Brand/apiAddBrand";
 
 export default {
   components: {PsInputFileUpload, PsGroupButtons, PsButton},

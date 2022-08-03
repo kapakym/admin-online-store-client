@@ -22,6 +22,7 @@
 
 <script>
 import PsIcon from "@/components/UI/PsIcon";
+import apiUserRegistration from "@/api/User/apiUserRegistration";
 
 export default {
   components: {PsIcon},
@@ -42,6 +43,7 @@ export default {
       this.user.id = Date.now();
       this.user.roles = ["USER"];
       this.$emit("create", this.user);
+      const result = apiUserRegistration(this.user)
       this.user = {
         email: "",
         password: "",

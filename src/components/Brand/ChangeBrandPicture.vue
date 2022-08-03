@@ -27,7 +27,7 @@
 
 <script>
 
-import apiChangePictureBrand from "@/api/apiChangePictureBrand";
+import apiChangePictureBrand from "@/api/Brand/apiChangePictureBrand";
 import PsIcon from "@/components/UI/PsIcon";
 
 export default {

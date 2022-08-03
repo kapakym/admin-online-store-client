@@ -37,7 +37,7 @@
 <script>
 import useCategory from "@/hooks/useCategory";
 
-import apiGetCategory from "@/api/apiGetCategory";
+import apiGetCategory from "@/api/Category/apiGetCategory";
 import PsTreeView from "../components/UI/PsTreeView.vue";
 import NewCategoryForm from "../components/Category/NewCategoryForm.vue";
 import PsButton from "../components/UI/PsButton.vue";
