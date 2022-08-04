@@ -7,6 +7,7 @@
 <script>
 export default {
   name: "ps-button",
+
   setup() {
     return {};
   },
@@ -33,5 +34,10 @@ export default {
   background: lightgray;
   cursor: pointer;
 
+}
+
+.active {
+  background: teal;
+  color: white;
 }
 </style>
