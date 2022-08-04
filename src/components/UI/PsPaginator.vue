@@ -1,13 +1,13 @@
 <template>
   <div class="pspaginator">
-    <ps-button v-if="currentPage>1">
+    <ps-button>
       <ps-icon :name="'arrow_back'" @click="returnPage(currentPage-1)"/>
     </ps-button>
     <ps-button v-for="n in totalPages" :class="{active: n==currentPage? true :false }" @click="returnPage(n)">{{
         n
       }}
     </ps-button>
-    <ps-button v-if="currentPage<totalPages" @click="returnPage(currentPage+1)">
+    <ps-button @click="returnPage(currentPage+1)">
       <ps-icon :name="'arrow_forward'"/>
     </ps-button>
   </div>
@@ -37,7 +37,7 @@ export default {
 <style scoped>
 .pspaginator {
   display: flex;
-  border: 1px solid red;
+  /*border: 1px solid red;*/
   padding: 10px;
   margin: 10px;
   justify-content: center;

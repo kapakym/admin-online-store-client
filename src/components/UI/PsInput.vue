@@ -3,7 +3,7 @@
       class="psinput"
       :value="modelValue"
       @input="updateInput"
-      style="width: 100%"
+
   />
 </template>
 
@@ -28,13 +28,15 @@ export default {
 <style lang="css" scoped>
 .psinput {
   /* margin-top: 15px; */
+  display: block;
+  box-sizing: border-box;
   align-self: auto;
   padding: 10px;
   background: none;
   color: black;
   border: 1px solid black;
   border-radius: 5px;
-  /* width: 100%; */
+  width: 100%;
   margin: 5px;
 }
 </style>

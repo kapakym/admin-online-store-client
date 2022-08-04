@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="global">
     <nav-bar></nav-bar>
     <div id="app" class="app">
       <router-view></router-view>
@@ -30,6 +30,13 @@ export default {
 .app {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  box-sizing: border-box;
+  /*width: 100%;*/
+}
+
+.global {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 </style>
