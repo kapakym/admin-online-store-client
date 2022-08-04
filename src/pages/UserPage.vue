@@ -27,7 +27,6 @@ import PsIcon from "@/components/UI/PsIcon";
 export default {
   components: {
     PsIcon,
-    UserList,
     NewUserForm,
     PsButton,
     PsDialog,
