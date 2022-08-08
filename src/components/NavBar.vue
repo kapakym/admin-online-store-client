@@ -8,16 +8,26 @@
         Каталог товаров</ps-nav-bar-button
       > -->
       <ps-nav-bar-button @click="$router.push('/category')">
-        Категории товаров</ps-nav-bar-button
+        Категории товаров
+      </ps-nav-bar-button
       >
       <ps-nav-bar-button @click="$router.push('/brand')">
-        Производители товаров</ps-nav-bar-button
+        Производители товаров
+      </ps-nav-bar-button
       >
       <ps-nav-bar-button @click="$router.push('/user')"
-        >Пользователи</ps-nav-bar-button
+      >Пользователи
+      </ps-nav-bar-button
       >
       <ps-nav-bar-button @click="$router.push('/contacts')"
-        >Контакты</ps-nav-bar-button
+      >Контакты
+      </ps-nav-bar-button
+      >
+
+      <ps-nav-bar-button @click="logout"
+      >
+        <ps-icon :name="'logout'" style="color: black"/>
+      </ps-nav-bar-button
       >
     </div>
   </div>
@@ -25,11 +35,18 @@
 
 <script>
 import PsNavBarButton from "./UI/PsNavBarButton.vue";
+import PsIcon from "@/components/UI/PsIcon";
+
 export default {
-  components: { PsNavBarButton },
+  components: {PsIcon, PsNavBarButton},
   setup() {
     return {};
   },
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+    }
+  }
 };
 </script>
 
