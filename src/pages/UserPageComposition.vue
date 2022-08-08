@@ -1,16 +1,18 @@
 <template>
+
   <ps-dialog v-model:show="dialogVisible"
   >
     <new-user-form @create="addUser" @close="dialogVisible=false"
     />
   </ps-dialog>
+
   <div class="psuserpage">
     <h1>Управление пользователями</h1>
     <ps-button @click="showAddUserDialog">
-      <ps-icon :name="add_user" style="color: green"/>
+      <ps-icon :name="'person_add'" style="color: green"/>
       Добавить пользователя
     </ps-button>
-
+    <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
 
     <user-list :users="users" @removeUser="removeUser"/>
     <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
@@ -34,6 +36,7 @@ export default {
     PsButton,
     PsDialog,
     UserList,
+
   },
 
   data() {
@@ -87,8 +90,10 @@ export default {
 
 <style lang="css" scoped>
 .psuserpage {
-  width: 100%;
+  /*width: 100%;*/
   display: flex;
   flex-direction: column;
+  /*justify-content: center;*/
+  align-items: center;
 }
 </style>
