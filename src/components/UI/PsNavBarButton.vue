@@ -1,5 +1,7 @@
 <template>
-  <button class="navbutton"><slot></slot></button>
+  <div class="navbutton">
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -10,11 +12,16 @@ export default {
 
 <style lang="css" scoped>
 .navbutton {
-  border: none;
+  display: flex;
   padding: 10px;
   background: none;
-  margin-right: 5px;
   color: white;
+  /*border: 1px solid black;*/
+  border-radius: 5px;
+  margin: 5px;
+  justify-items: center;
+  align-items: center;
+  width: fit-content;
 }
 
 .navbutton:hover {
