@@ -20,7 +20,6 @@ components.forEach((component) => {
 
 app.use(router);
 app.use(store);
-console.log(app);
 app.use(psPopup);
 app.mount("#app");
 // app.use(Antd).mount("#app");
