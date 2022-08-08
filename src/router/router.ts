@@ -4,6 +4,7 @@ import Contacts from "@/pages/Contacts.vue";
 import CategoryProducts from "@/pages/CategoryProduct.vue";
 import BrandProduct from "@/pages/BrandProduct.vue";
 import Login from "@/pages/Login"
+import ErrorPage from "@/pages/ErrorPage"
 
 import {createRouter, createWebHistory} from "vue-router";
 
@@ -14,7 +15,8 @@ const routes = [
     {path: "/contacts", component: Contacts},
     {path: "/category", component: CategoryProducts},
     {path: "/brand", component: BrandProduct},
-    {path: "/login", component: Login}
+    {path: "/login", component: Login},
+    {path: "/error/:msg", component: ErrorPage}
 ];
 
 const router = createRouter({
