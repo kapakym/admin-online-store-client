@@ -17,6 +17,8 @@ import PsInput from "@/components/UI/PsInput";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsButton from "@/components/UI/PsButton";
 import apiUserLogin from "@/api/User/apiUserLogin";
+import {mapActions} from "vuex";
+
 
 export default {
   name: "LoginPage",
@@ -28,9 +30,17 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      checkAuth: "auth/checkAuth"
+    }),
     async loginMethods() {
       const token = await apiUserLogin({email: this.email, password: this.password});
-      console.log(token.value.data)
+      console.log(token)
+      if (token.value.data?.token) {
+        this.checkAuth();
+        this.$router.push('/')
+      }
+
     }
   }
 
