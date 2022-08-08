@@ -1,17 +1,15 @@
-import axios from "axios";
 import {ref} from "vue";
+import router from "@/router/router";
+import $api from "@/api/http";
 
 
 export default async function apiGetUsersByPage(page: number, limit: number) {
     const response = ref({});
     try {
-        console.log(limit, page)
-        response.value = await axios.get(
-            "http://localhost:7000/users/page", {params: {limit: limit, page: page - 1}}
-        );
+        response.value = await $api.get("/users/page", {params: {limit: limit, page: page - 1}});
         console.log(response.value)
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        router.push(`/error/${error.response.data.message}`);
     }
 
 
