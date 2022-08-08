@@ -4,7 +4,8 @@
       <h2>Авторизация</h2>
       <ps-input v-model="email" type="text" placeholder="email"/>
       <ps-input v-model="password" type="text" placeholder="password"/>
-      <ps-button>Вход</ps-button>
+      <ps-button @click="loginMethods">Вход</ps-button>
+
       <a href="">Восстановление пароля</a>
     </div>
   </div>
@@ -15,6 +16,7 @@
 import PsInput from "@/components/UI/PsInput";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsButton from "@/components/UI/PsButton";
+import apiUserLogin from "@/api/User/apiUserLogin";
 
 export default {
   name: "LoginPage",
@@ -24,7 +26,14 @@ export default {
       email: "",
       password: ""
     }
+  },
+  methods: {
+    async loginMethods() {
+      const token = await apiUserLogin({email: this.email, password: this.password});
+      console.log(token.value.data)
+    }
   }
+
 }
 </script>
 
