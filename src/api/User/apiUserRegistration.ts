@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ref} from "vue";
+import router from "@/router/router";
 
 interface UserParams {
     email: string;
@@ -22,8 +23,8 @@ export default async function apiUserRegistration(params: UserParams) {
                 banReason: params.banReason,
             }
         );
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        router.push(`/error/${error.response.data.message}`);
     }
 
 
