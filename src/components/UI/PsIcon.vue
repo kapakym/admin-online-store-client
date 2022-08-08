@@ -16,7 +16,10 @@ export default {
 
 .psicon {
   color: teal;
-  /*border: 1px solid red*/
+  /*border: 1px solid red;*/
+  /*margin: 2px;*/
+  padding-left: 4px;
+  padding-right: 4px;
 }
 
 </style>
