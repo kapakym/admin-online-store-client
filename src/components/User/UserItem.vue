@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="useritem">
     <div><strong>email </strong>{{ user.email }}</div>
     <div><strong>Заблокирован</strong>{{ user.statusBan }}</div>
     <div><strong>Причина блокировки</strong>{{ user.banReason }}</div>
@@ -58,4 +58,9 @@ export default defineComponent({
 </script>
 
 <style scoped>
+.useritem {
+  display: inline-block;
+  width: 100%;
+  flex-direction: column;
+}
 </style>
