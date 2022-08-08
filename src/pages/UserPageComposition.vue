@@ -6,7 +6,7 @@
     />
   </ps-dialog>
 
-  <div class="psuserpage">
+  <div class="psuserpage" v-if="$store.state.auth.isAuth">
     <h1>Управление пользователями</h1>
     <ps-button @click="showAddUserDialog">
       <ps-icon :name="'person_add'" style="color: green"/>
@@ -16,6 +16,9 @@
 
     <user-list :users="users" @removeUser="removeUser"/>
     <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
+  </div>
+  <div class="psuserpage" v-else>
+    <h1>Страница не доступна</h1>
   </div>
 </template>
 
