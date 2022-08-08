@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ref} from "vue";
+import router from "@/router/router";
 
 export default async function apiChangePictureBrand(params: any) {
     const result = ref({});
@@ -18,8 +19,8 @@ export default async function apiChangePictureBrand(params: any) {
             }
         );
         console.log(result);
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        router.push(`/error/${error.response.data.message}`);
     }
 
     return result;

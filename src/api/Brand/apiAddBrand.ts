@@ -1,5 +1,6 @@
 import axios from "axios";
 import {ref} from "vue";
+import router from "@/router/router";
 
 interface BrandParams {
     name: string;
@@ -22,8 +23,8 @@ export default async function apiAddBrand(params: BrandParams) {
             }
         );
         console.log(result);
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        router.push(`/error/${error.response.data.message}`);
     }
 
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "@/router/router";
 
 export default async function apiDeleteBrand(params: any) {
     console.log("params", params);
@@ -9,8 +10,8 @@ export default async function apiDeleteBrand(params: any) {
                 id: Number(params),
             }
         );
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        router.push(`/error/${error.response.data.message}`);
     }
     return true;
 }

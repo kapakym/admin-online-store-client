@@ -1,4 +1,5 @@
 import axios from "axios";
+import router from "@/router/router";
 
 interface paramsType {
     id: number;
@@ -16,8 +17,8 @@ export default async function apiUpdateBrand(params: paramsType) {
             }
         );
         console.log(response)
-    } catch (error) {
-        console.log(error);
+    } catch (error: any) {
+        router.push(`/error/${error.response.data.message}`);
     }
     return true;
 }
