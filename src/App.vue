@@ -15,6 +15,11 @@ export default {
   setup() {
     return {};
   },
+  mounted() {
+    this.$store.dispatch("auth/checkAuth")
+    // const token = localStorage.getItem("token");
+    // if (token) this.$store.commit("auth/setAuth", true);
+  }
 };
 </script>
 
