@@ -10,8 +10,14 @@ const authModule: any = {
             state.isAuth = props;
         }
     },
-    actions: {}
-
+    actions: {
+        checkAuth({state, commit}: any) {
+            const token = localStorage.getItem("token");
+            if (token) commit("setAuth", true);
+            else commit("setAuth", false);
+        }
+    },
+    namespaced: true
 
 }
 
