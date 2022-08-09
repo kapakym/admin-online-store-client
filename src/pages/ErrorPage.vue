@@ -7,6 +7,12 @@
         <ps-icon :name="'error'" style="color: red"/>
       </h1>
       <h2>{{ $route.params.msg }}</h2>
+      <ps-group-buttons>
+        <ps-button @click="$router.back()">
+          <ps-icon :name="'arrow_back'"/>
+          Назад
+        </ps-button>
+      </ps-group-buttons>
     </div>
 
   </div>
@@ -16,10 +22,11 @@
 
 <script>
 import PsIcon from "@/components/UI/PsIcon";
+import PsButton from "@/components/UI/PsButton";
 
 export default {
   name: "Error",
-  components: {PsIcon}
+  components: {PsButton, PsIcon}
 }
 </script>
 
