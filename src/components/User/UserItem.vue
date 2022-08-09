@@ -1,35 +1,36 @@
 <template>
   <div class="useritem">
-    <div><strong>email </strong>{{ user.email }}</div>
-    <div><strong>Заблокирован</strong>{{ user.statusBan }}</div>
-    <div><strong>Причина блокировки</strong>{{ user.banReason }}</div>
-    <div>
+    <div class="usercol"><strong>email </strong>{{ user.email }}</div>
+    <div class="usercol"><strong>Заблокирован </strong>{{ user.statusBan }}</div>
+    <div class="usercol"><strong>Причина блокировки </strong>{{ user.banReason }}</div>
+    <div class="usercol">
       <strong>Roles </strong>
       <div v-for="role in user.roles" :key="role">{{ role.value }}</div>
     </div>
     <ps-group-buttons>
-      <ps-button @click="$emit('removeUser', user.id)">
+      <ps-button @click="removeUser">
         <ps-icon :name="'delete'" style="color: red"/>
-        Удалить
+
       </ps-button>
       <ps-button>
         <ps-icon :name="'message'"/>
-        Отправить сообщение
+
       </ps-button>
       <ps-button @click="getPage">
         <ps-icon :name="'block'" style="color: red"/>
-        Заблокировать
+
       </ps-button>
     </ps-group-buttons>
 
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import {defineComponent} from "vue";
 import PsGroupButtons from "@/components/UI/PsGroupButtons.vue";
 import PsIcon from "@/components/UI/PsIcon.vue";
 import apiGetUsersByPage from "@/api/User/apiGetUsersByPage";
+import {mapActions} from "vuex";
 
 export default defineComponent({
   components: {PsIcon, PsGroupButtons},
@@ -40,8 +41,15 @@ export default defineComponent({
     },
   },
   methods: {
-    removeUser() {
-      this.$emit("removeUser", this.user.id);
+    ...mapActions({
+      userRemove: "user/userRemove"
+    }),
+    async removeUser() {
+
+      this.$popup(`Вы действительно хотите удалить пользователя (${this.user.email})`, async () => {
+        await this.userRemove({id: this.user.id}, () => {
+        })
+      });
     },
     async getPage() {
       const result = await apiGetUsersByPage(1, 10);
@@ -51,6 +59,7 @@ export default defineComponent({
   setup() {
     return {};
   },
+
   mounted() {
     // console.log(this.user);
   },
@@ -59,8 +68,15 @@ export default defineComponent({
 
 <style scoped>
 .useritem {
-  display: inline-block;
-  width: 100%;
-  flex-direction: column;
+  display: flex;
+  /*width: 100%;*/
+  /*flex-direction: column;*/
+  text-align: left;
+}
+
+.usercol {
+  margin: 5px;
+  padding: 5px;
+  border-right: 1px solid teal;
 }
 </style>
