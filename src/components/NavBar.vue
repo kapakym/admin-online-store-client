@@ -24,12 +24,12 @@
       </ps-nav-bar-button
       >
 
-      <ps-nav-bar-button @click="logout" v-if="$store.state.auth.isAuth"
+      <ps-nav-bar-button @click="logout" v-if="isAuth"
       >
         <ps-icon :name="'logout'" style="color: white"/>
       </ps-nav-bar-button
       >
-      <ps-nav-bar-button @click="$router.push('/login')" v-if="!$store.state.auth.isAuth"
+      <ps-nav-bar-button @click="$router.push('/login')" v-if="!isAuth"
       >
         <ps-icon :name="'login'" style="color: white"/>
       </ps-nav-bar-button>
@@ -40,7 +40,7 @@
 <script>
 import PsNavBarButton from "./UI/PsNavBarButton.vue";
 import PsIcon from "@/components/UI/PsIcon";
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 
 export default {
   components: {PsIcon, PsNavBarButton},
@@ -48,7 +48,11 @@ export default {
   setup() {
     return {};
   },
-
+  computed: {
+    ...mapState({
+      isAuth: state => state.auth.isAuth
+    })
+  },
   methods: {
     ...mapActions({
       checkAuth: "auth/checkAuth"
@@ -56,7 +60,7 @@ export default {
     logout() {
       localStorage.removeItem("token");
       this.checkAuth();
-    }
+    },
   }
 };
 </script>
