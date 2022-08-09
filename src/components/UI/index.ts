@@ -8,7 +8,8 @@ import PsLabelSelect from "@/components/UI/PsLabelSelect.vue";
 import PsGroupButtons from "@/components/UI/PsGroupButtons.vue";
 import PsInputFileUpload from "@/components/UI/PsInputFileUpload.vue";
 import PsIcon from "@/components/UI/PsIcon.vue";
-import PsPaginator from "@/components/UI/PsPaginator"
+import PsPaginator from "@/components/UI/PsPaginator.vue"
+import PsMultiLineSelect from "@/components/UI/PsMultiLineSelect.vue"
 
 export default [
     PsButton,
@@ -21,5 +22,6 @@ export default [
     PsGroupButtons,
     PsInputFileUpload,
     PsIcon,
-    PsPaginator
+    PsPaginator,
+    PsMultiLineSelect
 ];
