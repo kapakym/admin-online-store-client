@@ -1,6 +1,8 @@
 <template>
-  <transition name="fade">
+  <div>
+
     <!--    <div class="toast" v-html="msg" :style="style" @click="closeHandle"></div>-->
+
     <ps-dialog v-model:show="visible" @click="closeHandle(false)">
       <div class="headpopup">
 
@@ -31,7 +33,8 @@
       </div>
 
     </ps-dialog>
-  </transition>
+
+  </div>
 </template>
 
 <script>
@@ -158,5 +161,6 @@ export default {
   display: flex;
   align-items: center;
 }
+
 
 </style>

@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     async deleteItem() {
-      this.$popup("Вы действиетльно хотите удалить " + this.brand.name + " ?", async () => {
+      await this.$popup("Вы действиетльно хотите удалить " + this.brand.name + " ?", async () => {
         const result = await apiDeleteBrand(this.brand.id);
         this.$emit("refresh");
       })
@@ -54,7 +54,7 @@ export default {
     async updateBrand() {
       // console.log(this.$toast("Hello"))
       console.log("start")
-      this.$popup("Вы действиетльно хотите изменить " + this.brand.name + " ?", async () => {
+      await this.$popup("Вы действиетльно хотите изменить " + this.brand.name + " ?", async () => {
         const result = await apiUpdateBrand({id: this.brand.id, name: this.brand.name})
       })
 
@@ -67,12 +67,13 @@ export default {
 <style scoped>
 .itembrand {
   display: flex;
-  width: 95%;
+  /*width: 95%;*/
   border: 1px solid black;
   padding: 5px;
   margin: 5px;
   align-items: center;
   justify-content: space-around;
+  border-radius: 5px;
 }
 
 .picturebrand {
