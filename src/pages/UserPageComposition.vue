@@ -1,17 +1,9 @@
 <template>
 
-  <ps-dialog v-model:show="dialogVisible"
-  >
-    <new-user-form @create="addUser" @close="dialogVisible=false"
-    />
-  </ps-dialog>
 
   <div class="psuserpage" v-if="$store.state.auth.isAuth">
     <h1>Управление пользователями</h1>
-    <ps-button @click="showAddUserDialog">
-      <ps-icon :name="'person_add'" style="color: green"/>
-      Добавить пользователя
-    </ps-button>
+
     <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
 
     <user-list :users="users" @removeUser="removeUser"/>
@@ -28,9 +20,9 @@ import NewUserForm from "@/components/User/NewUserForm.vue";
 import PsButton from "@/components/UI/PsButton.vue";
 import axios from "axios";
 import PsDialog from "@/components/UI/PsDialog.vue";
-import useUser from "@/hooks/useUser";
+// import useUser from "@/hooks/useUser";
 import PsPaginator from "@/components/UI/PsPaginator";
-import apiGetUsersByPage from "@/api/User/apiGetUsersByPage";
+import {mapActions, mapState} from "vuex";
 
 export default {
   components: {
@@ -44,27 +36,30 @@ export default {
 
   data() {
     return {
-      // users: [],
-      page: 1,
-      limit: 3,
       dialogVisible: false,
     };
   },
-  setup(props) {
-    const {users, count, totalPages} = useUser(1, 3);
-    return {users, count, totalPages};
+  computed: {
+    ...mapState({
+      page: state => state.user.page,
+      limit: state => state.user.limit,
+      totalPages: state => state.user.totalPages,
+      users: state => state.user.users,
+    })
   },
 
+  mounted() {
+    this.changePage(this.page)
+  },
   methods: {
-    async changePage(n) {
-      this.page = n;
-      const result = await apiGetUsersByPage(this.page, this.limit);
-      this.users = result.value.data.users;
-      this.totalPages = Math.ceil(result.value.data.count / this.limit);
-      console.log(result.value.data)
+    ...mapActions({
+      fetchUsers: "user/fetchUsers"
+    }),
+    async changePage(numberPage) {
+      this.fetchUsers({page: numberPage});
     },
+
     async addUser(user) {
-      //   this.users.push(user);
 
       const response = await axios.post(
           "http://localhost:7000/auth/registration",
@@ -94,9 +89,9 @@ export default {
 <style lang="css" scoped>
 .psuserpage {
   /*width: 100%;*/
-  display: flex;
-  flex-direction: column;
-  /*justify-content: center;*/
-  align-items: center;
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-items: center;*/
+  text-align: center;
 }
 </style>
