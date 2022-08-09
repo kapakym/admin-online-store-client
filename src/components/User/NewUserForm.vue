@@ -1,54 +1,41 @@
 <template>
   <div class="newuserform">
     <h4>Добавление пользователя</h4>
-    <ps-input v-model="user.email" type="text" placeholder="email"/>
-    <ps-input type="text" placeholder="password" v-model="user.password"/>
-    <ps-input v-model="user.statusBan" type="checkbox"/>
-    <ps-input type="text" placeholder="Ban reason" v-model="user.banReason"/>
+    <ps-input v-model="email" type="text" placeholder="email"/>
+    <ps-input type="text" placeholder="password" v-model="password"/>
 
+    <ps-group-buttons>
+      <ps-button class="btn" @click="addUser">
+        <ps-icon :name="'done'" style="color: green"/>
+        Добавить
+      </ps-button>
+      <ps-button class="btn" @click="$emit('close')">
+        <ps-icon :name="'cancel'" style="color: red"/>
+        Отмена
+      </ps-button>
+    </ps-group-buttons>
   </div>
-  <ps-group-buttons>
-    <ps-button class="btn" @click="addUser">
-      <ps-icon :name="'done'" style="color: green"/>
-      Добавить
-    </ps-button>
-    <ps-button class="btn" @click="$emit('close')">
-      <ps-icon :name="'cancel'" style="color: red"/>
-      Отмена
-    </ps-button>
-  </ps-group-buttons>
-
 </template>
 
 <script>
 import PsIcon from "@/components/UI/PsIcon";
 import apiUserRegistration from "@/api/User/apiUserRegistration";
+import PsMultiLineSelect from "@/components/UI/PsMultiLineSelect";
 
 export default {
-  components: {PsIcon},
+  components: {PsMultiLineSelect, PsIcon},
 
   data() {
     return {
-      user: {
-        email: "",
-        password: "",
-        statusBan: false,
-        banReason: "",
-      },
+      email: "",
+      password: "",
     };
   },
   methods: {
     async addUser() {
-
-      this.user.id = Date.now();
-      this.user.roles = ["USER"];
-      const result = await apiUserRegistration(this.user)
-      this.user = {
-        email: "",
-        password: "",
-        statusBan: false,
-        banReason: "",
-      };
+      const result = await apiUserRegistration({email: this.email, password: this.password})
+      this.email = "";
+      this.password = "";
       this.$emit("close");
     },
   },
@@ -65,8 +52,10 @@ form {
 }
 
 .newuserform {
-  width: 100%;
+  /*width: 100%;*/
   display: flex;
   flex-direction: column;
+  align-items: center;
+
 }
 </style>
