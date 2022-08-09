@@ -1,8 +1,11 @@
 <template lang="html">
   <div>
-    <ps-dialog v-model:show="dlgNewBrandVisible">
-      <new-brand @refresh="refresh" @hide="dlgNewBrandVisible=false"/>
-    </ps-dialog>
+    <transition name="fade">
+      <ps-dialog v-model:show="dlgNewBrandVisible">
+        <new-brand @refresh="refresh" @hide="dlgNewBrandVisible=false"/>
+      </ps-dialog>
+    </transition>
+
   </div>
   <div>
     <ps-dialog v-model:show="dlgChangeLogoVisible">
@@ -63,4 +66,13 @@ export default {
 
 
 </script>
-<style></style>
+<style>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1s
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0
+}
+
+</style>
