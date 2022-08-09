@@ -18,42 +18,52 @@
       Добавить
     </ps-button>
   </div>
-  <div v-for="item in allBrands" v-if="isBrandLoading">
-    <item-brand :brand="item" @refresh="refresh" @changeLogo="chageLogo"/>
+  <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
+
+  <div v-for="item in brands" v-if="isBrandLoading">
+    <item-brand :brand="item" @changeLogo="chageLogo"/>
   </div>
   <div v-else>Загрузка данных</div>
+  <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
 </template>
 
 <script>
-import serverMixin from "@/mixins/serverMixin"
 import NewBrand from "@/components/Brand/NewBrand.vue";
-import useBrands from "@/hooks/useBrands";
-import apiGetBrand from "@/api/Brand/apiGetBrand";
 import ItemBrand from "@/components/Brand/ItemBrand";
 import ChangeBrandPicture from "@/components/Brand/ChangeBrandPicture";
 import PsDialog from "@/components/UI/PsDialog";
 import PsIcon from "@/components/UI/PsIcon";
+import {mapActions, mapState} from "vuex";
 
 export default {
   components: {PsIcon, PsDialog, ChangeBrandPicture, ItemBrand, NewBrand},
-  mixins: [serverMixin],
-  setup(props) {
-    const {allBrands, isBrandLoading} = useBrands();
 
-    return {allBrands, isBrandLoading};
+  computed: {
+    ...mapState({
+      brands: state => state.brand.brands,
+      page: state => state.brand.page,
+      totalPages: state => state.brand.totalPages,
+      limit: state => state.brand.limit
+
+    })
+  },
+  mounted() {
+    this.isBrandLoading = true;
+    this.changePage(this.page);
   },
   data() {
     return {
       dlgNewBrandVisible: false,
       dlgChangeLogoVisible: false,
-      selectedBrand: {}
+      isBrandLoading: true
     };
   },
   methods: {
-    async refresh() {
-      this.dlgNewBrandVisible = false;
-      const {responseBrand} = await apiGetBrand();
-      this.allBrands = responseBrand.value;
+    ...mapActions({
+      fetchBrands: "brand/fetchBrands"
+    }),
+    changePage(numberPage) {
+      this.fetchBrands({page: numberPage});
     },
     chageLogo(params) {
       console.log(params)
@@ -68,7 +78,7 @@ export default {
 </script>
 <style>
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1s
+  transition: opacity 0.5s
 }
 
 .fade-enter, .fade-leave-to {
