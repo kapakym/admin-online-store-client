@@ -1,10 +1,22 @@
 <template>
   <div class="container">
     <div class="loginpage">
-      <h2>Авторизация</h2>
+      <h2>{{ registrationFlag ? 'Регистрация' : 'Авторизация' }}</h2>
       <ps-input v-model="email" type="text" placeholder="email"/>
       <ps-input v-model="password" type="text" placeholder="password"/>
-      <ps-button @click="loginMethods">Вход</ps-button>
+      <ps-input v-if="registrationFlag" v-model="repassword" type="text" @input="validPassword"
+                placeholder="repeat password"/>
+      <h3 v-if="passwordNot && registrationFlag" style="color: red"> Пароли не совпадают</h3>
+      <ps-group-buttons>
+        <ps-button @click="registrationFlag ? registrationMethod() : loginMethods()">
+          <ps-icon :name="'done'" style="color: green"/>
+          {{ registrationFlag ? 'Создать' : 'Вход' }}
+        </ps-button>
+        <ps-button @click="registrationFlag=!registrationFlag">{{
+            registrationFlag ? 'Авторизация' : 'Регистрация'
+          }}
+        </ps-button>
+      </ps-group-buttons>
 
       <a href="">Восстановление пароля</a>
     </div>
@@ -18,24 +30,34 @@ import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsButton from "@/components/UI/PsButton";
 import apiUserLogin from "@/api/User/apiUserLogin";
 import {mapActions} from "vuex";
+import PsIcon from "@/components/UI/PsIcon";
 
 
 export default {
   name: "LoginPage",
-  components: {PsButton, PsGroupButtons, PsInput},
+  components: {PsIcon, PsButton, PsGroupButtons, PsInput},
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      repassword: "",
+      registrationFlag: false,
+      passwordNot: true
     }
   },
   methods: {
     ...mapActions({
-      checkAuth: "auth/checkAuth"
+      checkAuth: "auth/checkAuth",
+      registrationUser: "auth/registrationUser"
     }),
+    validPassword() {
+      this.passwordNot = this.password !== this.repassword;
+    },
+    async registrationMethod() {
+      if (!this.passwordNot) this.registrationUser({email: this.email, password: this.password})
+    },
     async loginMethods() {
       const token = await apiUserLogin({email: this.email, password: this.password});
-      console.log(token)
       if (token.value.data?.token) {
         this.checkAuth();
         this.$router.push('/')
