@@ -1,3 +1,5 @@
+import apiUserRegistration from "@/api/User/apiUserRegistration";
+
 const authModule: any = {
     state: () => {
         return {
@@ -15,6 +17,10 @@ const authModule: any = {
             const token = localStorage.getItem("token");
             if (token) commit("setAuth", true);
             else commit("setAuth", false);
+        },
+        async registrationUser({state, dispatch}: any, payload: { email: string, password: string }) {
+            const user = await apiUserRegistration({email: payload.email, password: payload.password})
+            console.log(user)
         }
     },
     namespaced: true
