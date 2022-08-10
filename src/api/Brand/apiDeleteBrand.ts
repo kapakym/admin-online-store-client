@@ -1,13 +1,13 @@
-import axios from "axios";
 import router from "@/router/router";
+import $api from "@/api/http";
 
-export default async function apiDeleteBrand(params: any) {
+export default async function apiDeleteBrand(params: number) {
     console.log("params", params);
     try {
-        const response = await axios.post(
-            "http://localhost:7000/product-brand/delete",
+        const response = await $api.post(
+            "/product-brand/delete",
             {
-                id: Number(params),
+                id: params,
             }
         );
     } catch (error: any) {

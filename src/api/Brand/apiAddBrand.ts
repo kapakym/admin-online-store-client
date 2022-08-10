@@ -1,6 +1,6 @@
-import axios from "axios";
 import {ref} from "vue";
 import router from "@/router/router";
+import $api from "@/api/http";
 
 interface BrandParams {
     name: string;
@@ -13,8 +13,8 @@ export default async function apiAddBrand(params: BrandParams) {
     formData.append("name", params.name);
     formData.append("picture", params.file);
     try {
-        result.value = await axios.post(
-            "http://127.0.0.1:7000/product-brand",
+        result.value = await $api.post(
+            "/product-brand",
             formData,
             {
                 headers: {
@@ -22,7 +22,6 @@ export default async function apiAddBrand(params: BrandParams) {
                 },
             }
         );
-        console.log(result);
     } catch (error: any) {
         router.push(`/error/${error.response.data.message}`);
     }
