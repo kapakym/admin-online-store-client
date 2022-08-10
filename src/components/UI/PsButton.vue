@@ -2,12 +2,12 @@
   <div class="mybutton">
     <slot></slot>
   </div>
+
 </template>
 
 <script>
 export default {
   name: "ps-button",
-
   setup() {
     return {};
   },
@@ -28,6 +28,7 @@ export default {
   align-items: center;
   width: fit-content;
 
+
 }
 
 .mybutton:hover {
@@ -40,4 +41,6 @@ export default {
   background: teal;
   color: white;
 }
+
+
 </style>
