@@ -16,7 +16,7 @@
           <ps-icon :name="'add_photo_alternate'"/>
           Изменить логотип
         </ps-button>
-        <ps-button @click="updateBrand">
+        <ps-button @click="update">
           <ps-icon :name="'save'"/>
           Сохранить
         </ps-button>
@@ -30,7 +30,6 @@
 import serverMixin from "@/mixins/serverMixin";
 // import PsButton from "@/components/UI/PsButton";
 import PsInput from "@/components/UI/PsInput";
-import apiUpdateBrand from "@/api/Brand/apiUpdateBrand";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import {mapActions} from "vuex";
 
@@ -43,7 +42,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeBrand: "brand/removeBrand"
+      removeBrand: "brand/removeBrand",
+      updateBrand: "brand/updateBrand"
     }),
     async deleteItem() {
       await this.$popup("Вы действиетльно хотите удалить " + this.brand.name + " ?", async () => {
@@ -53,11 +53,11 @@ export default {
     changeLogo() {
       this.$emit("changeLogo", this.brand);
     },
-    async updateBrand() {
+    async update() {
       // console.log(this.$toast("Hello"))
       console.log("start")
       await this.$popup("Вы действиетльно хотите изменить " + this.brand.name + " ?", async () => {
-        const result = await apiUpdateBrand({id: this.brand.id, name: this.brand.name})
+        await this.updateBrand({id: this.brand.id, name: this.brand.name});
       })
 
     }
