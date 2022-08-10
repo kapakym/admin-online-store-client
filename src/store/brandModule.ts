@@ -2,6 +2,7 @@ import apiGetBrandByPage from "@/api/Brand/apiGetBrandByPage";
 import apiAddBrand from "@/api/Brand/apiAddBrand";
 import apiDeleteBrand from "@/api/Brand/apiDeleteBrand";
 import apiChangePictureBrand from "@/api/Brand/apiChangePictureBrand";
+import apiUpdateBrand from "@/api/Brand/apiUpdateBrand";
 
 const brandModule = {
     state: () => ({
@@ -48,6 +49,10 @@ const brandModule = {
         },
         async changePictureBrand({state, dispatch}: any, payload: { id: number, file: Blob }) {
             await apiChangePictureBrand({id: payload.id, file: payload.file});
+            dispatch("fetchBrands", {page: state.page});
+        },
+        async updateBrand({state, dispatch}: any, payload: { id: number, name: string }) {
+            await apiUpdateBrand({id: payload.id, name: payload.name})
             dispatch("fetchBrands", {page: state.page});
         }
     },
