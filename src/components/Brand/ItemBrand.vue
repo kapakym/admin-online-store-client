@@ -30,9 +30,9 @@
 import serverMixin from "@/mixins/serverMixin";
 // import PsButton from "@/components/UI/PsButton";
 import PsInput from "@/components/UI/PsInput";
-import apiDeleteBrand from "@/api/Brand/apiDeleteBrand";
 import apiUpdateBrand from "@/api/Brand/apiUpdateBrand";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
+import {mapActions} from "vuex";
 
 export default {
   name: "ItemBrand",
@@ -42,10 +42,12 @@ export default {
     brand: {}
   },
   methods: {
+    ...mapActions({
+      removeBrand: "brand/removeBrand"
+    }),
     async deleteItem() {
       await this.$popup("Вы действиетльно хотите удалить " + this.brand.name + " ?", async () => {
-        const result = await apiDeleteBrand(this.brand.id);
-        this.$emit("refresh");
+        await this.removeBrand({id: this.brand.id});
       })
     },
     changeLogo() {

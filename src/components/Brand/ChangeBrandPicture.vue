@@ -27,8 +27,8 @@
 
 <script>
 
-import apiChangePictureBrand from "@/api/Brand/apiChangePictureBrand";
 import PsIcon from "@/components/UI/PsIcon";
+import {mapActions} from "vuex";
 
 export default {
   components: {PsIcon},
@@ -39,20 +39,17 @@ export default {
     return {
       category: {
         name: "",
-        picture: "",
+        picture: Blob,
       },
     };
   },
   methods: {
+    ...mapActions({
+      changePictureBrand: "brand/changePictureBrand"
+    }),
     async changePicture() {
       console.log("params", this.params);
-      const result = await apiChangePictureBrand({
-        id: this.params.id,
-        file: this.$refs.fileUpload.files[0],
-      });
-      console.log(result.value);
-      // this.params.picture = result.value.data.picture;
-      this.$emit("refresh");
+      await this.changePictureBrand({id: this.params.id, file: this.$refs.fileUpload.files[0]});
       this.$emit("hide");
     },
   },

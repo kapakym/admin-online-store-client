@@ -21,14 +21,18 @@
 import PsButton from "@/components/UI/PsButton";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsInputFileUpload from "@/components/UI/PsInputFileUpload";
-import apiAddBrand from "@/api/Brand/apiAddBrand";
+import {mapActions} from "vuex";
 
 export default {
   components: {PsInputFileUpload, PsGroupButtons, PsButton},
   methods: {
+    ...mapActions({
+      addBrand: "brand/addBrand",
+    }),
+
     async createBrand() {
-      await apiAddBrand({name: this.nameBrand, file: this.fileUpload});
-      this.$emit("refresh");
+      await this.addBrand({name: this.nameBrand, file: this.fileUpload})
+      this.$emit("hide");
     }
   },
   data() {
@@ -49,6 +53,7 @@ form {
   width: 100%;
   display: flex;
   flex-direction: column;
+
 }
 
 .fileUpload {
