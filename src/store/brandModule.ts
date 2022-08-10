@@ -14,7 +14,6 @@ const brandModule = {
     getters: {},
     mutations: {
         setBrands(state: any, props: any) {
-            console.log(props)
             state.brands = props;
         },
         setPage(state: any, props: number) {
@@ -30,10 +29,8 @@ const brandModule = {
     actions: {
         async fetchBrands({state, commit}: any, payload: { page: number }) {
             // Получение всего списка пользователей с сервера
-            console.log(payload)
             if (payload.page) commit("setPage", payload.page)
             const result: any = await apiGetBrandByPage(state.page, state.limit);
-            console.log(result.value);
             if (result.value.data?.brands) {
                 commit("setBrands", result.value.data.brands);
                 commit("setTotalPages", Math.ceil(result.value.data.count / state.limit))
