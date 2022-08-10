@@ -1,4 +1,7 @@
 import apiGetBrandByPage from "@/api/Brand/apiGetBrandByPage";
+import apiAddBrand from "@/api/Brand/apiAddBrand";
+import apiDeleteBrand from "@/api/Brand/apiDeleteBrand";
+import apiChangePictureBrand from "@/api/Brand/apiChangePictureBrand";
 
 const brandModule = {
     state: () => ({
@@ -34,6 +37,18 @@ const brandModule = {
                 commit("setBrands", result.value.data.brands);
                 commit("setTotalPages", Math.ceil(result.value.data.count / state.limit))
             }
+        },
+        async addBrand({state, dispatch}: any, payload: { name: string, file: Blob }) {
+            await apiAddBrand({name: payload.name, file: payload.file});
+            dispatch("fetchBrands", {page: state.page})
+        },
+        async removeBrand({state, dispatch}: any, payload: { id: number }) {
+            await apiDeleteBrand(payload.id);
+            dispatch("fetchBrands", {page: state.page});
+        },
+        async changePictureBrand({state, dispatch}: any, payload: { id: number, file: Blob }) {
+            await apiChangePictureBrand({id: payload.id, file: payload.file});
+            dispatch("fetchBrands", {page: state.page});
         }
     },
     namespaced: true
