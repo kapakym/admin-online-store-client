@@ -3,9 +3,8 @@
     <ps-dialog v-model:show="dialogVisible"
     >
       <new-category-form
-          @create="closeDialog"
+          @hide="closeDialog"
           :parent="parentCategory"
-          @refresh="refresh"
           @close="dialogVisible=false"
       />
     </ps-dialog>
@@ -61,6 +60,7 @@ export default {
       categoryGraph: state => state.category.categoryGraph,
       categoryList: state => state.category.categoryList
     })
+
   },
 
   async mounted() {
@@ -82,7 +82,7 @@ export default {
     },
     closeDialog() {
       this.dialogVisible = false;
-      this.catproducts.value = [];
+      // this.catproducts.value = [];
     },
     showDialog(parentCategory) {
       console.log(parentCategory);
