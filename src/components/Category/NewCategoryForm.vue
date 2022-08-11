@@ -14,7 +14,7 @@
         ref="fileUpload"
     />
     <ps-group-buttons>
-      <ps-button class="btn" @click="addCategory">
+      <ps-button class="btn" @click="add">
         <ps-icon :name="'done'" style="color:green"/>
         Добавить
       </ps-button>
@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import apiAddCategory from "@/api/Category/apiAddCategory";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import PsIcon from "@/components/UI/PsIcon";
+import {mapActions} from "vuex";
 
 export default {
   components: {PsIcon, PsGroupButtons},
@@ -46,22 +46,16 @@ export default {
     };
   },
   methods: {
-    async addCategory() {
-      console.log(this.parent);
-      console.log(typeof this.$refs.fileUpload.files[0])
-      const result = await apiAddCategory({
-        name: this.category.name,
-        parentId: this.parent.id,
-        file: this.$refs.fileUpload.files[0],
-      });
-      await this.$emit("refresh");
-      await this.$emit("create");
+    ...mapActions({
+      addCategory: "category/addCategory"
+    }),
+    async add() {
+      await this.addCategory({name: this.category.name, parentId: this.parent.id, file: this.$refs.fileUpload.files[0]})
+      await this.$emit("hide");
       this.category = {};
     },
   },
-  setup() {
-    return {};
-  },
+ 
 };
 </script>
 
