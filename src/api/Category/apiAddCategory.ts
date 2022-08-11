@@ -1,16 +1,22 @@
-import axios from "axios";
 import {ref} from "vue";
 import router from "@/router/router";
+import $api from "@/api/http";
 
-export default async function AddCategory(params: any) {
+interface paramsType {
+    name: string;
+    parentId: number;
+    file: Blob
+}
+
+export default async function AddCategory(params: paramsType) {
     const result = ref({});
     const formData = new FormData();
     formData.append("name", params.name);
-    formData.append("parentId", params.parentId);
+    formData.append("parentId", String(params.parentId));
     formData.append("picture", params.file);
     try {
-        result.value = await axios.post(
-            "http://127.0.0.1:7000/product-type",
+        result.value = await $api.post(
+            "/product-type",
             formData,
             {
                 headers: {
@@ -18,7 +24,6 @@ export default async function AddCategory(params: any) {
                 },
             }
         );
-        console.log(result);
     } catch (error: any) {
         router.push(`/error/${error.response.data.message}`);
     }
