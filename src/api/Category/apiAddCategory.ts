@@ -8,7 +8,7 @@ interface paramsType {
     file: Blob
 }
 
-export default async function AddCategory(params: paramsType) {
+export default async function apiAddCategory(params: paramsType) {
     const result = ref({});
     const formData = new FormData();
     formData.append("name", params.name);
