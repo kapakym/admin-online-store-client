@@ -14,8 +14,8 @@
       <div class="viewtree">
         <ps-tree-view
             class="tree"
-            :items="catproducts"
-            :key="catproducts.id"
+            :items="categoryGraph"
+            :key="categoryGraph.id"
             :parentId="0"
             @show-dialog="showDialog"
             @info-category="infoCategory"
@@ -25,7 +25,7 @@
               @refresh="refresh"
               @show-dialog="showDialog"
               :select_category="active"
-              :response="catresponse"
+              :response="categoryList"
           />
         </div>
       </div>
@@ -35,21 +35,16 @@
 </template>
 
 <script>
-import useCategory from "@/hooks/useCategory";
-
 import apiGetCategory from "@/api/Category/apiGetCategory";
 import PsTreeView from "../components/UI/PsTreeView.vue";
 import NewCategoryForm from "../components/Category/NewCategoryForm.vue";
 import PsButton from "../components/UI/PsButton.vue";
 import PsInput from "../components/UI/PsInput.vue";
 import InfoCategory from "../components/Category/InfoCategory.vue";
+import {mapActions, mapState} from "vuex";
 
 export default {
   components: {PsTreeView, NewCategoryForm, PsButton, PsInput, InfoCategory},
-  setup(props) {
-    const {catproducts, catresponse, isCategoryLoading} = useCategory();
-    return {catproducts, catresponse, isCategoryLoading};
-  },
 
   data() {
     return {
@@ -57,10 +52,27 @@ export default {
       parentCategory: {},
       select_category: {},
       active: {},
+      isCategoryLoading: false
     };
   },
 
+  computed: {
+    ...mapState({
+      categoryGraph: state => state.category.categoryGraph,
+      categoryList: state => state.category.categoryList
+    })
+  },
+
+  async mounted() {
+    this.isCategoryLoading = true;
+    await this.fetchCategory();
+    this.isCategoryLoading = false;
+  },
+
   methods: {
+    ...mapActions({
+      fetchCategory: "category/fetchCategory"
+    }),
     async refresh() {
       const result = await apiGetCategory();
       console.log("refresh");
