@@ -3,9 +3,8 @@ import router from "@/router/router";
 import $api from "@/api/http";
 
 export default async function apiGetCategory(): Promise<{}> {
-    const catproducts = ref({});
-    const catresponse: any = ref([]);
-    const isCategoryLoading = ref(true);
+    const categoryGraph = ref({});
+    const categoryList: any = ref([]);
     // Получение всего списка пользователей с сервера
 
     try {
@@ -17,25 +16,22 @@ export default async function apiGetCategory(): Promise<{}> {
                 treeProduct.push(addNode(element, response.data));
             }
         });
-        catproducts.value = {
+        categoryGraph.value = {
             id: 0,
             name: "Каталог товаров",
             picture: "notpicture.png",
             childrens: treeProduct,
             isActive: false,
         };
-        catresponse.value = response.data;
-        catresponse.value = [{id: 0, name: "Корень"}, ...catresponse.value];
+        categoryList.value = response.data;
+        categoryList.value = [{id: 0, name: "Корень"}, ...categoryList.value];
     } catch (error: any) {
         router.push(`/error/${error.response.data.message}`);
-    } finally {
-        isCategoryLoading.value = false;
     }
 
     return {
-        catproducts,
-        catresponse,
-        isCategoryLoading,
+        categoryGraph,
+        categoryList
     };
 }
 
