@@ -1,6 +1,6 @@
-import axios from "axios";
 import {ref} from "vue";
 import router from "@/router/router";
+import $api from "@/api/http";
 
 export default async function apiGetCategory(): Promise<{}> {
     const catproducts = ref({});
@@ -9,7 +9,7 @@ export default async function apiGetCategory(): Promise<{}> {
     // Получение всего списка пользователей с сервера
 
     try {
-        const response = await axios.get("http://localhost:7000/product-type");
+        const response = await $api.get("/product-type");
         const treeProduct: any = [];
         response.data.forEach((element: any) => {
             if (!element.parentId) {
