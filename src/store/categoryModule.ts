@@ -1,6 +1,7 @@
 import apiGetCategory from "@/api/Category/apiGetCategory";
 import apiAddCategory from "@/api/Category/apiAddCategory";
 import apiDeleteCategory from "@/api/Category/apiDeleteCategory";
+import apiUpdateCategory from "@/api/Category/apiUpdateCategory";
 
 const categoryModule = {
     state: () => ({
@@ -27,8 +28,12 @@ const categoryModule = {
             await apiAddCategory({name: payload.name, parentId: payload.parentId, file: payload.file});
             dispatch("fetchCategory");
         },
-        async removeCategory({commit, dispatch}: any, payload: { id: number }) {
+        async removeCategory({dispatch}: any, payload: { id: number }) {
             await apiDeleteCategory(payload.id);
+            dispatch("fetchCategory");
+        },
+        async updateCategory({dispatch}: any, payload: { id: number, parentId: number, name: string }) {
+            await apiUpdateCategory({id: payload.id, parentId: payload.parentId, name: payload.name});
             dispatch("fetchCategory");
         }
     },

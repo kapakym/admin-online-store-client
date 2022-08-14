@@ -1,5 +1,5 @@
-import axios from "axios";
 import router from "@/router/router";
+import $api from "@/api/http";
 
 interface paramsType {
     id: number;
@@ -10,8 +10,8 @@ interface paramsType {
 export default async function apiUpdateCategory(params: paramsType) {
     console.log("params", params);
     try {
-        const response = await axios.post(
-            "http://localhost:7000/product-type/update",
+        const response = await $api.post(
+            "/product-type/update",
             {
                 id: Number(params.id),
                 parentId: Number(params.parentId),

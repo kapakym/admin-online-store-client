@@ -45,7 +45,7 @@
             >
             <ps-button
                 style="margin-left: 10px"
-                @click="updateCategory"
+                @click="update"
                 v-if="select_category.items.id != 0"
             >
               <ps-icon :name="'save'"/>
@@ -82,7 +82,6 @@
 <script>
 import PsLabelSelect from "../UI/PsLabelSelect.vue";
 import ChangeCategoryPicture from "./ChangeCategoryPicture.vue";
-import apiUpdateCategory from "@/api/Category/apiUpdateCategory.ts";
 import PsIcon from "@/components/UI/PsIcon";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
 import {mapActions} from "vuex";
@@ -95,7 +94,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      removeCategory: "category/removeCategory"
+      removeCategory: "category/removeCategory",
+      updateCategory: "category/updateCategory"
     }),
     async deleteCategory() {
       this.$popup("Вы действительно хотите удалить категорию (" + this.select_category.items.name + ")?"
@@ -106,15 +106,15 @@ export default {
           });
     },
 
-    async updateCategory() {
+    async update() {
       this.$popup("Вы действительно хотите сохранить изменения в категории (" + this.select_category.items.name + ")?"
           , async () => {
-            const result = await apiUpdateCategory({
+            await this.updateCategory({
               id: this.select_category.items.id,
               parentId: this.select_category.items.parentId,
-              name: this.select_category.items.name,
+              name: this.select_category.items.name
             });
-            await this.$emit("refresh");
+
           });
 
     },
