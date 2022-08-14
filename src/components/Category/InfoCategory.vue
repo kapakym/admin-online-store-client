@@ -83,9 +83,9 @@
 import PsLabelSelect from "../UI/PsLabelSelect.vue";
 import ChangeCategoryPicture from "./ChangeCategoryPicture.vue";
 import apiUpdateCategory from "@/api/Category/apiUpdateCategory.ts";
-import apiDeleteCategory from "@/api/Category/apiDeleteCategory";
 import PsIcon from "@/components/UI/PsIcon";
 import PsGroupButtons from "@/components/UI/PsGroupButtons";
+import {mapActions} from "vuex";
 
 export default {
   components: {PsGroupButtons, PsIcon, PsLabelSelect, ChangeCategoryPicture},
@@ -94,11 +94,15 @@ export default {
     response: {},
   },
   methods: {
+    ...mapActions({
+      removeCategory: "category/removeCategory"
+    }),
     async deleteCategory() {
       this.$popup("Вы действительно хотите удалить категорию (" + this.select_category.items.name + ")?"
           , async () => {
-            await apiDeleteCategory(this.select_category.items?.id);
-            await this.$emit("refresh");
+            console.log(this.select_category.items?.id)
+            await this.removeCategory({id: this.select_category.items?.id});
+
           });
     },
 

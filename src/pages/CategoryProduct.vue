@@ -59,7 +59,7 @@ export default {
     ...mapState({
       categoryGraph: state => state.category.categoryGraph,
       categoryList: state => state.category.categoryList
-    })
+    }),
 
   },
 

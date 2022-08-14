@@ -1,17 +1,16 @@
-import axios from "axios";
 import router from "@/router/router";
+import $api from "@/api/http";
 
-export default async function apiDeleteCategory(params: any) {
-    console.log("params", params);
+export default async function apiDeleteCategory(params: number) {
     try {
-        const response = await axios.post(
-            "http://localhost:7000/product-type/delete",
+        const response = await $api.post(
+            "/product-type/delete",
             {
-                id: Number(params),
+                id: params,
             }
         );
     } catch (error: any) {
         router.push(`/error/${error.response.data.message}`);
     }
-    return true;
+    // return true;
 }
