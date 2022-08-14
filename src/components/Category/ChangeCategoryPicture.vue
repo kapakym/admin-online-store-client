@@ -26,8 +26,8 @@
 </template>
 
 <script>
-import apiChangePictureCategory from "@/api/Category/apiChangePictureCategory";
 import PsIcon from "@/components/UI/PsIcon";
+import {mapActions} from "vuex";
 
 export default {
   components: {PsIcon},
@@ -43,16 +43,15 @@ export default {
       },
     };
   },
+  computed: {},
   methods: {
+    ...mapActions({
+      updatePicture: "category/changePictureCategory"
+    }),
     async changePicture() {
       console.log("params", this.params);
-      const result = await apiChangePictureCategory({
-        id: this.params.id,
-        file: this.$refs.fileUpload.files[0],
-      });
-      console.log(result.value);
+      const result = await this.updatePicture({id: this.params.id, file: this.$refs.fileUpload.files[0]})
       this.params.picture = result.value.data.picture;
-
       this.$emit("close");
     },
   },

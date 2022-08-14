@@ -20,7 +20,7 @@ export default async function apiUpdateCategory(params: paramsType) {
         );
         console.log(response)
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
     return true;
 }

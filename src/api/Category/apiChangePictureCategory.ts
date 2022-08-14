@@ -2,11 +2,11 @@ import axios from "axios";
 import {ref} from "vue";
 import router from "@/router/router";
 
-export default async function apiChangePictureCategory(params: any) {
+export default async function apiChangePictureCategory(params: { id: number, file: Blob }) {
     const result = ref({});
     console.log(params);
     const formData = new FormData();
-    formData.append("id", params.id);
+    formData.append("id", String(params.id));
     formData.append("picture", params.file);
     try {
         result.value = await axios.post(
@@ -20,7 +20,7 @@ export default async function apiChangePictureCategory(params: any) {
         );
         console.log(result);
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
 
     return result;

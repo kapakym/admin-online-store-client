@@ -2,6 +2,7 @@ import apiGetCategory from "@/api/Category/apiGetCategory";
 import apiAddCategory from "@/api/Category/apiAddCategory";
 import apiDeleteCategory from "@/api/Category/apiDeleteCategory";
 import apiUpdateCategory from "@/api/Category/apiUpdateCategory";
+import apiChangePictureCategory from "@/api/Category/apiChangePictureCategory";
 
 const categoryModule = {
     state: () => ({
@@ -35,6 +36,10 @@ const categoryModule = {
         async updateCategory({dispatch}: any, payload: { id: number, parentId: number, name: string }) {
             await apiUpdateCategory({id: payload.id, parentId: payload.parentId, name: payload.name});
             dispatch("fetchCategory");
+        },
+        async changePictureCategory({dispatch}: any, payload: { id: number, file: Blob }) {
+            const result = await apiChangePictureCategory({id: payload.id, file: payload.file});
+            return result;
         }
     },
     namespaced: true

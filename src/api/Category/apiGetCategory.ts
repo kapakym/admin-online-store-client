@@ -26,7 +26,7 @@ export default async function apiGetCategory(): Promise<{}> {
         categoryList.value = response.data;
         categoryList.value = [{id: 0, name: "Корень"}, ...categoryList.value];
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
 
     return {

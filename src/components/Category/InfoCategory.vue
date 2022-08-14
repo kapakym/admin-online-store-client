@@ -114,7 +114,6 @@ export default {
               parentId: this.select_category.items.parentId,
               name: this.select_category.items.name
             });
-
           });
 
     },
