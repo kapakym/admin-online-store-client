@@ -18,7 +18,7 @@ export default async function apiUserRemove(params: UserParams) {
             }
         );
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
 
 

@@ -5,7 +5,7 @@ import $api from "@/api/http";
 interface UserParams {
     email: string;
     password: string;
-   
+
 }
 
 export default async function apiUserRegistration(params: UserParams) {
@@ -19,7 +19,7 @@ export default async function apiUserRegistration(params: UserParams) {
             }
         );
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
 
 

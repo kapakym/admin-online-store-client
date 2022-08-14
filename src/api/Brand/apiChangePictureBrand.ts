@@ -24,7 +24,7 @@ export default async function apiChangePictureBrand(params: Params) {
             }
         );
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
 
     return result;

@@ -9,7 +9,7 @@ export default async function apiGetBrand(): Promise<{}> {
         // console.log("data", response.data);
         responseBrand.value = response.data;
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
 
     return {responseBrand};

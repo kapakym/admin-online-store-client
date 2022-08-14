@@ -23,7 +23,7 @@ export default async function apiAddBrand(params: BrandParams) {
             }
         );
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
 
 

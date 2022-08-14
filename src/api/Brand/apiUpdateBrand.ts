@@ -17,7 +17,7 @@ export default async function apiUpdateBrand(params: paramsType) {
             }
         );
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
     return true;
 }

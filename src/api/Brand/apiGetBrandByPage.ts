@@ -8,7 +8,7 @@ export default async function apiGetBrandByPage(page: number, limit: number): Pr
         response.value = await $api.get("/product-brand/page", {params: {limit: limit, page: page - 1}});
 
     } catch (error: any) {
-        router.push(`/error/${error.response.data.message}`);
+        await router.push(`/error/${error.response.data.message}`);
     }
     return response;
 }
