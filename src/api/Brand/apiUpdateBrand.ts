@@ -10,7 +10,7 @@ export default async function apiUpdateBrand(params: paramsType) {
     console.log("params", params);
     try {
         const response = await $api.post(
-            "/product-brand/update",
+            "/brand/update",
             {
                 id: params.id,
                 name: params.name,

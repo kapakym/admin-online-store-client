@@ -14,7 +14,7 @@ export default async function apiAddBrand(params: BrandParams) {
     formData.append("picture", params.file);
     try {
         result.value = await $api.post(
-            "/product-brand",
+            "/brand",
             formData,
             {
                 headers: {

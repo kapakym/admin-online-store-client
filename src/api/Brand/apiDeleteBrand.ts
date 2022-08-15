@@ -4,7 +4,7 @@ import $api from "@/api/http";
 export default async function apiDeleteBrand(params: number) {
     try {
         const response = await $api.post(
-            "/product-brand/delete",
+            "/brand/delete",
             {
                 id: params,
             }

@@ -15,7 +15,7 @@ export default async function apiChangePictureBrand(params: Params) {
     formData.append("picture", params.file);
     try {
         result.value = await $api.post(
-            "/product-brand/change-picture",
+            "/brand/change-picture",
             formData,
             {
                 headers: {
