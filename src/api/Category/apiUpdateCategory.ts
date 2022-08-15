@@ -11,7 +11,7 @@ export default async function apiUpdateCategory(params: paramsType) {
     console.log("params", params);
     try {
         const response = await $api.post(
-            "/product-type/update",
+            "/category/update",
             {
                 id: Number(params.id),
                 parentId: Number(params.parentId),

@@ -16,7 +16,7 @@ export default async function apiAddCategory(params: paramsType) {
     formData.append("picture", params.file);
     try {
         result.value = await $api.post(
-            "/product-type",
+            "/category",
             formData,
             {
                 headers: {

@@ -8,7 +8,7 @@ export default async function apiGetCategory(): Promise<{}> {
     // Получение всего списка пользователей с сервера
 
     try {
-        const response = await $api.get("/product-type");
+        const response = await $api.get("/category");
         const treeProduct: any = [];
         response.data.forEach((element: any) => {
             if (!element.parentId) {
