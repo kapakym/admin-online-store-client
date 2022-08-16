@@ -10,6 +10,8 @@ import PsInputFileUpload from "@/components/UI/PsInputFileUpload.vue";
 import PsIcon from "@/components/UI/PsIcon.vue";
 import PsPaginator from "@/components/UI/PsPaginator.vue"
 import PsMultiLineSelect from "@/components/UI/PsMultiLineSelect.vue"
+import PsTable from "@/components/UI/PsTable";
+import PsTableTr from "@/components/UI/PsTableTr";
 
 export default [
     PsButton,
@@ -23,5 +25,7 @@ export default [
     PsInputFileUpload,
     PsIcon,
     PsPaginator,
-    PsMultiLineSelect
+    PsMultiLineSelect,
+    PsTable,
+    PsTableTr
 ];

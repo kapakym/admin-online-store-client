@@ -37,7 +37,7 @@ export default {
   color: black;
   border: 1px solid black;
   border-radius: 5px;
-  width: 100%;
+  /*width: 100%;*/
   margin: 5px;
 }
 </style>
