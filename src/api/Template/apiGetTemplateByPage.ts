@@ -2,7 +2,7 @@ import {ref} from "vue";
 import router from "@/router/router";
 import $api from "@/api/http";
 
-export default async function apiGetBrandByPage(page: number, limit: number): Promise<{}> {
+export default async function apiGetTemplateByPage(page: number, limit: number): Promise<{}> {
     const response: any = ref({});
     try {
         response.value = await $api.get("/template/page", {params: {limit: limit, page: page - 1}});
