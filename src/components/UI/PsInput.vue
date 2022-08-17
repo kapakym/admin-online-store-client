@@ -1,11 +1,13 @@
 <template>
-  <input
-      class="psinput"
-      :value="modelValue"
-      @input="updateInput"
+  <div class="inputtemplate">
+    <input
+        class="psinput"
+        :value="modelValue"
+        @input="updateInput"
 
 
-  />
+    />
+  </div>
 </template>
 
 <script>
@@ -30,14 +32,22 @@ export default {
 .psinput {
   /* margin-top: 15px; */
   display: block;
-  box-sizing: border-box;
+
   align-self: auto;
   padding: 10px;
   background: none;
   color: black;
   border: 1px solid black;
   border-radius: 5px;
-  /*width: 100%;*/
+  width: 100%;
   margin: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.inputtemplate {
+  display: flex;
+  flex-grow: 2;
 }
 </style>
