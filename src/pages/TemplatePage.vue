@@ -1,14 +1,21 @@
 <template>
-  <ps-dialog v-model:show="visibleDialogNewCaregory">
-    <new-template-from @close="visibleDialogNewCaregory=false"/>
+
+  <ps-dialog v-model:show="visibleDialogNewCategory">
+    <new-template-from @close="visibleDialogNewCategory=false"/>
   </ps-dialog>
-  <ps-button @click="visibleDialogNewCaregory=true">
+  <ps-dialog>
+
+  </ps-dialog>
+  <ps-button @click="visibleDialogNewCategory=true">
     <ps-icon :name="'add'"/>
     Добавить
   </ps-button>
+  <ps-paginator v-if="templates.length>0" :current-page="page" :total-pages="totalPages"
+                @changePage="changePage"></ps-paginator>
   <template-item v-for="item in templates" :item="item" v-if="templates.length>0"/>
-  <div><h1>Нет ни одного шаблона!</h1></div>
-
+  <div v-else><h1>Нет ни одного шаблона!</h1></div>
+  <ps-paginator v-if="templates.length>0" :current-page="page" :total-pages="totalPages"
+                @changePage="changePage"></ps-paginator>
 </template>
 
 <script>
@@ -17,12 +24,13 @@ import PsButton from "@/components/UI/PsButton";
 import PsIcon from "@/components/UI/PsIcon";
 import PsDialog from "@/components/UI/PsDialog";
 import NewTemplateFrom from "@/components/Templates/NewTemplateFrom";
-import {mapState} from "vuex";
+import {mapActions, mapState} from "vuex";
 import TemplateItem from "@/components/Templates/TemplateItem";
+import PsPaginator from "@/components/UI/PsPaginator";
 
 export default {
   name: "TemplatePage",
-  components: {TemplateItem, NewTemplateFrom, PsDialog, PsIcon, PsButton, PsTable},
+  components: {PsPaginator, TemplateItem, NewTemplateFrom, PsDialog, PsIcon, PsButton, PsTable},
   computed: {
     ...mapState({
       page: state => state.template.page,
@@ -31,20 +39,22 @@ export default {
       totalPages: state => state.template.totalPages
     })
   },
+  methods: {
+    ...mapActions({
+      fetchTemplates: "template/fetchTemplates"
+    }),
+    async changePage(numberPage) {
+
+      await this.fetchTemplates({page: numberPage, limit: this.limit});
+    },
+  },
+  mounted() {
+    this.changePage(1);
+  },
   data() {
     return {
-      visibleDialogNewCaregory: false,
-      head: ["s", "s", "sss"],
-      test: [{
-        id: 1,
-        name: "dsfasdfadsf"
-      }, {
-        id: 1,
-        name: "dsfasdfadsf"
-      }, {
-        id: 1,
-        name: "dsfasdfadsf"
-      }],
+      visibleDialogNewCategory: false,
+      visibleDialogEditTemplate: false
     }
   }
 }
