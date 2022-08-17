@@ -1,4 +1,5 @@
 import apiCreateTemplate from "@/api/Template/apiCreateTemplate";
+import apiGetTemplateByPage from "@/api/Template/apiGetTemplateByPage";
 
 const templateModule = {
     state: () => ({
@@ -23,12 +24,20 @@ const templateModule = {
         }
     },
     actions: {
-        async createTemplate({commit}: any, payload: { name: string }) {
+        async createTemplate({state, dispatch}: any, payload: { name: string }) {
             const result = await apiCreateTemplate(payload.name);
+            dispatch("fetchTemplates", {page: state.page, limit: state.limit})
             console.log(result)
+        },
+        async fetchTemplates({state, commit}: any, payload: { page: number, limit: number }) {
+            if (payload.page) commit("setPage", payload.page)
+            const result: any = await apiGetTemplateByPage(payload.page, state.limit);
+            if (result.value.data?.templates) {
+                commit("setTemplates", [...result.value.data.templates]);
+                commit("setTotalPages", Math.ceil(result.value.data.count / state.limit))
+            }
         }
-    }
-    ,
+    },
     namespaced: true
 }
 
