@@ -6,8 +6,6 @@
         type="text"
         placeholder="Название категории"
     />
-
-
     <ps-group-buttons>
       <ps-button class="btn" @click="add">
         <ps-icon :name="'done'" style="color:green"/>
