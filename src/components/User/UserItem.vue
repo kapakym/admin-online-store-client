@@ -74,9 +74,15 @@ export default defineComponent({
   text-align: left;
 }
 
+.useritem:hover {
+  background: lightgoldenrodyellow;
+}
+
 .usercol {
+  /*display: flex;*/
   margin: 5px;
   padding: 5px;
   border-right: 1px solid teal;
+  width: 30%;
 }
 </style>
