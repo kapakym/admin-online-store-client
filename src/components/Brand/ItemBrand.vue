@@ -4,7 +4,7 @@
       <img :src="server_url+brand.picture" class="picturebrand">
     </div>
     <div style="width: 60%">
-      <ps-input v-model="brand.name" class="width: 100%"/>
+      <ps-input v-model="brand.name"/>
     </div>
     <div>
       <ps-group-buttons>
