@@ -1,33 +1,37 @@
 <template>
   <ps-dialog v-model:show="visibleDialogNewCategory">
-    <new-template-from @close="visibleDialogNewCategory = false" />
+    <new-template-from @close="visibleDialogNewCategory = false"/>
   </ps-dialog>
   <ps-dialog v-model:show="visibleDialogEditTemplate">
-    <edit-template-form></edit-template-form>
+    <edit-template-form :selectTemplate="selectTemplate"
+                        @close="visibleDialogEditTemplate = false"></edit-template-form>
   </ps-dialog>
 
   <ps-button @click="visibleDialogNewCategory = true">
-    <ps-icon :name="'add'" />
+    <ps-icon :name="'add'"/>
     Добавить
   </ps-button>
   <ps-paginator
-    v-if="templates.length > 0"
-    :current-page="page"
-    :total-pages="totalPages"
-    @changePage="changePage"
+      v-if="templates.length > 0"
+      :current-page="page"
+      :total-pages="totalPages"
+      @changePage="changePage"
   ></ps-paginator>
-  <sample-item
-    v-for="item in templates"
-    :item="item"
-    v-if="templates.length > 0"
-    @edit="editTemplate"
-  />
+  <div v-if="templates.length > 0">
+    <sample-item class="templatelist"
+                 v-for="item in templates"
+                 :item="item"
+                 @edit="editTemplate"
+                 :key="item.name"
+    />
+  </div>
+
   <div v-else><h1>Нет ни одного шаблона!</h1></div>
   <ps-paginator
-    v-if="templates.length > 0"
-    :current-page="page"
-    :total-pages="totalPages"
-    @changePage="changePage"
+      v-if="templates.length > 0"
+      :current-page="page"
+      :total-pages="totalPages"
+      @changePage="changePage"
   ></ps-paginator>
 </template>
 
@@ -37,7 +41,7 @@ import PsButton from "@/components/UI/PsButton";
 import PsIcon from "@/components/UI/PsIcon";
 import PsDialog from "@/components/UI/PsDialog";
 import NewTemplateFrom from "@/components/Templates/NewTemplateFrom";
-import { mapActions, mapState } from "vuex";
+import {mapActions, mapState} from "vuex";
 import SampleItem from "@/components/Templates/SampleItem";
 import PsPaginator from "@/components/UI/PsPaginator";
 import EditTemplateForm from "@/components/Templates/EditTemplateForm";
@@ -67,11 +71,12 @@ export default {
       fetchTemplates: "template/fetchTemplates",
     }),
     async changePage(numberPage) {
-      await this.fetchTemplates({ page: numberPage, limit: this.limit });
+      await this.fetchTemplates({page: numberPage, limit: this.limit});
     },
     editTemplate(item) {
-      console.log("edit");
+      console.log(item);
       this.selectTemplate = item;
+      console.log(this.selectTemplate)
       this.visibleDialogEditTemplate = true;
     },
   },
@@ -88,4 +93,7 @@ export default {
 };
 </script>
 
-<style scoped></style>
+
+<style scoped>
+
+</style>
