@@ -1,11 +1,13 @@
 <template>
   <div class="labelInput">
     <div class="pslabel">
-      <label><slot></slot></label>
+      <label>
+        <slot></slot>
+      </label>
     </div>
     <div class="psselect">
       <select :value="modelValue" @change="updateSelect" class="psselectstyle">
-        <option v-for="item in model" :key="item.id" :value="item.id">
+        <option v-for="item in model" :key="item.id" :value="item.name">
           {{ item.name }}
         </option>
       </select>
@@ -17,9 +19,8 @@
 export default {
   name: "ps-label-select",
   props: {
-    model: {},
-    // parentId: Number,
-    modelValue: Number,
+    model: Array,
+    modelValue: [String, Number],
   },
   setup() {
     return {};
@@ -27,10 +28,11 @@ export default {
   methods: {
     updateSelect(event) {
       console.log(event.target.value);
-      this.$emit("update:modelValue", Number(event.target.value));
+      this.$emit("update:modelValue", event.target.value);
     },
   },
-  mounted() {},
+  mounted() {
+  },
 };
 </script>
 
@@ -44,16 +46,17 @@ export default {
 .pslabel {
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 30%;
   text-align: right;
   justify-content: right;
   margin-right: 10px;
+  white-space: nowrap;
 }
 
 .psselect {
   display: flex;
   align-items: center;
-  width: 60%;
+  width: 70%;
   margin-right: 18px;
 }
 
