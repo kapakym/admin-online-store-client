@@ -1,15 +1,11 @@
 <template>
-
   <transition name="fade-dialog">
     <div class="psdialog" v-if="show" @click="hideDialog">
-
       <div @click.stop class="psdialog_content" v-if="show">
         <slot></slot>
       </div>
-
     </div>
   </transition>
-
 </template>
 <script>
 import toggleMixin from "@/mixins/toggleMixin";
@@ -17,6 +13,7 @@ import toggleMixin from "@/mixins/toggleMixin";
 export default {
   name: "ps-dialog",
   mixins: [toggleMixin],
+  props: {},
 };
 </script>
 
@@ -37,10 +34,12 @@ export default {
   background: white;
   border-radius: 12px;
   min-height: 50px;
-  min-width: 300px;
+  min-width: 400px;
+  max-height: 80vh;
   padding: 20px;
   border: 1px solid black;
   box-shadow: 4px 4px 4px black;
+  overflow: auto;
 }
 
 /*
@@ -57,11 +56,13 @@ enter-to - финальное состояние элемента leave
 /*  opacity: 0*/
 /*}*/
 
-.fade-dialog-enter-active, .fade-dialog-leave-active {
-  transition: all .5s;
+.fade-dialog-enter-active,
+.fade-dialog-leave-active {
+  transition: all 0.5s;
 }
 
-.fade-dialog-enter-from, .fade-dialog-leave-to {
+.fade-dialog-enter-from,
+.fade-dialog-leave-to {
   transform: scale(0.5, 0.5);
   opacity: 0;
 }
