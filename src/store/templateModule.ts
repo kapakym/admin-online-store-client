@@ -1,3 +1,4 @@
+import apiCreateProperty from "@/api/Template/apiCreateProperty";
 import apiCreateTemplate from "@/api/Template/apiCreateTemplate";
 import apiGetTemplateByPage from "@/api/Template/apiGetTemplateByPage";
 
@@ -6,7 +7,11 @@ const templateModule = {
         templates: [],
         page: 1,
         totalPages: 0,
-        limit: 3
+        limit: 3,
+        propertys: [],
+        propPage: 0,
+        propTotalPage: 0,
+        propLimit: 3,
     }),
     getters: {},
     mutations: {
@@ -21,24 +26,42 @@ const templateModule = {
         },
         setLimit(state: any, props: number) {
             state.limit = props;
-        }
+        },
     },
     actions: {
         async createTemplate({state, dispatch}: any, payload: { name: string }) {
             const result = await apiCreateTemplate(payload.name);
-            dispatch("fetchTemplates", {page: state.page, limit: state.limit})
-            console.log(result)
+            dispatch("fetchTemplates", {page: state.page, limit: state.limit});
+            console.log(result);
         },
-        async fetchTemplates({state, commit}: any, payload: { page: number, limit: number }) {
-            if (payload.page) commit("setPage", payload.page)
+        async fetchTemplates(
+            {state, commit}: any,
+            payload: { page: number; limit: number }
+        ) {
+            if (payload.page) commit("setPage", payload.page);
             const result: any = await apiGetTemplateByPage(payload.page, state.limit);
             if (result.value.data?.templates) {
                 commit("setTemplates", [...result.value.data.templates]);
-                commit("setTotalPages", Math.ceil(result.value.data.count / state.limit))
+                commit(
+                    "setTotalPages",
+                    Math.ceil(result.value.data.count / state.limit)
+                );
             }
-        }
-    },
-    namespaced: true
-}
+        },
+        async createProperty(
+            {dispatch}: any,
+            payload: { templateId: number, data: [] }
+        ) {
+            const result = apiCreateProperty({templateId: payload.templateId, data: payload.data});
+        },
 
-export default templateModule
+        async fetchPropertys(
+            {state, commit}: any,
+            payload: { page: number; limit: number; templateId: number }
+        ) {
+        },
+    },
+    namespaced: true,
+};
+
+export default templateModule;
