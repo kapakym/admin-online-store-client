@@ -1,10 +1,11 @@
 <template>
   <div class="inputtemplate">
     <input
-      class="psinput"
-      :value="modelValue"
-      @input="updateInput"
-      :placeholder="placeholder"
+        class="psinput"
+        :value="modelValue"
+        @change="updateInput"
+        :placeholder="placeholder"
+        :type="type"
     />
   </div>
 </template>
@@ -13,8 +14,9 @@
 export default {
   name: "ps-input",
   props: {
-    modelValue: [String, Number, Boolean],
+    modelValue: [String, Number],
     placeholder: String,
+    type: String
   },
   methods: {
     updateInput(event) {
@@ -44,6 +46,6 @@ export default {
 .inputtemplate {
   width: 100%;
   display: flex;
-  flex-grow: 2;
+  /*flex-grow: 2;*/
 }
 </style>
