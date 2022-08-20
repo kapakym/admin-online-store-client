@@ -1,21 +1,34 @@
 <template>
-
   <ps-dialog v-model:show="visibleDialogNewCategory">
-    <new-template-from @close="visibleDialogNewCategory=false"/>
+    <new-template-from @close="visibleDialogNewCategory = false" />
   </ps-dialog>
-  <ps-dialog>
+  <ps-dialog v-model:show="visibleDialogEditTemplate">
+    <edit-template-form></edit-template-form>
+  </ps-dialog>
 
-  </ps-dialog>
-  <ps-button @click="visibleDialogNewCategory=true">
-    <ps-icon :name="'add'"/>
+  <ps-button @click="visibleDialogNewCategory = true">
+    <ps-icon :name="'add'" />
     Добавить
   </ps-button>
-  <ps-paginator v-if="templates.length>0" :current-page="page" :total-pages="totalPages"
-                @changePage="changePage"></ps-paginator>
-  <template-item v-for="item in templates" :item="item" v-if="templates.length>0"/>
+  <ps-paginator
+    v-if="templates.length > 0"
+    :current-page="page"
+    :total-pages="totalPages"
+    @changePage="changePage"
+  ></ps-paginator>
+  <sample-item
+    v-for="item in templates"
+    :item="item"
+    v-if="templates.length > 0"
+    @edit="editTemplate"
+  />
   <div v-else><h1>Нет ни одного шаблона!</h1></div>
-  <ps-paginator v-if="templates.length>0" :current-page="page" :total-pages="totalPages"
-                @changePage="changePage"></ps-paginator>
+  <ps-paginator
+    v-if="templates.length > 0"
+    :current-page="page"
+    :total-pages="totalPages"
+    @changePage="changePage"
+  ></ps-paginator>
 </template>
 
 <script>
@@ -24,28 +37,42 @@ import PsButton from "@/components/UI/PsButton";
 import PsIcon from "@/components/UI/PsIcon";
 import PsDialog from "@/components/UI/PsDialog";
 import NewTemplateFrom from "@/components/Templates/NewTemplateFrom";
-import {mapActions, mapState} from "vuex";
-import TemplateItem from "@/components/Templates/TemplateItem";
+import { mapActions, mapState } from "vuex";
+import SampleItem from "@/components/Templates/SampleItem";
 import PsPaginator from "@/components/UI/PsPaginator";
+import EditTemplateForm from "@/components/Templates/EditTemplateForm";
 
 export default {
   name: "TemplatePage",
-  components: {PsPaginator, TemplateItem, NewTemplateFrom, PsDialog, PsIcon, PsButton, PsTable},
+  components: {
+    PsPaginator,
+    SampleItem,
+    NewTemplateFrom,
+    PsDialog,
+    PsIcon,
+    PsButton,
+    PsTable,
+    EditTemplateForm,
+  },
   computed: {
     ...mapState({
-      page: state => state.template.page,
-      limit: state => state.template.limit,
-      templates: state => state.template.templates,
-      totalPages: state => state.template.totalPages
-    })
+      page: (state) => state.template.page,
+      limit: (state) => state.template.limit,
+      templates: (state) => state.template.templates,
+      totalPages: (state) => state.template.totalPages,
+    }),
   },
   methods: {
     ...mapActions({
-      fetchTemplates: "template/fetchTemplates"
+      fetchTemplates: "template/fetchTemplates",
     }),
     async changePage(numberPage) {
-
-      await this.fetchTemplates({page: numberPage, limit: this.limit});
+      await this.fetchTemplates({ page: numberPage, limit: this.limit });
+    },
+    editTemplate(item) {
+      console.log("edit");
+      this.selectTemplate = item;
+      this.visibleDialogEditTemplate = true;
     },
   },
   mounted() {
@@ -54,12 +81,11 @@ export default {
   data() {
     return {
       visibleDialogNewCategory: false,
-      visibleDialogEditTemplate: false
-    }
-  }
-}
+      visibleDialogEditTemplate: false,
+      selectTemplate: {},
+    };
+  },
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

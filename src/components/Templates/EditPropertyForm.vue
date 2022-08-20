@@ -1,21 +1,17 @@
 <template>
-
+  <ps-button><ps-icon name="add"></ps-icon> Добавить</ps-button>
 </template>
 
-<script>
-import {mapState} from "vuex";
+<script lang="ts">
+import { mapState } from "vuex";
 
 export default {
   name: "EditPropertyForm",
   computed: {
-    ...mapState({})
+    ...mapState({}),
   },
-  data() {
-
-  }
-}
+  data() {},
+};
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,13 +1,11 @@
 <template>
-
-
   <div class="psuserpage" v-if="$store.state.auth.isAuth">
     <h1>Управление пользователями</h1>
 
-    <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
+    <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage" />
 
-    <user-list :users="users" @removeUser="removeUser"/>
-    <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
+    <user-list :users="users" @removeUser="removeUser" />
+    <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage" />
   </div>
   <div class="psuserpage" v-else>
     <h1>Страница не доступна</h1>
@@ -22,7 +20,7 @@ import axios from "axios";
 import PsDialog from "@/components/UI/PsDialog.vue";
 // import useUser from "@/hooks/useUser";
 import PsPaginator from "@/components/UI/PsPaginator";
-import {mapActions, mapState} from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   components: {
@@ -31,7 +29,6 @@ export default {
     PsButton,
     PsDialog,
     UserList,
-
   },
 
   data() {
@@ -41,33 +38,29 @@ export default {
   },
   computed: {
     ...mapState({
-      page: state => state.user.page,
-      limit: state => state.user.limit,
-      totalPages: state => state.user.totalPages,
-      users: state => state.user.users,
-    })
+      page: (state) => state.user.page,
+      limit: (state) => state.user.limit,
+      totalPages: (state) => state.user.totalPages,
+      users: (state) => state.user.users,
+    }),
   },
 
   mounted() {
-    this.changePage(this.page)
+    this.changePage(this.page);
   },
   methods: {
     ...mapActions({
-      fetchUsers: "user/fetchUsers"
+      fetchUsers: "user/fetchUsers",
     }),
     async changePage(numberPage) {
-      this.fetchUsers({page: numberPage});
+      this.fetchUsers({ page: numberPage });
     },
 
     async addUser(user) {
-
-      const response = await axios.post(
-          "http://localhost:7000/auth/registration",
-          {
-            email: user.email,
-            password: user.password,
-          }
-      );
+      const response = await axios.post("http://localhost:7000/auth/registration", {
+        email: user.email,
+        password: user.password,
+      });
       console.log(response);
       this.dialogVisible = false;
     },

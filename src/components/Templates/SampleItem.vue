@@ -1,37 +1,46 @@
 <template>
   <div class="itemtemplate">
-
-    <ps-input v-model="item.name"/>
-
+    <ps-input v-model="item.name" />
     <div>
       <ps-group-buttons>
-        <ps-button @click="deleteItem">
-          <ps-icon :name="'delete'" style="color: red"/>
+        <ps-button>
+          <ps-icon name="delete" style="color: red" />
           Удалить
         </ps-button>
-        <ps-button @click="changeLogo">
-          <ps-icon :name="'edit'"/>
+        <ps-button @click="edit">
+          <ps-icon name="edit" />
           Редактировать шаблон
         </ps-button>
-        <ps-button @click="update">
-          <ps-icon :name="'save'" style="color:green"/>
+        <ps-button>
+          <ps-icon name="save" style="color: green" />
           Сохранить
         </ps-button>
       </ps-group-buttons>
-
     </div>
   </div>
-
-
 </template>
 
 <script>
+import PsDialog from "../UI/PsDialog.vue";
 export default {
-  name: "TemplateItem",
+  components: { PsDialog },
+  name: "SampleItem",
+
   props: {
-    item: Object
-  }
-}
+    item: Object,
+  },
+  data() {
+    return {
+      visibleEditTemplateDialog: false,
+    };
+  },
+  methods: {
+    edit(item) {
+      console.log("Hello");
+      this.$emit("edit", item);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -48,6 +57,4 @@ export default {
 .itemtemplate:hover {
   background: lightgoldenrodyellow;
 }
-
-
 </style>
