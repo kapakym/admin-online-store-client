@@ -1,18 +1,18 @@
 <template>
   <div class="itemtemplate">
-    <ps-input v-model="item.name" />
+    <ps-input v-model="item.name"/>
     <div>
       <ps-group-buttons>
         <ps-button>
-          <ps-icon name="delete" style="color: red" />
+          <ps-icon name="delete" style="color: red"/>
           Удалить
         </ps-button>
         <ps-button @click="edit">
-          <ps-icon name="edit" />
+          <ps-icon name="edit"/>
           Редактировать шаблон
         </ps-button>
         <ps-button>
-          <ps-icon name="save" style="color: green" />
+          <ps-icon name="save" style="color: green"/>
           Сохранить
         </ps-button>
       </ps-group-buttons>
@@ -22,8 +22,9 @@
 
 <script>
 import PsDialog from "../UI/PsDialog.vue";
+
 export default {
-  components: { PsDialog },
+  components: {PsDialog},
   name: "SampleItem",
 
   props: {
@@ -35,9 +36,9 @@ export default {
     };
   },
   methods: {
-    edit(item) {
+    edit() {
       console.log("Hello");
-      this.$emit("edit", item);
+      this.$emit("edit", this.item);
     },
   },
 };
