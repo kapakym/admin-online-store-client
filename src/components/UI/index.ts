@@ -12,6 +12,7 @@ import PsPaginator from "@/components/UI/PsPaginator.vue"
 import PsMultiLineSelect from "@/components/UI/PsMultiLineSelect.vue"
 import PsTable from "@/components/UI/PsTable";
 import PsTableTr from "@/components/UI/PsTableTr";
+import PsCheckBox from "@/components/UI/PsCheckBox.vue";
 
 export default [
     PsButton,
@@ -27,5 +28,6 @@ export default [
     PsPaginator,
     PsMultiLineSelect,
     PsTable,
-    PsTableTr
+    PsTableTr,
+    PsCheckBox
 ];
