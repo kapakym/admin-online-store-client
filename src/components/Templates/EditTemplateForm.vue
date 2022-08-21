@@ -26,24 +26,33 @@
 import PsIcon from "../UI/PsIcon.vue";
 import PropertyItem from "@/components/Templates/PropertyItem";
 import PsGroupButtons from "../UI/PsGroupButtons.vue";
-import {mapActions} from "vuex";
+import {mapActions, mapState} from "vuex";
 // import {mapActions} from "vuex";
 
 export default {
   components: {PsIcon, PropertyItem, PsGroupButtons},
   name: "EditTemplateForm",
-  computed: {},
+  computed: {
+    ...mapState({
+      propertys: state => state.template.propertys
+    })
+  },
   props: {
     selectTemplate: {}
   },
+
   data() {
-    return {
-      propertys: [],
-    };
+    return {};
+  },
+  async mounted() {
+    console.log("--------------------->", this.selectTemplate.id)
+    await this.fetchPropertys({page: 1, limit: 3, templateId: this.selectTemplate.id});
+    console.log(this.propertys)
   },
   methods: {
     ...mapActions({
       createProperty: "template/createProperty",
+      fetchPropertys: "template/fetchPropertys"
     }),
     save() {
       console.log(this.selectTemplate)
