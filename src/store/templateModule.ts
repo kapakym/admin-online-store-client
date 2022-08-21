@@ -1,6 +1,7 @@
 import apiCreateProperty from "@/api/Template/apiCreateProperty";
 import apiCreateTemplate from "@/api/Template/apiCreateTemplate";
 import apiGetTemplateByPage from "@/api/Template/apiGetTemplateByPage";
+import apiGetProperetyByPage from "@/api/Template/apiGetPropertyByPage";
 
 const templateModule = {
     state: () => ({
@@ -27,6 +28,18 @@ const templateModule = {
         setLimit(state: any, props: number) {
             state.limit = props;
         },
+        setProperty(state: any, props: []) {
+            state.propertys = props;
+        },
+        setPropPage(state: any, props: number) {
+            state.propPage = props;
+        },
+        setPropLimit(state: any, props: number) {
+            state.propLimit = props;
+        },
+        setPropTotalPage(state: any, props: number) {
+            state.propTotalPage = props;
+        }
     },
     actions: {
         async createTemplate({state, dispatch}: any, payload: { name: string }) {
@@ -52,13 +65,29 @@ const templateModule = {
             {dispatch}: any,
             payload: { templateId: number, data: [] }
         ) {
+
             const result = apiCreateProperty({templateId: payload.templateId, data: payload.data});
         },
 
         async fetchPropertys(
             {state, commit}: any,
-            payload: { page: number; limit: number; templateId: number }
+            payload: { page?: number; limit?: number; templateId: number }
         ) {
+            try {
+                if (payload.page) await commit("setPropPage", payload.page);
+                if (payload.limit) await commit("setPropLimit", payload.limit)
+                console.log("payload", payload);
+                let result: any = await apiGetProperetyByPage(state.propPage, state.propLimit, payload.templateId);
+                console.log(result.value.data.propertys)
+                result = await result.value.data.propertys.map((item: any) => {
+                    return {...item, exist: "exist"}
+                })
+                console.log(result)
+                commit("setProperty", result)
+            } catch (e) {
+
+            }
+
         },
     },
     namespaced: true,
