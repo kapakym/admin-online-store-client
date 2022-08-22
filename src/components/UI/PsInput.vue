@@ -3,9 +3,8 @@
     <input
         class="psinput"
         v-model="modelValue"
-        @input="updateInput"
+        @input="updateValue"
         :placeholder="placeholder"
-        :type="type"
     />
   </div>
 </template>
@@ -14,18 +13,17 @@
 export default {
   name: "ps-input",
   props: {
-    modelValue: [String, Number],
+    modelValue: "",
     placeholder: String,
     type: String
   },
+
   methods: {
-    updateInput(event) {
-      this.$emit("update:modelValue", event.target.value);
+    updateValue(event) {
+      this.$emit('update:modelValue', event.target.value);
     },
   },
-  setup() {
-    return {};
-  },
+
 };
 </script>
 

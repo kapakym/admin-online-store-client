@@ -5,7 +5,7 @@
       Добавить свойство
     </ps-button>
     <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
-    <div v-for="item in propertys" :key="item.name" class="listproperty">
+    <div v-for="item in propertys" :key="item.id" class="listproperty">
       <property-item :item="item"/>
     </div>
     <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
