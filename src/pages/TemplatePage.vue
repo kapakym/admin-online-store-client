@@ -23,6 +23,7 @@
                  :item="item"
                  @edit="editTemplate"
                  :key="item.id"
+                 :changed="changed"
     />
   </div>
 
@@ -71,7 +72,12 @@ export default {
       fetchTemplates: "template/fetchTemplates",
     }),
     async changePage(numberPage) {
-      await this.fetchTemplates({page: numberPage, limit: this.limit});
+      console.log(this.changed)
+      if (this.changed.id.length === 0) await this.fetchTemplates({page: numberPage, limit: this.limit});
+      else this.$popup("У вас есть не сохраненные изменения. Вы действительно хотите перейти на другую страницу?", async () => await this.fetchTemplates({
+        page: numberPage,
+        limit: this.limit
+      }));
     },
     editTemplate(item) {
       console.log(item);
@@ -88,6 +94,7 @@ export default {
       visibleDialogNewCategory: false,
       visibleDialogEditTemplate: false,
       selectTemplate: {},
+      changed: {id: []}
     };
   },
 };
