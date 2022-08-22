@@ -30,12 +30,19 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
+}
+
+#body {
+  background: rgba(255, 255, 100, 0.5);;
 }
 
 .app {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+
   /*width: 100%;*/
 }
 
@@ -43,5 +50,6 @@ export default {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+
 }
 </style>
