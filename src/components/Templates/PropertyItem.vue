@@ -5,7 +5,7 @@
         v-model="item.name"
         type="text"
         placeholder="Введине название свойства"
-    ></ps-input>
+    />
     <ps-label-select v-model="item.type" :model="types">Тип</ps-label-select>
 
     <ps-button @click="deleteProp">
@@ -17,13 +17,12 @@
 <script>
 import PsButton from "../UI/PsButton.vue";
 import PsIcon from "../UI/PsIcon.vue";
-import PsInput from "../UI/PsInput.vue";
 import PsLabelSelect from "../UI/PsLabelSelect.vue";
 import PsCheckBox from "@/components/UI/PsCheckBox";
 import {mapActions} from "vuex";
 
 export default {
-  components: {PsCheckBox, PsInput, PsLabelSelect, PsButton, PsIcon},
+  components: {PsCheckBox, PsLabelSelect, PsButton, PsIcon},
   name: "Test",
   created() {
   },
