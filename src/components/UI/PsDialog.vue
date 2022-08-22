@@ -37,8 +37,8 @@ export default {
   min-width: 400px;
   max-height: 80vh;
   padding: 20px;
-  border: 1px solid black;
-  box-shadow: 4px 4px 4px black;
+  /*border: 1px solid black;*/
+  box-shadow: 4px 4px 15px black;
   overflow: auto;
 }
 
