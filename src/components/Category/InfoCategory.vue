@@ -12,7 +12,6 @@
         <ps-label-input
             placeholder="Введите название"
             v-model="select_category.items.name"
-            type="text"
         >Название категории
         </ps-label-input
         >
@@ -97,7 +96,9 @@ export default {
       removeCategory: "category/removeCategory",
       updateCategory: "category/updateCategory"
     }),
+
     async deleteCategory() {
+      console.log(this.select_category.items)
       this.$popup("Вы действительно хотите удалить категорию (" + this.select_category.items.name + ")?"
           , async () => {
             console.log(this.select_category.items?.id)
@@ -131,6 +132,7 @@ export default {
     return {};
   },
   mounted() {
+
   },
 };
 </script>

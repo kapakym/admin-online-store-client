@@ -72,6 +72,9 @@ export default defineComponent({
   /*width: 100%;*/
   /*flex-direction: column;*/
   text-align: left;
+  box-shadow: 1px 1px 5px;
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .useritem:hover {

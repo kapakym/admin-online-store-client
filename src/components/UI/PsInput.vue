@@ -2,8 +2,8 @@
   <div class="inputtemplate">
     <input
         class="psinput"
-        :value="modelValue"
-        @change="updateInput"
+        v-model="modelValue"
+        @input="updateInput"
         :placeholder="placeholder"
         :type="type"
     />
@@ -38,7 +38,7 @@ export default {
   background: none;
   color: black;
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   width: 100%;
   margin: 5px;
 }
@@ -47,5 +47,6 @@ export default {
   width: 100%;
   display: flex;
   /*flex-grow: 2;*/
+
 }
 </style>

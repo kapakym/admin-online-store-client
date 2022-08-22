@@ -9,7 +9,8 @@
       />
     </ps-dialog>
     <h1>Категории товаров</h1>
-    <div v-if="!isCategoryLoading" style="width: 100%; height: 100%">
+    <div v-if="!isCategoryLoading"
+         style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center">
       <div class="viewtree">
         <ps-tree-view
             class="tree"
@@ -102,7 +103,6 @@ export default {
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid green;
   width: 100%;
   height: 90vh;
 }
@@ -111,8 +111,8 @@ export default {
   display: flex;
   flex-direction: row;
   text-align: center;
-  width: 100%;
-  height: 100%;
+  width: 99%;
+  height: 99%;
 }
 
 .tree {
@@ -120,12 +120,21 @@ export default {
   height: 100%;
   overflow: auto;
   text-align: left;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
+  box-shadow: 1px 1px 5px;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  font-size: 1.5rem;
 }
 
 .treeinfo {
   width: 60%;
-  border: 1px solid black;
+  box-shadow: 1px 1px 5px;
   height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
 }
 </style>

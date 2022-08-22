@@ -47,15 +47,16 @@ export default {
 <style scoped>
 .itemtemplate {
   display: flex;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   padding: 5px;
   margin: 5px;
   align-items: center;
   justify-content: space-between;
   border-radius: 5px;
+  box-shadow: 1px 1px 5px black;
 }
 
 .itemtemplate:hover {
-  background: lightgoldenrodyellow;
+  background: rgba(220, 220, 220, 0.2);
 }
 </style>

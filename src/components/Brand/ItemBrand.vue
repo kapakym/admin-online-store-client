@@ -70,12 +70,12 @@ export default {
 .itembrand {
   display: flex;
   /*width: 95%;*/
-  border: 1px solid black;
   padding: 5px;
   margin: 5px;
   align-items: center;
   justify-content: space-around;
   border-radius: 5px;
+  box-shadow: 1px 1px 5px;
 }
 
 .picturebrand {

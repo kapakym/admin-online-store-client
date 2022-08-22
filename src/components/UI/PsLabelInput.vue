@@ -7,8 +7,7 @@
     </div>
     <div class="psinput">
       <ps-input
-          :value="modelValue"
-          :type="type"
+          v-model="modelValue"
           :placeholder="placeholder"
           @input="updateInput"
       />
@@ -22,17 +21,19 @@ export default {
 
   props: {
     modelValue: [String, Number],
-    type: String,
     placeholder: String,
   },
   methods: {
     updateInput(event) {
+      console.log(event.target.value);
       this.$emit("update:modelValue", event.target.value);
     },
   },
-  setup() {
-    return {};
-  },
+
+  mounted() {
+    console.log("ddddddddddddddd", this.modelValue)
+  }
+
 };
 </script>
 

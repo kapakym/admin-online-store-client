@@ -6,8 +6,8 @@
       </label>
     </div>
     <div class="psselect">
-      <select :value="modelValue" @change="updateSelect" class="psselectstyle">
-        <option v-for="item in model" :key="item.id" :value="item.name">
+      <select v-model="modelValue" @change="updateSelect" class="psselectstyle">
+        <option v-for="item in model" :key="item.id" :value="item.id">
           {{ item.name }}
         </option>
       </select>

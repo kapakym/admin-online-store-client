@@ -14,7 +14,7 @@ export default {
 .navbutton {
   display: flex;
   padding: 10px;
-  background: none;
+  background: teal;
   color: white;
   /*border: 1px solid black;*/
   border-radius: 5px;
