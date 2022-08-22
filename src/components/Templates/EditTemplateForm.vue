@@ -4,9 +4,11 @@
       <ps-icon name="add"/>
       Добавить свойство
     </ps-button>
+    <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
     <div v-for="item in propertys" :key="item.name" class="listproperty">
       <property-item :item="item"/>
     </div>
+    <ps-paginator :totalPages="totalPages" :currentPage="page" @changePage="changePage"/>
     <ps-group-buttons>
       <ps-button @click="save">
         <ps-icon name="save"/>
@@ -20,6 +22,7 @@
       </ps-button
       >
     </ps-group-buttons>
+
   </div>
 </template>
 <script>
@@ -27,19 +30,24 @@ import PsIcon from "../UI/PsIcon.vue";
 import PropertyItem from "@/components/Templates/PropertyItem";
 import PsGroupButtons from "../UI/PsGroupButtons.vue";
 import {mapActions, mapState} from "vuex";
+import PsPaginator from "@/components/UI/PsPaginator";
 // import {mapActions} from "vuex";
 
 export default {
-  components: {PsIcon, PropertyItem, PsGroupButtons},
+  components: {PsPaginator, PsIcon, PropertyItem, PsGroupButtons},
   name: "EditTemplateForm",
   computed: {
     ...mapState({
-      propertys: state => state.template.propertys
+      propertys: state => state.template.propertys,
+      page: state => state.template.propPage,
+      limit: state => state.template.propLimit,
+      totalPages: state => state.template.propTotalPage
     })
   },
   props: {
     selectTemplate: {}
   },
+
 
   data() {
     return {};
@@ -55,8 +63,8 @@ export default {
       fetchPropertys: "template/fetchPropertys"
     }),
     save() {
-      console.log(this.selectTemplate)
       this.createProperty({templateId: this.selectTemplate.id, data: this.propertys});
+      this.$emit('close');
     },
     add() {
       const newProperty = {
@@ -68,6 +76,9 @@ export default {
       this.propertys.push(newProperty);
       console.log(this.propertys);
     },
+    async changePage(numberPage) {
+      this.fetchPropertys({page: numberPage, templateId: this.selectTemplate.id});
+    }
   },
 };
 </script>
