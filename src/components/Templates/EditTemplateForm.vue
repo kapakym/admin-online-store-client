@@ -17,8 +17,8 @@
 
       <ps-button @click="$emit('close')"
       >
-        <ps-icon name="cancel" style="color: red"/>
-        Отмена
+        <ps-icon name="close" style="color: red"/>
+        Закрыть
       </ps-button
       >
     </ps-group-buttons>
@@ -50,7 +50,7 @@ export default {
 
 
   data() {
-    return {};
+    return {changed: false};
   },
   async mounted() {
     console.log("--------------------->", this.selectTemplate.id)
@@ -63,8 +63,10 @@ export default {
       fetchPropertys: "template/fetchPropertys"
     }),
     save() {
-      this.createProperty({templateId: this.selectTemplate.id, data: this.propertys});
-      this.$emit('close');
+      this.$popup("Вы действительно хотите сохранить изменения", () => this.createProperty({
+        templateId: this.selectTemplate.id,
+        data: this.propertys
+      }));
     },
     add() {
       const newProperty = {
