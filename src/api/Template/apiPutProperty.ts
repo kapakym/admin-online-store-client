@@ -5,9 +5,8 @@ import {ref} from "vue"
 export default async function apiPutProperty(prop: { templateId: number, data: Array<{ id: number; name: string; type: string; exist: string }> }
 ) {
     const result = ref({});
-    console.log(prop)
     try {
-        result.value = $api.put("/template/property", prop);
+        result.value = await $api.put("/template/property", prop);
     } catch (error: any) {
         await router.push(`/error/${error.response.data.message}`);
     }
