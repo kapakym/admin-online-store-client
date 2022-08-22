@@ -15,12 +15,16 @@ export default {
   props: {
     modelValue: "",
     placeholder: String,
-    type: String
+    type: String,
+    changed: Object,
+    id: Number
+
   },
 
   methods: {
     updateValue(event) {
       this.$emit('update:modelValue', event.target.value);
+      if (!this.changed?.id?.includes(this.id)) this.changed?.id?.push(this.id)
     },
   },
 
