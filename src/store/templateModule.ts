@@ -4,6 +4,7 @@ import apiGetTemplateByPage from "@/api/Template/apiGetTemplateByPage";
 import apiGetProperetyByPage from "@/api/Template/apiGetPropertyByPage";
 import apiDeleteProperty from "@/api/Template/apiDeleteProperty";
 import apiDeleteTemplate from "@/api/Template/apiDeleteTemplate";
+import apiPutTemplate from "@/api/Template/apiPutTemplate";
 
 const templateModule = {
     state: () => ({
@@ -95,13 +96,18 @@ const templateModule = {
         },
         async deleteProperty({commit, dispatch}: any, payload: { id: number, templateId: number }) {
             const result: any = await apiDeleteProperty(payload.id);
-            await dispatch("fetchPropertys", {templateId: payload.templateId});
+            dispatch("fetchPropertys", {templateId: payload.templateId});
             return result;
         },
         async deleteTemplate({commit, dispatch}: any, payload: { id: number }) {
             const result: any = await apiDeleteTemplate(payload.id);
-            await dispatch("fetchTemplates");
+            dispatch("fetchTemplates");
             return result;
+        },
+        async putTemplate({state, dispatch}: any, payload: { id: number, name: string }) {
+            console.log(payload)
+            await apiPutTemplate({id: payload.id, name: payload.name});
+            dispatch("fetchTemplates");
         }
 
     },
