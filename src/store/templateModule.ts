@@ -1,7 +1,8 @@
-import apiCreateProperty from "@/api/Template/apiCreateProperty";
+import apiPutProperty from "@/api/Template/apiPutProperty";
 import apiCreateTemplate from "@/api/Template/apiCreateTemplate";
 import apiGetTemplateByPage from "@/api/Template/apiGetTemplateByPage";
 import apiGetProperetyByPage from "@/api/Template/apiGetPropertyByPage";
+import apiDeleteProperty from "@/api/Template/apiDeleteProperty";
 
 const templateModule = {
     state: () => ({
@@ -66,30 +67,37 @@ const templateModule = {
             payload: { templateId: number, data: [] }
         ) {
 
-            const result = apiCreateProperty({templateId: payload.templateId, data: payload.data});
+            const result = apiPutProperty({templateId: payload.templateId, data: payload.data});
         },
 
         async fetchPropertys(
             {state, commit}: any,
             payload: { page?: number; limit?: number; templateId: number }
         ) {
+            console.log("render")
             try {
-                if (payload.page) await commit("setPropPage", payload.page);
-                if (payload.limit) await commit("setPropLimit", payload.limit)
-                console.log("payload", payload);
+                if (payload.page) commit("setPropPage", payload.page);
+                if (payload.limit) commit("setPropLimit", payload.limit)
+
                 let result: any = await apiGetProperetyByPage(state.propPage, state.propLimit, payload.templateId);
-                console.log(result.value.data.propertys)
-                result = await result.value.data.propertys.map((item: any) => {
+                result = result.value.data.propertys.map((item: any) => {
                     return {...item, exist: "exist"}
                 })
-                console.log(result)
+                console.log("payload", result);
                 commit("setProperty", result)
             } catch (e) {
 
             }
 
         },
+        async deleteProperty({commit, dispatch}: any, payload: { id: number, templateId: number }) {
+            const result: any = await apiDeleteProperty(payload.id);
+            console.log(result.value)
+            await dispatch("fetchPropertys", {templateId: payload.templateId});
+            return result;
+        }
     },
+
     namespaced: true,
 };
 
