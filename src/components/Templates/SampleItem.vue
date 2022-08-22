@@ -1,6 +1,6 @@
 <template>
-  <div class="itemtemplate">
-    <ps-input v-model="item.name"/>
+  <div class="itemtemplate" :class="{'changed': changed?.id?.includes(item.id) ? true : false }">
+    <ps-input v-model="item.name" :changed="changed" :id="item.id"/>
     <div>
       <ps-group-buttons>
         <ps-button @click="deleteTemp">
@@ -11,7 +11,7 @@
           <ps-icon name="edit"/>
           Редактировать шаблон
         </ps-button>
-        <ps-button>
+        <ps-button @click="updateTemp">
           <ps-icon name="save" style="color: green"/>
           Сохранить
         </ps-button>
@@ -31,6 +31,7 @@ export default {
 
   props: {
     item: Object,
+    changed: Object
   },
   data() {
     return {
@@ -39,7 +40,8 @@ export default {
   },
   methods: {
     ...mapActions({
-      deleteTemplate: "template/deleteTemplate"
+      deleteTemplate: "template/deleteTemplate",
+      updateTemplate: "template/putTemplate"
     }),
     edit() {
       console.log("Hello");
@@ -47,6 +49,11 @@ export default {
     },
     async deleteTemp() {
       await this.deleteTemplate({id: this.item.id})
+    },
+    async updateTemp() {
+      console.log(this.changed)
+      await this.updateTemplate({id: this.item.id, name: this.item.name})
+      this.changed.id.splice(this.changed.id.findIndex(item => item == this.item.id), 1)
     }
 
   },
@@ -67,5 +74,9 @@ export default {
 
 .itemtemplate:hover {
   background: rgba(220, 220, 220, 0.2);
+}
+
+.changed {
+  border: 1px solid red;
 }
 </style>
