@@ -22,7 +22,7 @@
                  v-for="item in templates"
                  :item="item"
                  @edit="editTemplate"
-                 :key="item.name"
+                 :key="item.id"
     />
   </div>
 
