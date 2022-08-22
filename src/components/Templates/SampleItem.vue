@@ -3,7 +3,7 @@
     <ps-input v-model="item.name"/>
     <div>
       <ps-group-buttons>
-        <ps-button>
+        <ps-button @click="deleteTemp">
           <ps-icon name="delete" style="color: red"/>
           Удалить
         </ps-button>
@@ -22,9 +22,11 @@
 
 <script>
 import PsDialog from "../UI/PsDialog.vue";
+import PsInput from "@/components/UI/PsInput";
+import {mapActions} from "vuex";
 
 export default {
-  components: {PsDialog},
+  components: {PsInput, PsDialog},
   name: "SampleItem",
 
   props: {
@@ -36,10 +38,17 @@ export default {
     };
   },
   methods: {
+    ...mapActions({
+      deleteTemplate: "template/deleteTemplate"
+    }),
     edit() {
       console.log("Hello");
       this.$emit("edit", this.item);
     },
+    async deleteTemp() {
+      await this.deleteTemplate({id: this.item.id})
+    }
+
   },
 };
 </script>
