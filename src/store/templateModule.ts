@@ -3,6 +3,7 @@ import apiCreateTemplate from "@/api/Template/apiCreateTemplate";
 import apiGetTemplateByPage from "@/api/Template/apiGetTemplateByPage";
 import apiGetProperetyByPage from "@/api/Template/apiGetPropertyByPage";
 import apiDeleteProperty from "@/api/Template/apiDeleteProperty";
+import apiDeleteTemplate from "@/api/Template/apiDeleteTemplate";
 
 const templateModule = {
     state: () => ({
@@ -52,8 +53,9 @@ const templateModule = {
             {state, commit}: any,
             payload: { page: number; limit: number }
         ) {
-            if (payload.page) commit("setPage", payload.page);
-            const result: any = await apiGetTemplateByPage(payload.page, state.limit);
+            if (payload?.page) commit("setPage", payload.page);
+            if (payload?.limit) commit("setLimit", payload.limit);
+            const result: any = await apiGetTemplateByPage(state.page, state.limit);
             if (result.value.data?.templates) {
                 commit("setTemplates", [...result.value.data.templates]);
                 commit(
@@ -61,6 +63,7 @@ const templateModule = {
                     Math.ceil(result.value.data.count / state.limit)
                 );
             }
+
         },
         async createProperty(
             {dispatch}: any,
@@ -74,28 +77,33 @@ const templateModule = {
             {state, commit}: any,
             payload: { page?: number; limit?: number; templateId: number }
         ) {
-            console.log("render")
-            try {
-                if (payload.page) commit("setPropPage", payload.page);
-                if (payload.limit) commit("setPropLimit", payload.limit)
+            if (payload.page) commit("setPropPage", payload.page);
+            if (payload.limit) commit("setPropLimit", payload.limit)
 
-                let result: any = await apiGetProperetyByPage(state.propPage, state.propLimit, payload.templateId);
+            let result: any = await apiGetProperetyByPage(state.propPage, state.propLimit, payload.templateId);
+
+            if (result.value.data?.propertys) {
+                const count = result.value.data.count;
                 result = result.value.data.propertys.map((item: any) => {
                     return {...item, exist: "exist"}
                 })
-                console.log("payload", result);
                 commit("setProperty", result)
-            } catch (e) {
-
+                commit("setPropTotalPage", Math.ceil(count / state.limit))
             }
+
 
         },
         async deleteProperty({commit, dispatch}: any, payload: { id: number, templateId: number }) {
             const result: any = await apiDeleteProperty(payload.id);
-            console.log(result.value)
             await dispatch("fetchPropertys", {templateId: payload.templateId});
             return result;
+        },
+        async deleteTemplate({commit, dispatch}: any, payload: { id: number }) {
+            const result: any = await apiDeleteTemplate(payload.id);
+            await dispatch("fetchTemplates");
+            return result;
         }
+
     },
 
     namespaced: true,
