@@ -15,6 +15,11 @@ export default {
   setup() {
     return {};
   },
+  data() {
+    return {
+      sss: {name: ""}
+    }
+  },
   mounted() {
     this.$store.dispatch("auth/checkAuth")
     // const token = localStorage.getItem("token");
