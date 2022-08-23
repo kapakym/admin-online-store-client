@@ -13,6 +13,8 @@ import PsMultiLineSelect from "@/components/UI/PsMultiLineSelect.vue"
 import PsTable from "@/components/UI/PsTable";
 import PsTableTr from "@/components/UI/PsTableTr";
 import PsCheckBox from "@/components/UI/PsCheckBox.vue";
+import PsInputFilesUpload from "@/components/UI/PsInputFilesUpload.vue";
+import PsCaruselLoader from "@/components/UI/PsCaruselLoader.vue";
 
 export default [
     PsButton,
@@ -29,5 +31,7 @@ export default [
     PsMultiLineSelect,
     PsTable,
     PsTableTr,
-    PsCheckBox
+    PsCheckBox,
+    PsInputFilesUpload,
+    PsCaruselLoader
 ];
