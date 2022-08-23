@@ -3,6 +3,7 @@ import apiAddBrand from "@/api/Brand/apiAddBrand";
 import apiDeleteBrand from "@/api/Brand/apiDeleteBrand";
 import apiChangePictureBrand from "@/api/Brand/apiChangePictureBrand";
 import apiUpdateBrand from "@/api/Brand/apiUpdateBrand";
+import apiGetBrand from "@/api/Brand/apiGetBrand";
 
 const brandModule = {
     state: () => ({
@@ -27,7 +28,16 @@ const brandModule = {
         }
     },
     actions: {
-        async fetchBrands({state, commit}: any, payload: { page: number }) {
+        async fetchBrands({state, commit}: any,) {
+            // Получение всего списка пользователей с сервера
+
+            const result: any = await apiGetBrand();
+            if (result.value.data?.brands) {
+                commit("setBrands", result.value.data.brands);
+
+            }
+        },
+        async fetchBrandsByPage({state, commit}: any, payload: { page: number }) {
             // Получение всего списка пользователей с сервера
             if (payload.page) commit("setPage", payload.page)
             const result: any = await apiGetBrandByPage(state.page, state.limit);
