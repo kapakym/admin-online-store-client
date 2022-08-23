@@ -96,7 +96,7 @@ export default {
   /*align-content: center;*/
   border-radius: 10px;
   padding: 10px;
-  box-shadow: 5px 5px 25px black;
+  box-shadow: 0px 0px 25px black;
 }
 
 .container {
