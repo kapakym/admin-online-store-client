@@ -1,11 +1,12 @@
 import Main from "@/pages/Main.vue";
-import UserPageComp from "@/pages/UserPageComposition.vue";
-import Contacts from "@/pages/Contacts.vue";
-import CategoryProducts from "@/pages/CategoryProduct.vue";
-import BrandProduct from "@/pages/BrandProduct.vue";
-import Login from "@/pages/Login"
+import UserPageComp from "@/pages/UserPage.vue";
+import Contacts from "@/pages/ContactsPage.vue";
+import CategoryProducts from "@/pages/CategoryPage.vue";
+import BrandProduct from "@/pages/BrandPage.vue";
+import Login from "@/pages/LoginPage.vue"
 import ErrorPage from "@/pages/ErrorPage"
 import TemplatePage from "@/pages/TemplatePage"
+import ProductPage from "@/pages/ProductPage"
 
 import {createRouter, createWebHistory} from "vue-router";
 
@@ -18,7 +19,9 @@ const routes = [
     {path: "/brand", component: BrandProduct},
     {path: "/login", component: Login},
     {path: "/error/:msg", component: ErrorPage},
-    {path: "/templates", component: TemplatePage}
+    {path: "/templates", component: TemplatePage},
+    {path: "/products", component: ProductPage}
+
 ];
 
 const router = createRouter({
