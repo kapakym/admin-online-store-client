@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      fetchTemplates: "template/fetchTemplates",
+      fetchTemplates: "template/fetchTemplatesByPage",
     }),
     async changePage(numberPage) {
       console.log(this.changed)
