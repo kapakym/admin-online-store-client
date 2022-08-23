@@ -46,27 +46,28 @@ export default {
 .pslabel {
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 40%;
   text-align: right;
   justify-content: right;
   margin-right: 10px;
-  white-space: nowrap;
+  margin: 5px;
 }
 
 .psselect {
   display: flex;
   align-items: center;
-  width: 70%;
-  margin-right: 18px;
+  width: 60%;
+  margin-right: 10px;
 }
 
 .psselectstyle {
-  width: 100%;
   align-self: auto;
   padding: 10px;
   background: none;
   color: black;
   border: 1px solid black;
   border-radius: 5px;
+  width: 100%;
+  margin: 5px;
 }
 </style>
