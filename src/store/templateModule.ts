@@ -5,6 +5,7 @@ import apiGetProperetyByPage from "@/api/Template/apiGetPropertyByPage";
 import apiDeleteProperty from "@/api/Template/apiDeleteProperty";
 import apiDeleteTemplate from "@/api/Template/apiDeleteTemplate";
 import apiPutTemplate from "@/api/Template/apiPutTemplate";
+import apiGetTemplate from "@/api/Template/apiGetTemplate";
 
 const templateModule = {
     state: () => ({
@@ -50,7 +51,18 @@ const templateModule = {
             dispatch("fetchTemplates", {page: state.page, limit: state.limit});
             console.log(result);
         },
-        async fetchTemplates(
+
+        async fetchTemplates({state, commit}: any) {
+            const result: any = await apiGetTemplate();
+            if (result.value.data?.templates) {
+                commit("setTemplates", [...result.value.data.templates]);
+                commit(
+                    "setTotalPages",
+                    Math.ceil(result.value.data.count / state.limit)
+                );
+            }
+        },
+        async fetchTemplatesByPage(
             {state, commit}: any,
             payload: { page: number; limit: number }
         ) {
