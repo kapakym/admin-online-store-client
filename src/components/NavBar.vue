@@ -28,6 +28,11 @@
       </ps-nav-bar-button
       >
 
+      <ps-nav-bar-button @click="$router.push('/products')"
+      >Товары
+      </ps-nav-bar-button
+      >
+
       <ps-nav-bar-button @click="logout" v-if="isAuth"
       >
         <ps-icon :name="'logout'" style="color: white"/>
