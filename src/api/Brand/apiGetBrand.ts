@@ -12,5 +12,5 @@ export default async function apiGetBrand(): Promise<{}> {
         await router.push(`/error/${error.response.data.message}`);
     }
 
-    return {responseBrand};
+    return responseBrand;
 }
