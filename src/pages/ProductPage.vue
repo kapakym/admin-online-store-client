@@ -1,5 +1,8 @@
 <template>
-  <ps-button>
+  <ps-dialog v-model:show="visibleNewProductForm">
+    <new-product-form></new-product-form>
+  </ps-dialog>
+  <ps-button @click="showNewProductFrom">
     <ps-icon name="add"/>
     Добавить
   </ps-button>
@@ -8,10 +11,22 @@
 <script>
 import PsButton from "@/components/UI/PsButton";
 import PsIcon from "@/components/UI/PsIcon";
+import PsDialog from "@/components/UI/PsDialog";
+import NewProductForm from "@/components/Product/NewProductForm";
 
 export default {
   name: "ProductPage",
-  components: {PsIcon, PsButton}
+  components: {NewProductForm, PsDialog, PsIcon, PsButton},
+  methods: {
+    showNewProductFrom() {
+      this.visibleNewProductForm = true;
+    }
+  },
+  data() {
+    return {
+      visibleNewProductForm: false
+    }
+  }
 }
 </script>
 
