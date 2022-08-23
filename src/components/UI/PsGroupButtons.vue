@@ -19,6 +19,7 @@ export default {
   align-content: center;
   justify-items: center;
   justify-content: right;
+  
   margin: 5px;
 }
 </style>
