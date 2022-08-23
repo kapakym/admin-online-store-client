@@ -35,26 +35,24 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
-
 }
 
-#body {
-  background: rgba(255, 255, 100, 0.5);;
+body {
+  display: block;
+  /*background: lightgray;*/
+
 }
 
 .app {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
-
-  /*width: 100%;*/
 }
 
 .global {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-
+  width: 80%;
+  margin: auto;
 }
 </style>
