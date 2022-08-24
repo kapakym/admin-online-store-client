@@ -1,6 +1,6 @@
 <template>
   <ps-dialog v-model:show="visibleNewProductForm">
-    <new-product-form></new-product-form>
+    <new-product-form @close="visibleNewProductForm=false"></new-product-form>
   </ps-dialog>
   <ps-button @click="showNewProductFrom">
     <ps-icon name="add"/>
@@ -17,6 +17,7 @@ import NewProductForm from "@/components/Product/NewProductForm";
 export default {
   name: "ProductPage",
   components: {NewProductForm, PsDialog, PsIcon, PsButton},
+
   methods: {
     showNewProductFrom() {
       this.visibleNewProductForm = true;
