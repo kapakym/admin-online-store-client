@@ -4,6 +4,7 @@ import authModule from "@/store/authModule";
 import brandModule from "@/store/brandModule";
 import categoryModule from "@/store/categoryModule";
 import templateModule from "@/store/templateModule";
+import productModule from "@/store/productModule"
 
 export default createStore({
     modules: {
@@ -11,6 +12,7 @@ export default createStore({
         auth: authModule,
         brand: brandModule,
         category: categoryModule,
-        template: templateModule
+        template: templateModule,
+        product: productModule
     },
 });
