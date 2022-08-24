@@ -108,18 +108,18 @@ const templateModule = {
         },
         async deleteProperty({commit, dispatch}: any, payload: { id: number, templateId: number }) {
             const result: any = await apiDeleteProperty(payload.id);
-            dispatch("fetchPropertys", {templateId: payload.templateId});
+            dispatch("fetchTemplatesByPage", {templateId: payload.templateId});
             return result;
         },
         async deleteTemplate({commit, dispatch}: any, payload: { id: number }) {
             const result: any = await apiDeleteTemplate(payload.id);
-            dispatch("fetchTemplates");
+            dispatch("fetchTemplatesByPage");
             return result;
         },
         async putTemplate({state, dispatch}: any, payload: { id: number, name: string }) {
             console.log(payload)
             await apiPutTemplate({id: payload.id, name: payload.name});
-            dispatch("fetchTemplates");
+            dispatch("fetchTemplatesByPage");
         }
 
     },
