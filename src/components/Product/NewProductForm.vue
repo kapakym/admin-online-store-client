@@ -6,8 +6,8 @@
     <h1>Добавление нового продукта</h1>
     <ps-label-input v-model="name" placeholder="Название продукта">Название продукта</ps-label-input>
     <ps-label-input v-model.number="price">Стоимость продукта</ps-label-input>
-    <ps-label-input v-model.number="price">Количество продукта на складе</ps-label-input>
-    <ps-label-input v-model.number="price">Штрих-код</ps-label-input>
+    <ps-label-input v-model.number="count">Количество продукта на складе</ps-label-input>
+    <ps-label-input v-model.number="barcode">Штрих-код</ps-label-input>
     <ps-label-select v-model="currentCategory" :model="categorys.categoryList">Категория продукта</ps-label-select>
     <ps-label-select v-model="currentBrands" :model="brands">Производитель продукта</ps-label-select>
     <ps-label-select v-model="currentTemplates" :model="templates.data">Примениить шаблон</ps-label-select>
@@ -20,11 +20,11 @@
       <div v-for="(item,index) in photos" class="filePhoto">{{ index + 1 }}. {{ item.name }}</div>
     </div>
     <ps-group-buttons style="margin-top: 25px">
-      <ps-button>
-        <ps-icon name="save" style="color: green"/>
-        Сохранить
+      <ps-button @click="createProduct">
+        <ps-icon name="create" style="color: green"/>
+        Создать
       </ps-button>
-      <ps-button>
+      <ps-button @click="$emit('close')">
         <ps-icon name="cancel" style="color: red"/>
         Отмена
       </ps-button>
@@ -45,15 +45,36 @@ import apiGetBrand from "@/api/Brand/apiGetBrand";
 import apiGetTemplate from "@/api/Template/apiGetTemplate";
 import PsDialog from "@/components/UI/PsDialog";
 import NewPhotoProductForm from "@/components/Product/NewPhotoProductForm";
+import {mapActions} from "vuex";
 
 export default {
   name: "NewProductForm",
   components: {NewPhotoProductForm, PsDialog, PsGroupButtons, PsIcon, PsButton, PsLabelSelect, PsLabelInput},
-  methods: {},
+  emits: ["close"],
+  methods: {
+    ...mapActions({
+      addProduct: "product/addProduct"
+    })
+    ,
+    async createProduct() {
+      await this.addProduct({
+        name: this.name,
+        price: this.price,
+        count: this.count,
+        barcode: this.barcode,
+        barandId: this.currentBrands,
+        templateId: this.currentTemplates,
+        categoryId: this.currentCategory,
+        photos: this.photos
+      })
+    }
+  },
   data() {
     return {
       name: "",
       price: 0,
+      count: 0,
+      barcode: "",
       categorys: [],
       brands: [],
       templates: [],
