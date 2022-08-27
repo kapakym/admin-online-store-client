@@ -21,7 +21,6 @@ export default {
   components: {UserItem},
   props: {
     users: Array,
-    // required: true,
   },
   setup() {
     return {};

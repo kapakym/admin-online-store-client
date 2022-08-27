@@ -8,17 +8,21 @@
       <div v-for="role in user.roles" :key="role">{{ role.value }}</div>
     </div>
     <ps-group-buttons>
-      <ps-button @click="removeUser">
-        <ps-icon :name="'delete'" style="color: red"/>
+      <ps-button>
+        <ps-icon name="message"/>
 
       </ps-button>
       <ps-button>
-        <ps-icon :name="'message'"/>
+        <ps-icon name="edit"/>
 
       </ps-button>
-      <ps-button @click="getPage">
-        <ps-icon :name="'block'" style="color: red"/>
+      <ps-button @click="removeUser">
+        <ps-icon name="delete" style="color: red"/>
 
+      </ps-button>
+
+      <ps-button @click="getPage">
+        <ps-icon name="block" style="color: red"/>
       </ps-button>
     </ps-group-buttons>
 

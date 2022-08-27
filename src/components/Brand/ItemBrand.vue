@@ -8,17 +8,18 @@
     </div>
     <div>
       <ps-group-buttons>
-        <ps-button @click="deleteItem">
-          <ps-icon :name="'delete'"/>
-          Удалить
+        <ps-button @click="update">
+          <ps-icon name="save" style="color: blue"/>
+
         </ps-button>
         <ps-button @click="changeLogo">
-          <ps-icon :name="'add_photo_alternate'"/>
-          Изменить логотип
+          <ps-icon name="add_photo_alternate" style="color: green"/>
+
         </ps-button>
-        <ps-button @click="update">
-          <ps-icon :name="'save'"/>
-          Сохранить
+
+        <ps-button @click="deleteItem">
+          <ps-icon name="delete" style="color: red"/>
+
         </ps-button>
       </ps-group-buttons>
 

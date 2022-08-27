@@ -30,19 +30,19 @@
 
 
   </div>
-  <div class="containerItem">
-    <ps-group-buttons style="width: 200px; flex-direction: column">
+  <div class="containerItem" style=" align-items: center; ">
+    <ps-group-buttons style="width: 50px; ">
       <ps-button>
-        <ps-icon name="save" style="color: green"/>
-        Сохранить
+        <ps-icon name="save" style="color: blue"/>
+
       </ps-button>
       <ps-button>
         <ps-icon name="edit" style="color: green"/>
-        Редактировать
+
       </ps-button>
       <ps-button>
         <ps-icon name="delete" style="color: red"/>
-        Удалить
+
       </ps-button>
     </ps-group-buttons>
   </div>
@@ -80,6 +80,7 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   justify-content: center;
+
 }
 
 .containerItem:hover {

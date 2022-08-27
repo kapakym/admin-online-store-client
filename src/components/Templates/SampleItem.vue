@@ -2,19 +2,22 @@
   <div class="itemtemplate" :class="{'changed': changed?.id?.includes(item.id) ? true : false }">
     <ps-input v-model="item.name" :changed="changed" :id="item.id"/>
     <div>
+
       <ps-group-buttons>
-        <ps-button @click="deleteTemp">
-          <ps-icon name="delete" style="color: red"/>
-          Удалить
+        <ps-button @click="updateTemp">
+          <ps-icon name="save" style="color: blue"/>
+
         </ps-button>
         <ps-button @click="edit">
           <ps-icon name="edit"/>
-          Редактировать шаблон
+
         </ps-button>
-        <ps-button @click="updateTemp">
-          <ps-icon name="save" style="color: green"/>
-          Сохранить
+        <ps-button @click="deleteTemp">
+          <ps-icon name="delete" style="color: red"/>
+
         </ps-button>
+
+
       </ps-group-buttons>
     </div>
   </div>
