@@ -48,7 +48,7 @@ const templateModule = {
     actions: {
         async createTemplate({state, dispatch}: any, payload: { name: string }) {
             const result = await apiCreateTemplate(payload.name);
-            dispatch("fetchTemplates", {page: state.page, limit: state.limit});
+            dispatch("fetchTemplatesByPage", {page: state.page, limit: state.limit});
             console.log(result);
         },
 
