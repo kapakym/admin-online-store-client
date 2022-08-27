@@ -1,9 +1,21 @@
 <template>
+  <ps-paginator
+      v-if="products.length > 0"
+      :current-page="page"
+      :total-pages="totalPages"
+      @changePage="changePage"
+  ></ps-paginator>
   <div class="container">
     <div v-for="item of products" style="display: flex; flex-grow: 1; box-sizing: border-box;">
       <product-item :item="item" :brands="brands" :categorys="categorys" :templates="templates"/>
     </div>
   </div>
+  <ps-paginator
+      v-if="products.length > 0"
+      :current-page="page"
+      :total-pages="totalPages"
+      @changePage="changePage"
+  ></ps-paginator>
 </template>
 
 <script>
@@ -16,6 +28,7 @@ import apiGetTemplate from "@/api/Template/apiGetTemplate";
 export default {
   name: "ProductList",
   components: {ProductItem},
+
   computed: {
     ...mapState({
       products: state => state.product.products,
@@ -25,12 +38,10 @@ export default {
     }),
   },
   async mounted() {
-    await this.getProductsByPage({page: 1, limit: 5});
-    console.log(this.products);
+    await this.changePage(this.page)
     this.brands = await apiGetBrand();
     const {categoryList} = await apiGetCategory();
     this.categorys = categoryList;
-    console.log(this.categorys)
     this.templates = await apiGetTemplate();
   },
 
@@ -38,6 +49,9 @@ export default {
     ...mapActions({
       getProductsByPage: "product/getProductsByPage"
     }),
+    async changePage(numberPage) {
+      await this.getProductsByPage({page: numberPage});
+    }
   },
   data() {
     return {
