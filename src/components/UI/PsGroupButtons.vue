@@ -6,21 +6,19 @@
 
 <script>
 export default {
-  name: "PsGroupButtons"
+  name: "PsGroupButtons",
 }
 </script>
 
 <style scoped>
 .groupbuttons {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  /*border: 1px solid black;*/
   align-content: center;
   justify-items: center;
-  justify-content: right;
-  
+  justify-content: center;
+  align-items: center;
   margin: 5px;
+  /*height: fit-content;*/
 }
 </style>
 

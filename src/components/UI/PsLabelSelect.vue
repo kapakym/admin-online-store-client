@@ -70,4 +70,12 @@ export default {
   width: 100%;
   margin: 5px;
 }
+
+
+.psselectstyle option {
+  font-weight: normal;
+  font-size: 1.2rem;
+}
+
+
 </style>

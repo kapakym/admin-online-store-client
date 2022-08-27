@@ -16,18 +16,17 @@ export default {
 
 <style lang="css" scoped>
 .mybutton {
-  /* align-self: flex-end; */
   display: flex;
   padding: 10px;
   background: none;
   color: black;
-  /*border: 1px solid black;*/
   border-radius: 5px;
   margin: 5px;
   justify-items: center;
   align-items: center;
   width: fit-content;
   box-shadow: 1px 1px 5px black;
+  white-space: nowrap;
 }
 
 .mybutton:hover {
