@@ -31,13 +31,17 @@
 
   </div>
   <div class="containerItem" style=" align-items: center; ">
-    <ps-group-buttons style="width: 50px; ">
+    <ps-group-buttons>
       <ps-button>
         <ps-icon name="save" style="color: blue"/>
 
       </ps-button>
       <ps-button>
         <ps-icon name="edit" style="color: green"/>
+
+      </ps-button>
+      <ps-button>
+        <ps-icon name="add_photo_alternate" style="color: green"/>
 
       </ps-button>
       <ps-button>
