@@ -1,6 +1,6 @@
 <template>
-  <div class="itemtemplate" :class="{'changed': changed?.id?.includes(item.id) ? true : false }">
-    <ps-input v-model="item.name" :changed="changed" :id="item.id"/>
+  <div class="itemtemplate">
+    <ps-input v-model="item.name" :changed="changed" :changed2="status" :id="item.id"/>
     <div>
 
       <ps-group-buttons>
@@ -14,10 +14,7 @@
         </ps-button>
         <ps-button @click="deleteTemp">
           <ps-icon name="delete" style="color: red"/>
-
         </ps-button>
-
-
       </ps-group-buttons>
     </div>
   </div>
@@ -34,11 +31,14 @@ export default {
 
   props: {
     item: Object,
-    changed: Object
+    changed: Object,
+
+
   },
   data() {
     return {
       visibleEditTemplateDialog: false,
+      status: Object
     };
   },
   methods: {
