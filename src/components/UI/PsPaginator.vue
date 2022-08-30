@@ -46,11 +46,18 @@ export default {
   /*padding: 10px;*/
   margin: 5px;
   justify-content: center;
-  box-shadow: 1px 1px 5px;
-  border-radius: 5px;
+  /*box-shadow: 1px 1px 5px;*/
+  /*border-radius: 5px;*/
 }
 
 .pgbutton {
-  box-shadow: 0 0 0;
+  /*box-shadow: 0 0 0;*/
 }
+
+.active {
+  background: none;
+  color: black;
+  border-bottom: 5px solid red;
+}
+
 </style>
