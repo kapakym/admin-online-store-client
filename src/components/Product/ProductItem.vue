@@ -1,4 +1,5 @@
 <template>
+
   <div class="pictureItem">
     <img :src="item.photos.length>0 ? server_url+item.photos[0] : server_url+'notpicture.png'" class="picture">
   </div>
@@ -36,7 +37,7 @@
         <ps-icon name="save" style="color: blue"/>
 
       </ps-button>
-      <ps-button>
+      <ps-button @click="onEdit">
         <ps-icon name="edit" style="color: green"/>
 
       </ps-button>
@@ -59,17 +60,29 @@ import PsLabelInput from "@/components/UI/PsLabelInput";
 import PsLabelSelect from "@/components/UI/PsLabelSelect";
 import PsButton from "@/components/UI/PsButton";
 import PsIcon from "@/components/UI/PsIcon";
+import PsDialog from "@/components/UI/PsDialog";
 
 export default {
   name: "ProductItem",
-  components: {PsIcon, PsButton, PsLabelSelect, PsLabelInput},
+  components: {PsDialog, PsIcon, PsButton, PsLabelSelect, PsLabelInput},
   mixins: [serverMixin],
+  data() {
+    return {
+      visibleDialogInfo: false
+    }
+  },
   props: {
     item: Object,
     brands: Array,
     categorys: Array,
     templates: Array
   },
+  emits: ["edit"],
+  methods: {
+    onEdit() {
+      this.$emit("edit", this.item.id)
+    }
+  }
 
 }
 </script>
