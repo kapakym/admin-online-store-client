@@ -1,4 +1,7 @@
 <template>
+  <ps-dialog v-model:show="visibleDialogInfo">
+    <product-edit-info-from :productId="productEditInfo" @close="visibleDialogInfo=false"></product-edit-info-from>
+  </ps-dialog>
   <ps-paginator
       v-if="products.length > 0"
       :current-page="page"
@@ -7,7 +10,7 @@
   ></ps-paginator>
   <div class="container">
     <div v-for="item of products" style="display: flex; flex-grow: 1; box-sizing: border-box;">
-      <product-item :item="item" :brands="brands" :categorys="categorys" :templates="templates"/>
+      <product-item :item="item" :brands="brands" :categorys="categorys" :templates="templates" @edit="editInfo"/>
     </div>
   </div>
   <ps-paginator
@@ -24,10 +27,11 @@ import ProductItem from "@/components/Product/ProductItem";
 import apiGetBrand from "@/api/Brand/apiGetBrand";
 import apiGetCategory from "@/api/Category/apiGetCategory";
 import apiGetTemplate from "@/api/Template/apiGetTemplate";
+import ProductEditInfoFrom from "@/components/Product/ProductEditInfoFrom";
 
 export default {
   name: "ProductList",
-  components: {ProductItem},
+  components: {ProductItem, ProductEditInfoFrom},
 
   computed: {
     ...mapState({
@@ -51,13 +55,20 @@ export default {
     }),
     async changePage(numberPage) {
       await this.getProductsByPage({page: numberPage});
+    },
+    editInfo(productId) {
+      console.log(productId)
+      this.productEditInfo = productId;
+      this.visibleDialogInfo = true;
     }
   },
   data() {
     return {
       brands: [],
       categorys: [],
-      templates: []
+      templates: [],
+      visibleDialogInfo: false,
+      productEditInfo: 0
     }
   },
 
