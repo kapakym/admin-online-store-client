@@ -58,11 +58,11 @@ export default {
   padding: 5px;
   margin: 10px;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px black;
+  /*box-shadow: 1px 1px 5px black;*/
 }
 
 .property:hover {
-  background-color: blanchedalmond;
+  /*background-color: blanchedalmond;*/
   cursor: pointer;
 }
 </style>
