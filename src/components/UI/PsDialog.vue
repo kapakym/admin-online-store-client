@@ -58,7 +58,7 @@ enter-to - финальное состояние элемента leave
 
 .fade-dialog-enter-active,
 .fade-dialog-leave-active {
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .fade-dialog-enter-from,
