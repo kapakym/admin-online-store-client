@@ -1,6 +1,6 @@
 <template>
   <ps-dialog v-model:show="visibleDialogInfo">
-    <product-edit-info-from :productId="productEditInfo" @close="visibleDialogInfo=false"></product-edit-info-from>
+    <product-edit-info-from :product="productEditInfo" @close="visibleDialogInfo=false"></product-edit-info-from>
   </ps-dialog>
   <ps-paginator
       v-if="products.length > 0"
