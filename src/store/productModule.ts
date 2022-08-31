@@ -39,7 +39,7 @@ const productModule = {
             state.infoLimit = props;
         },
         setInfoTotalPages(state: any, props: number) {
-            state.infoTotalPages = props;
+            state.infoTotalPage = props;
         },
     },
     actions: {
@@ -70,16 +70,15 @@ const productModule = {
             console.log(payload)
             if (payload?.page) commit("setInfoPage", payload.page);
             if (payload?.limit) commit("setInfoLimit", payload.limit);
-            const result: any = await apiGetProductInfoByPage(payload.productId, state.page, state.limit);
+            const result: any = await apiGetProductInfoByPage(payload.productId, state.infoPage, state.infoLimit);
 
             if (result.value.data?.productInfo) {
                 console.log(result.value.data);
                 commit("setInfoProductions", [...result.value.data.productInfo]);
                 commit(
                     "setInfoTotalPages",
-                    Math.ceil(result.value.data.count / state.limit)
+                    Math.ceil(result.value.data.count / state.infoLimit)
                 );
-                console.log(result.value.data.count)
             }
         }
 
