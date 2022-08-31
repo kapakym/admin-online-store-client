@@ -10,7 +10,7 @@
     <ps-label-input v-model.number="barcode">Штрих-код</ps-label-input>
     <ps-label-select v-model="currentCategory" :model="categorys.categoryList">Категория продукта</ps-label-select>
     <ps-label-select v-model="currentBrands" :model="brands">Производитель продукта</ps-label-select>
-    <ps-label-select v-model="currentTemplates" :model="templates.data">Примениить шаблон</ps-label-select>
+    <ps-label-select v-model="currentTemplates" :model="templates">Примениить шаблон</ps-label-select>
     <ps-button @click="visibleDialogAddPhoto=true">
       <ps-icon name="photo"/>
       Добавить фото
@@ -85,11 +85,12 @@ export default {
   },
   async mounted() {
     this.categorys = await apiGetCategory();
+    this.categorys.categoryList.splice(0, 1);
     this.currentCategory = this.categorys.categoryList[0].id;
     this.brands = await apiGetBrand();
     this.currentBrands = this.brands[0].id;
     this.templates = await apiGetTemplate();
-    this.currentTemplates = this.templates.data[0].id
+    this.currentTemplates = this.templates[0].id
   }
 }
 </script>
