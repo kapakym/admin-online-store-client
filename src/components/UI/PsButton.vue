@@ -35,13 +35,15 @@ export default {
 }
 
 .mybutton:active {
-  background: bisque;
+  /*background: bisque;*/
+  box-shadow: 0px 0px 2px black;
 }
 
 
 .active {
   background: teal;
   color: white;
+
 }
 
 
