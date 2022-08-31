@@ -2,11 +2,7 @@
   <div class="itemInfoProduct">
     <ps-label-input v-model="item.value" placeholder="Введите значение">{{ item.name }}</ps-label-input>
     <div class="typeInfo">{{ item.type }}</div>
-    <ps-group-buttons v-if="!item.templateId">
-      <ps-button>
-        <ps-icon name="delete" style="color: red"/>
-      </ps-button>
-    </ps-group-buttons>
+  
   </div>
 
 </template>
