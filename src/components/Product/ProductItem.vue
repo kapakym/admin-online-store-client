@@ -33,7 +33,7 @@
   </div>
   <div class="containerItem" style=" align-items: center; ">
     <ps-group-buttons>
-      <ps-button>
+      <ps-button @click="saveProduct">
         <ps-icon name="save" style="color: blue"/>
 
       </ps-button>
@@ -61,6 +61,7 @@ import PsLabelSelect from "@/components/UI/PsLabelSelect";
 import PsButton from "@/components/UI/PsButton";
 import PsIcon from "@/components/UI/PsIcon";
 import PsDialog from "@/components/UI/PsDialog";
+import apiPutProduct from "@/api/Product/apiPutProduct";
 
 export default {
   name: "ProductItem",
@@ -80,7 +81,10 @@ export default {
   emits: ["edit"],
   methods: {
     onEdit() {
-      this.$emit("edit", this.item.id)
+      this.$emit("edit", this.item)
+    },
+    async saveProduct() {
+      await apiPutProduct({product: this.item});
     }
   }
 
