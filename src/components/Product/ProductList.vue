@@ -1,7 +1,12 @@
 <template>
+  <ps-dialog v-model:show="visibleChangePhotoDialog">
+    <change-product-photo :product="selectedProduct" @close="visibleChangePhotoDialog=false"/>
+  </ps-dialog>
+
   <div v-if="products?.length==0"><h1>Добавьте новый товар!</h1></div>
   <ps-dialog v-model:show="visibleDialogInfo">
-    <product-edit-info-from :product="productEditInfo" @close="visibleDialogInfo=false"></product-edit-info-from>
+    <product-edit-info-from :product="productIDEditInfoAndPhoto"
+                            @close="visibleDialogInfo=false"></product-edit-info-from>
   </ps-dialog>
   <ps-paginator
       v-if="products.length > 0"
@@ -11,7 +16,8 @@
   ></ps-paginator>
   <div class="container">
     <div v-for="item of products" style="display: flex; flex-grow: 1; box-sizing: border-box;">
-      <product-item :item="item" :brands="brands" :categorys="categorys" :templates="templates" @edit="editInfo"/>
+      <product-item :item="item" :brands="brands" :categorys="categorys" :templates="templates" @edit="editInfo"
+                    @editPhoto="editPhoto"/>
     </div>
   </div>
   <ps-paginator
@@ -29,10 +35,12 @@ import apiGetBrand from "@/api/Brand/apiGetBrand";
 import apiGetCategory from "@/api/Category/apiGetCategory";
 import apiGetTemplate from "@/api/Template/apiGetTemplate";
 import ProductEditInfoFrom from "@/components/Product/ProductEditInfoFrom";
+import ChangeProductPhoto from "@/components/Product/changeProductPhoto";
+import PsDialog from "@/components/UI/PsDialog";
 
 export default {
   name: "ProductList",
-  components: {ProductItem, ProductEditInfoFrom},
+  components: {PsDialog, ChangeProductPhoto, ProductItem, ProductEditInfoFrom},
 
   computed: {
     ...mapState({
@@ -60,8 +68,12 @@ export default {
     },
     editInfo(productId) {
       console.log(productId)
-      this.productEditInfo = productId;
+      this.productIDEditInfoAndPhoto = productId;
       this.visibleDialogInfo = true;
+    },
+    editPhoto(item) {
+      this.selectedProduct = item;
+      this.visibleChangePhotoDialog = true;
     }
   },
   data() {
@@ -70,7 +82,9 @@ export default {
       categorys: [],
       templates: [],
       visibleDialogInfo: false,
-      productEditInfo: 0
+      productIDEditInfoAndPhoto: 0,
+      visibleChangePhotoDialog: false,
+      selectedProduct: Object
     }
   },
 
