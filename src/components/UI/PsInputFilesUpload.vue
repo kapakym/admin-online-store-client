@@ -23,7 +23,7 @@ export default {
     fileChange(event) {
       const urls = []
       for (const url of event.target.files) urls.push(URL.createObjectURL(url))
-      this.$emit('update:modelValue', {files: event.target.files, urls: urls})
+      this.$emit('update:modelValue', {files: Array.from(event.target.files), urls: urls})
     },
 
   }
