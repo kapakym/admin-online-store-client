@@ -1,6 +1,6 @@
 <template>
 
-  <div class="pictureItem">
+  <div class="pictureItem" @click="$emit('editPhoto', item)">
     <img :src="item.photos.length>0 ? server_url+item.photos[0] : server_url+'notpicture.png'" class="picture">
   </div>
   <div class="containerItem">
@@ -41,7 +41,7 @@
         <ps-icon name="edit" style="color: green"/>
 
       </ps-button>
-      <ps-button>
+      <ps-button @click="$emit('editPhoto', item)">
         <ps-icon name="add_photo_alternate" style="color: green"/>
 
       </ps-button>
@@ -79,7 +79,7 @@ export default {
     categorys: Array,
     templates: Array
   },
-  emits: ["edit"],
+  emits: ["edit", "editPhoto"],
   methods: {
     ...mapActions({
       deleteProductAction: "product/deleteProduct"
