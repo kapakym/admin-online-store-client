@@ -2,6 +2,7 @@ import apiAddProduct from "@/api/Product/apiAddProduct";
 import {ParamsProduct} from "@/api/Product/TypesProduct";
 import apiGetProductByPage from "@/api/Product/apiGetProductByPage";
 import apiGetProductInfoByPage from "@/api/Product/apiGetInfoProduct";
+import apiDeleteProduct from "@/api/Product/apiDeleteProduct";
 
 const productModule = {
     state: () => ({
@@ -80,8 +81,11 @@ const productModule = {
                     Math.ceil(result.value.data.count / state.infoLimit)
                 );
             }
+        },
+        async deleteProduct({dispatch}: any, payload: { id: number }) {
+            await apiDeleteProduct(payload.id);
+            dispatch("getProductsByPage");
         }
-
     },
     namespaced: true
 }
