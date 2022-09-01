@@ -43,6 +43,7 @@ export default {
     addPhoto() {
       this.$emit("update:modelValue", this.files.files);
       console.log(this.modelValue)
+      this.$emit("onAdd", this.files.files)
       this.$emit("close");
     }
   }
