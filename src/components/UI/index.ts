@@ -15,6 +15,7 @@ import PsTableTr from "@/components/UI/PsTableTr";
 import PsCheckBox from "@/components/UI/PsCheckBox.vue";
 import PsInputFilesUpload from "@/components/UI/PsInputFilesUpload.vue";
 import PsCaruselLoader from "@/components/UI/PsCaruselLoader.vue";
+import PsCarusel from "@/components/UI/PsCarusel.vue";
 
 export default [
     PsButton,
@@ -33,5 +34,6 @@ export default [
     PsTableTr,
     PsCheckBox,
     PsInputFilesUpload,
-    PsCaruselLoader
+    PsCaruselLoader,
+    PsCarusel
 ];
