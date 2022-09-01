@@ -1,4 +1,5 @@
 <template>
+  <div v-if="products?.length==0"><h1>Добавьте новый товар!</h1></div>
   <ps-dialog v-model:show="visibleDialogInfo">
     <product-edit-info-from :product="productEditInfo" @close="visibleDialogInfo=false"></product-edit-info-from>
   </ps-dialog>
@@ -45,6 +46,7 @@ export default {
     await this.changePage(this.page)
     this.brands = await apiGetBrand();
     const {categoryList} = await apiGetCategory();
+    categoryList.value.splice(0, 1);
     this.categorys = categoryList;
     this.templates = await apiGetTemplate();
   },
