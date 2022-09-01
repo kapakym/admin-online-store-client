@@ -45,7 +45,7 @@
         <ps-icon name="add_photo_alternate" style="color: green"/>
 
       </ps-button>
-      <ps-button>
+      <ps-button @click="deleteProduct">
         <ps-icon name="delete" style="color: red"/>
 
       </ps-button>
@@ -62,6 +62,7 @@ import PsButton from "@/components/UI/PsButton";
 import PsIcon from "@/components/UI/PsIcon";
 import PsDialog from "@/components/UI/PsDialog";
 import apiPutProduct from "@/api/Product/apiPutProduct";
+import {mapActions} from "vuex";
 
 export default {
   name: "ProductItem",
@@ -80,11 +81,23 @@ export default {
   },
   emits: ["edit"],
   methods: {
+    ...mapActions({
+      deleteProductAction: "product/deleteProduct"
+    }),
     onEdit() {
       this.$emit("edit", this.item)
     },
+    async deleteProduct() {
+
+      this.$popup(`Вы действительно хотите удалить "${this.item.name}"`, async () => {
+        await this.deleteProductAction({id: this.item.id});
+      })
+    },
     async saveProduct() {
-      await apiPutProduct({product: this.item});
+      this.$popup(`Вы действительно хотите сохранить изменения в "${this.item.name}"`, async () => {
+        await apiPutProduct({product: this.item});
+      })
+
     }
   }
 
